@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		616A1C1225E031630062BB89 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10225E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10325E022ED00B12D0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* RootView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		616A1C1125E031630062BB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8421F0EE25E022EA00B12D0B /* TendrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendrApp.swift; sourceTree = "<group>"; };
 		8421F0EF25E022EA00B12D0B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		8421F0F025E022ED00B12D0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		616A1C1025E031580062BB89 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				616A1C1125E031630062BB89 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		8421F0E825E022EA00B12D0B = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +88,7 @@
 				8421F14525E03ACC00B12D0B /* Constants */,
 				8421F14C25E03B2F00B12D0B /* Extension */,
 				8421F11325E02BDA00B12D0B /* Networking */,
+				616A1C1025E031580062BB89 /* Settings */,
 				8421F14425E03AB200B12D0B /* View */,
 			);
 			path = Shared;
@@ -95,8 +106,8 @@
 		8421F0F725E022ED00B12D0B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				8421F13D25E036C600B12D0B /* View */,
 				8421F0F825E022ED00B12D0B /* Info.plist */,
+				8421F13D25E036C600B12D0B /* View */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -104,8 +115,8 @@
 		8421F0FE25E022ED00B12D0B /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				8421F0FF25E022ED00B12D0B /* Info.plist */,
 				8421F10025E022ED00B12D0B /* macOS.entitlements */,
+				8421F0FF25E022ED00B12D0B /* Info.plist */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -135,8 +146,8 @@
 		8421F14425E03AB200B12D0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8421F0EF25E022EA00B12D0B /* RootView.swift */,
 				846574E525E0432000BA7A3D /* LandingPage.swift */,
+				8421F0EF25E022EA00B12D0B /* RootView.swift */,
 				846574E925E0440A00BA7A3D /* Button Style */,
 			);
 			path = View;
@@ -263,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				616A1C1225E031630062BB89 /* SettingsView.swift in Sources */,
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
 				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
