@@ -13,6 +13,12 @@ class AuthManager: ObservableObject {
 	
 	@Published var isAuthenticated: Bool
 	
+	var signupUUID: UUID? {
+		willSet {
+			defaults.set(newValue, forKey: AppStorageConstants.signupUUID)
+		}
+	}
+	
 	var authToken: String? {
 		willSet {
 			defaults.set(newValue, forKey: AppStorageConstants.apiAuthToken)
@@ -27,8 +33,22 @@ class AuthManager: ObservableObject {
 		}
 	}
 	
+	var appleAuthToken: String? {
+		willSet {
+			defaults.set(newValue, forKey: AppStorageConstants.appleAuthToken)
+		}
+	}
+	
 	init() {
+		if let defaultValue = defaults.value(forKey: AppStorageConstants.signupUUID),
+		   let uuid = defaultValue as? UUID {
+			signupUUID = uuid
+		} else {
+			signupUUID = nil
+		}
+		
 		authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
+		appleAuthToken = defaults.string(forKey: AppStorageConstants.appleAuthToken)
 		
 		if authToken != nil {
 			isAuthenticated = true
@@ -37,9 +57,12 @@ class AuthManager: ObservableObject {
 		}
 	}
 	
-	func authenticate(authToken: String) {
-		// Use network manager to send auth token to api
-		// When we get an auth token back from api, save it to user defaults
+	func fetchAuthToken(with uuid: UUID) {
+		// Send UUID to our api to recieve authToken
+	}
+	
+	func fetchAuthToken(with appleToken: String) {
+		// Send apple auth token to api
 	}
 	
 	func logout() {
@@ -48,7 +71,12 @@ class AuthManager: ObservableObject {
 }
 
 class MockAuthManager: AuthManager {
-	override func authenticate(authToken: String) {
-		self.authToken = "1234567"
+	override func fetchAuthToken(with uuid: UUID) {
+		self.authToken = "12345"
+	}
+	
+	override func fetchAuthToken(with appleToken: String) {
+		// Send apple auth token to api
+		self.authToken = "12345"
 	}
 }
