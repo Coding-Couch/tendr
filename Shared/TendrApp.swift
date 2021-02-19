@@ -9,6 +9,16 @@ import SwiftUI
 
 @main
 struct TendrApp: App {
+	@ObservedObject var authManager: AuthManager
+	
+	init() {
+		#if DEBUG
+		authManager = MockAuthManager()
+		#else
+		authManager = AuthManager()
+		#endif
+	}
+	
     var body: some Scene {
         WindowGroup {
             ContentView()
