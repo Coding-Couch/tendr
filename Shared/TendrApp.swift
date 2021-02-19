@@ -21,7 +21,8 @@ struct TendrApp: App {
 	
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+				.environmentObject(authManager)
         }
     }
 }

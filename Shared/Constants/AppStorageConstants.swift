@@ -8,6 +8,7 @@
 import Foundation
 
 enum AppStorageConstants {
+	static let signupUUID = "com.codingcouch.tendr.signupuuid"
 	static let apiAuthToken = "com.codingcouch.tendr.authtoken"
 	static let appleAuthToken = "com.codingcouch.tendr.appleAuthToken"
 }

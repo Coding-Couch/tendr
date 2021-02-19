@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10225E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
-		8421F10325E022ED00B12D0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* ContentView.swift */; };
-		8421F10425E022ED00B12D0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* ContentView.swift */; };
+		8421F10325E022ED00B12D0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* RootView.swift */; };
+		8421F10425E022ED00B12D0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* RootView.swift */; };
 		8421F10525E022ED00B12D0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Assets.xcassets */; };
 		8421F10625E022ED00B12D0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Assets.xcassets */; };
 		8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F11525E02BF400B12D0B /* AuthManager.swift */; };
 		8421F11D25E02E4100B12D0B /* AppStorageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */; };
 		8421F12425E0311200B12D0B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F11525E02BF400B12D0B /* AuthManager.swift */; };
 		8421F12725E0322700B12D0B /* AppStorageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */; };
+		8421F15025E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */; };
+		8421F15125E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */; };
+		846574E625E0432000BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
+		846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
+		846574EC25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
+		846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8421F0EE25E022EA00B12D0B /* TendrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendrApp.swift; sourceTree = "<group>"; };
-		8421F0EF25E022EA00B12D0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8421F0EF25E022EA00B12D0B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		8421F0F025E022ED00B12D0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8421F0F525E022ED00B12D0B /* Tendr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tendr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8421F0F825E022ED00B12D0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,6 +36,9 @@
 		8421F10025E022ED00B12D0B /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		8421F11525E02BF400B12D0B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageConstants.swift; sourceTree = "<group>"; };
+		8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Measurements.swift"; sourceTree = "<group>"; };
+		846574E525E0432000BA7A3D /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
+		846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +72,13 @@
 		8421F0ED25E022EA00B12D0B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				8421F11425E02BE400B12D0B /* Authentication */,
-				8421F11325E02BDA00B12D0B /* Networking */,
 				8421F0EE25E022EA00B12D0B /* TendrApp.swift */,
-				8421F0EF25E022EA00B12D0B /* ContentView.swift */,
 				8421F0F025E022ED00B12D0B /* Assets.xcassets */,
+				8421F11425E02BE400B12D0B /* Authentication */,
+				8421F14525E03ACC00B12D0B /* Constants */,
+				8421F14C25E03B2F00B12D0B /* Extension */,
+				8421F11325E02BDA00B12D0B /* Networking */,
+				8421F14425E03AB200B12D0B /* View */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -84,6 +95,7 @@
 		8421F0F725E022ED00B12D0B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8421F13D25E036C600B12D0B /* View */,
 				8421F0F825E022ED00B12D0B /* Info.plist */,
 			);
 			path = iOS;
@@ -109,9 +121,49 @@
 			isa = PBXGroup;
 			children = (
 				8421F11525E02BF400B12D0B /* AuthManager.swift */,
-				8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		8421F13D25E036C600B12D0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8421F14425E03AB200B12D0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8421F0EF25E022EA00B12D0B /* RootView.swift */,
+				846574E525E0432000BA7A3D /* LandingPage.swift */,
+				846574E925E0440A00BA7A3D /* Button Style */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8421F14525E03ACC00B12D0B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		8421F14C25E03B2F00B12D0B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		846574E925E0440A00BA7A3D /* Button Style */ = {
+			isa = PBXGroup;
+			children = (
+				846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */,
+			);
+			path = "Button Style";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,9 +264,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
-				8421F10325E022ED00B12D0B /* ContentView.swift in Sources */,
+				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
+				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
+				846574E625E0432000BA7A3D /* LandingPage.swift in Sources */,
 				8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */,
 				8421F11D25E02E4100B12D0B /* AppStorageConstants.swift in Sources */,
+				8421F15025E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,8 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8421F10425E022ED00B12D0B /* ContentView.swift in Sources */,
+				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
+				8421F10425E022ED00B12D0B /* RootView.swift in Sources */,
+				846574EC25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
+				8421F15125E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
 				8421F10225E022ED00B12D0B /* TendrApp.swift in Sources */,
 				8421F12725E0322700B12D0B /* AppStorageConstants.swift in Sources */,
 			);
@@ -283,9 +341,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -336,8 +398,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -348,8 +414,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PSCPX4RU9V;
+				DEVELOPMENT_TEAM = M5MTT5YDN9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -357,8 +424,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.Tendr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.tendr;
 				PRODUCT_NAME = Tendr;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -370,8 +438,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PSCPX4RU9V;
+				DEVELOPMENT_TEAM = M5MTT5YDN9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -379,8 +448,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.Tendr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.tendr;
 				PRODUCT_NAME = Tendr;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,6 +478,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.Tendr;
 				PRODUCT_NAME = Tendr;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -432,6 +503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.Tendr;
 				PRODUCT_NAME = Tendr;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
