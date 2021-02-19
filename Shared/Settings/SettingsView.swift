@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("NSFW") var nsfwEnabled = false
+    @AppStorage(AppStorageConstants.nsfwEnabled) var nsfwEnabled = false
     
     private var releaseVersion: String { return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }

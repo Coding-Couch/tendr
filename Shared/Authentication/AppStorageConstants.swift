@@ -10,4 +10,5 @@ import Foundation
 enum AppStorageConstants {
 	static let apiAuthToken = "com.codingcouch.tendr.authtoken"
 	static let appleAuthToken = "com.codingcouch.tendr.appleAuthToken"
+    static let nsfwEnabled = "com.codingcouch.tendr.nsfw"
 }
