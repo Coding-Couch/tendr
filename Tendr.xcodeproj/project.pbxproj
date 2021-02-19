@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		616A1C1225E031630062BB89 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
+		616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
+		6185799025E04AE300D73755 /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6185798F25E04AE300D73755 /* AsyncImageLoader.swift */; };
 		8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10225E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10325E022ED00B12D0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* ContentView.swift */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		616A1C1125E031630062BB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		616A1C2825E0452A0062BB89 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		6185798F25E04AE300D73755 /* AsyncImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageLoader.swift; sourceTree = "<group>"; };
 		8421F0EE25E022EA00B12D0B /* TendrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendrApp.swift; sourceTree = "<group>"; };
 		8421F0EF25E022EA00B12D0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8421F0F025E022ED00B12D0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +64,23 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		616A1C2625E045100062BB89 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				616A1C2725E0451B0062BB89 /* Image */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		616A1C2725E0451B0062BB89 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				616A1C2825E0452A0062BB89 /* AsyncImage.swift */,
+				6185798F25E04AE300D73755 /* AsyncImageLoader.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		8421F0E825E022EA00B12D0B = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +94,7 @@
 		8421F0ED25E022EA00B12D0B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				616A1C2625E045100062BB89 /* Views */,
 				616A1C1025E031580062BB89 /* Settings */,
 				8421F11425E02BE400B12D0B /* Authentication */,
 				8421F11325E02BDA00B12D0B /* Networking */,
@@ -226,7 +248,9 @@
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
 				8421F10325E022ED00B12D0B /* ContentView.swift in Sources */,
 				8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */,
+				616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */,
 				8421F11D25E02E4100B12D0B /* AppStorageConstants.swift in Sources */,
+				6185799025E04AE300D73755 /* AsyncImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
