@@ -33,11 +33,9 @@ struct LandingPage: View {
 				
 				Spacer().frame(height: 32)
 				
-				if buttonsDisabled {
-					ProgressView()
-						.progressViewStyle(CircularProgressViewStyle())
-						.scaleEffect(2.0)
-				}
+				ProgressView()
+					.progressViewStyle(CircularProgressViewStyle())
+					.opacity(buttonsDisabled ? 1 : 0)
 			}
 			.padding()
     }
@@ -53,9 +51,17 @@ struct LandingPage: View {
 					switch result {
 					case .success (let authenticationResults):
 						print("Authorization successful!: \(authenticationResults)")
+						
+						guard let credentials =
+								authenticationResults.credential as? ASAuthorizationAppleIDCredential else {
+							return
+						}
+						
 					case .failure(let error):
 						print("Authorization failed: " + error.localizedDescription)
 					}
+					
+					buttonsDisabled = false
 				}
 			)
 			.signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)

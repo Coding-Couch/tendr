@@ -63,10 +63,12 @@ struct ApiRequest<Request: Codable> {
 			request.setValue(value, forHTTPHeaderField: key)
 		}
 		
-		do {
-			request.httpBody = try JSONEncoder().encode(requestBody)
-		} catch let EncodingError.invalidValue(value, context) {
-			throw ApiRequestError.serialization(value: value, codingPath: context.codingPath)
+		if let requestBody = requestBody {
+			do {
+				request.httpBody = try JSONEncoder().encode(requestBody)
+			} catch let EncodingError.invalidValue(value, context) {
+				throw ApiRequestError.serialization(value: value, codingPath: context.codingPath)
+			}
 		}
 		
 		return request

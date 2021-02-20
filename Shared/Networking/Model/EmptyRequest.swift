@@ -7,4 +7,5 @@
 
 import Foundation
 
+/// Used to satisfy generic type for an `ApiRequest` that has no request body (GET requests for example)
 struct EmptyRequest: Codable {}

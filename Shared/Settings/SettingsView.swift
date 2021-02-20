@@ -30,7 +30,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationBarTitle("Settings")
+        .navigationTitle(Text("Settings", comment: "Settings Page Title"))
     }
 }
 

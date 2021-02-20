@@ -18,6 +18,10 @@
 		846574E625E0432000BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
 		846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
 		846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
+		84EC262325E0D03D00B045A0 /* MemeResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */; };
+		84EC262C25E0D0AC00B045A0 /* MemeResponseArray.json in Resources */ = {isa = PBXBuildFile; fileRef = 84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */; };
+		84EC263425E0D0CD00B045A0 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC263325E0D0CD00B045A0 /* JsonLoader.swift */; };
+		84EC266D25E0E1D000B045A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Assets.xcassets */; };
 		84EF26B925E067FB00061513 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26B825E067FB00061513 /* HTTPMethod.swift */; };
 		84EF26BF25E068BF00061513 /* MemeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26BE25E068BF00061513 /* MemeResponse.swift */; };
 		84EF26D525E06E4800061513 /* URLRequest+HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26D425E06E4800061513 /* URLRequest+HTTPMethod.swift */; };
@@ -64,6 +68,10 @@
 		8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Measurements.swift"; sourceTree = "<group>"; };
 		846574E525E0432000BA7A3D /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
+		84EC25E725E0CA7A00B045A0 /* Tendr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tendr.entitlements; sourceTree = "<group>"; };
+		84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeResponseTest.swift; sourceTree = "<group>"; };
+		84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MemeResponseArray.json; sourceTree = "<group>"; };
+		84EC263325E0D0CD00B045A0 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		84EF26B825E067FB00061513 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		84EF26BE25E068BF00061513 /* MemeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeResponse.swift; sourceTree = "<group>"; };
 		84EF26D425E06E4800061513 /* URLRequest+HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+HTTPMethod.swift"; sourceTree = "<group>"; };
@@ -147,6 +155,7 @@
 		8421F0F725E022ED00B12D0B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				84EC25E725E0CA7A00B045A0 /* Tendr.entitlements */,
 				8421F0F825E022ED00B12D0B /* Info.plist */,
 			);
 			path = iOS;
@@ -215,6 +224,22 @@
 			path = "Button Style";
 			sourceTree = "<group>";
 		};
+		84EC262125E0D02200B045A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84EC262A25E0D09B00B045A0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		84EF26BD25E068A300061513 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,8 +252,10 @@
 		84EF275825E0ADCF00061513 /* TendrTests (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				84EC262A25E0D09B00B045A0 /* Resources */,
 				84EF276C25E0AE2500061513 /* Shared */,
 				84EF275B25E0ADCF00061513 /* Info.plist */,
+				84EC263325E0D0CD00B045A0 /* JsonLoader.swift */,
 			);
 			path = "TendrTests (iOS)";
 			sourceTree = "<group>";
@@ -244,6 +271,7 @@
 		84EF276D25E0AE3F00061513 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				84EC262125E0D02200B045A0 /* Model */,
 				84EF276E25E0AE5000061513 /* ApiRequestTest.swift */,
 			);
 			path = Networking;
@@ -358,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EC266D25E0E1D000B045A0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EC262C25E0D0AC00B045A0 /* MemeResponseArray.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +447,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EC262325E0D03D00B045A0 /* MemeResponseTest.swift in Sources */,
+				84EC263425E0D0CD00B045A0 /* JsonLoader.swift in Sources */,
 				84EF276F25E0AE5000061513 /* ApiRequestTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/Tendr.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M5MTT5YDN9;
@@ -580,6 +613,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/Tendr.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M5MTT5YDN9;
@@ -608,7 +642,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PSCPX4RU9V;
+				DEVELOPMENT_TEAM = M5MTT5YDN9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -617,7 +651,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.Tendr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.tendr.mac;
 				PRODUCT_NAME = Tendr;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -633,7 +667,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PSCPX4RU9V;
+				DEVELOPMENT_TEAM = M5MTT5YDN9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -642,7 +676,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.Tendr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingcouch.tendr.mac;
 				PRODUCT_NAME = Tendr;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;

@@ -13,12 +13,14 @@ class AuthManager: ObservableObject {
 	
 	@Published var isAuthenticated: Bool
 	
+	#warning("TODO - Remove this if we get sign-in with apple working")
 	var signupUUID: UUID? {
 		willSet {
-			defaults.set(newValue, forKey: AppStorageConstants.signupUUID)
+			defaults.set(newValue?.uuidString, forKey: AppStorageConstants.signupUUID)
 		}
 	}
 	
+	/// The auth token from Tendr API.
 	var authToken: String? {
 		willSet {
 			defaults.set(newValue, forKey: AppStorageConstants.apiAuthToken)
@@ -33,22 +35,28 @@ class AuthManager: ObservableObject {
 		}
 	}
 	
-	var appleAuthToken: String? {
+	/// Authorization Code from sign-in with apple
+	var appleAuthCode: String? {
 		willSet {
-			defaults.set(newValue, forKey: AppStorageConstants.appleAuthToken)
+			defaults.set(newValue, forKey: AppStorageConstants.appleAuthCode)
+		}
+	}
+	
+	/// UserId from sign-in with apple
+	var appleUserId: String? {
+		willSet {
+			defaults.set(newValue, forKey: AppStorageConstants.appleUserId)
 		}
 	}
 	
 	init() {
-		if let defaultValue = defaults.value(forKey: AppStorageConstants.signupUUID),
-		   let uuid = defaultValue as? UUID {
-			signupUUID = uuid
-		} else {
-			signupUUID = nil
+		if let uuid = defaults.string(forKey: AppStorageConstants.signupUUID) {
+			signupUUID = UUID(uuidString: uuid)
 		}
 		
 		authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
-		appleAuthToken = defaults.string(forKey: AppStorageConstants.appleAuthToken)
+		appleAuthCode = defaults.string(forKey: AppStorageConstants.appleAuthCode)
+		appleUserId = defaults.string(forKey: AppStorageConstants.appleUserId)
 		
 		if authToken != nil {
 			isAuthenticated = true
@@ -72,11 +80,15 @@ class AuthManager: ObservableObject {
 
 class MockAuthManager: AuthManager {
 	override func fetchAuthToken(with uuid: UUID) {
-		self.authToken = "12345"
+		withAnimation {
+			self.authToken = "12345"
+		}
 	}
 	
 	override func fetchAuthToken(with appleToken: String) {
 		// Send apple auth token to api
-		self.authToken = "12345"
+		withAnimation {
+			self.authToken = "12345"
+		}
 	}
 }
