@@ -11,16 +11,15 @@ struct RootView: View {
 	@EnvironmentObject var authManager: AuthManager
 	
     var body: some View {
-		if !authManager.isAuthenticated {
-			LandingPage()
-		} else {
-			NavigationView {
+		NavigationView {
+			if !authManager.isAuthenticated {
+				LandingPage()
+					.transition(.slide)
+			} else {
 				TabBarView()
+					.transition(.slide)
 			}
-//			.navigationBarTitle("Tendr")
-			.navigationTitle("Tendr")
 		}
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
