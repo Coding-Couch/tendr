@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		613E7EB425E06B2E00F20A53 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EB325E06B2E00F20A53 /* TabBarView.swift */; };
+		613E7EB525E06B2E00F20A53 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EB325E06B2E00F20A53 /* TabBarView.swift */; };
+		613E7EB825E0710500F20A53 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		613E7EBB25E0711700F20A53 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
 		613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6185798F25E04AE300D73755 /* AsyncImageLoader.swift */; };
 		613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EC325E0781700F20A53 /* Image+Initializer.swift */; };
@@ -33,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		613E7EB325E06B2E00F20A53 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		613E7EC325E0781700F20A53 /* Image+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Initializer.swift"; sourceTree = "<group>"; };
 		616A1C1125E031630062BB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		616A1C2825E0452A0062BB89 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				846574E525E0432000BA7A3D /* LandingPage.swift */,
 				8421F0EF25E022EA00B12D0B /* RootView.swift */,
 				846574E925E0440A00BA7A3D /* Button Style */,
+				613E7EB325E06B2E00F20A53 /* TabBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 			files = (
 				613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */,
 				616A1C1225E031630062BB89 /* SettingsView.swift in Sources */,
+				613E7EB425E06B2E00F20A53 /* TabBarView.swift in Sources */,
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
 				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
@@ -317,6 +323,8 @@
 				613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
 				8421F10425E022ED00B12D0B /* RootView.swift in Sources */,
+				613E7EB525E06B2E00F20A53 /* TabBarView.swift in Sources */,
+				613E7EB825E0710500F20A53 /* SettingsView.swift in Sources */,
 				846574EC25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
 				8421F15125E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
@@ -502,6 +510,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = PSCPX4RU9V;
@@ -527,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = PSCPX4RU9V;

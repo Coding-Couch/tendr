@@ -15,7 +15,7 @@ struct RootView: View {
 			LandingPage()
 		} else {
 			NavigationView {
-				Text("Hello World")
+				TabBarView()
 			}
 //			.navigationBarTitle("Tendr")
 			.navigationTitle("Tendr")
