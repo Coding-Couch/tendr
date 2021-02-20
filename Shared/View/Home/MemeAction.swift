@@ -28,7 +28,7 @@ enum MemeAction: CaseIterable {
         case .dislike:
             return .red
         case .skip:
-            return Color(.systemGray2)
+			return .gray
         case .like:
             return .green
         }
