@@ -30,7 +30,24 @@
 		84EF26FB25E073E600061513 /* MemeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26BE25E068BF00061513 /* MemeResponse.swift */; };
 		84EF26FE25E073EC00061513 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* RootView.swift */; };
 		84EF270125E073EF00061513 /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
+		84EF270725E0747400061513 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF270625E0747400061513 /* Endpoint.swift */; };
+		84EF270825E0747400061513 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF270625E0747400061513 /* Endpoint.swift */; };
+		84EF270D25E09B6B00061513 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF270C25E09B6B00061513 /* ApiRequest.swift */; };
+		84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF270C25E09B6B00061513 /* ApiRequest.swift */; };
+		84EF271D25E0A98100061513 /* EmptyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF271C25E0A98100061513 /* EmptyRequest.swift */; };
+		84EF271E25E0A98100061513 /* EmptyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF271C25E0A98100061513 /* EmptyRequest.swift */; };
+		84EF276F25E0AE5000061513 /* ApiRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF276E25E0AE5000061513 /* ApiRequestTest.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84EF275C25E0ADCF00061513 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8421F0E925E022EA00B12D0B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8421F0F425E022ED00B12D0B;
+			remoteInfo = "Tendr (iOS)";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		616A1C1125E031630062BB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -50,6 +67,12 @@
 		84EF26B825E067FB00061513 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		84EF26BE25E068BF00061513 /* MemeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeResponse.swift; sourceTree = "<group>"; };
 		84EF26D425E06E4800061513 /* URLRequest+HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+HTTPMethod.swift"; sourceTree = "<group>"; };
+		84EF270625E0747400061513 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		84EF270C25E09B6B00061513 /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		84EF271C25E0A98100061513 /* EmptyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequest.swift; sourceTree = "<group>"; };
+		84EF275725E0ADCF00061513 /* TendrTests (iOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TendrTests (iOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EF275B25E0ADCF00061513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84EF276E25E0AE5000061513 /* ApiRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +84,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8421F0FA25E022ED00B12D0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84EF275425E0ADCF00061513 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -84,6 +114,7 @@
 				8421F0ED25E022EA00B12D0B /* Shared */,
 				8421F0F725E022ED00B12D0B /* iOS */,
 				8421F0FE25E022ED00B12D0B /* macOS */,
+				84EF275825E0ADCF00061513 /* TendrTests (iOS) */,
 				8421F0F625E022ED00B12D0B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,6 +139,7 @@
 			children = (
 				8421F0F525E022ED00B12D0B /* Tendr.app */,
 				8421F0FD25E022ED00B12D0B /* Tendr.app */,
+				84EF275725E0ADCF00061513 /* TendrTests (iOS).xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,8 +164,10 @@
 		8421F11325E02BDA00B12D0B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				84EF26BD25E068A300061513 /* Model */,
+				84EF270C25E09B6B00061513 /* ApiRequest.swift */,
+				84EF270625E0747400061513 /* Endpoint.swift */,
 				84EF26B825E067FB00061513 /* HTTPMethod.swift */,
+				84EF26BD25E068A300061513 /* Model */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -184,17 +218,35 @@
 		84EF26BD25E068A300061513 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84EF26D325E06E2300061513 /* Response */,
+				84EF26BE25E068BF00061513 /* MemeResponse.swift */,
+				84EF271C25E0A98100061513 /* EmptyRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		84EF26D325E06E2300061513 /* Response */ = {
+		84EF275825E0ADCF00061513 /* TendrTests (iOS) */ = {
 			isa = PBXGroup;
 			children = (
-				84EF26BE25E068BF00061513 /* MemeResponse.swift */,
+				84EF276C25E0AE2500061513 /* Shared */,
+				84EF275B25E0ADCF00061513 /* Info.plist */,
 			);
-			path = Response;
+			path = "TendrTests (iOS)";
+			sourceTree = "<group>";
+		};
+		84EF276C25E0AE2500061513 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				84EF276D25E0AE3F00061513 /* Networking */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		84EF276D25E0AE3F00061513 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				84EF276E25E0AE5000061513 /* ApiRequestTest.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +286,24 @@
 			productReference = 8421F0FD25E022ED00B12D0B /* Tendr.app */;
 			productType = "com.apple.product-type.application";
 		};
+		84EF275625E0ADCF00061513 /* TendrTests (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84EF275E25E0ADCF00061513 /* Build configuration list for PBXNativeTarget "TendrTests (iOS)" */;
+			buildPhases = (
+				84EF275325E0ADCF00061513 /* Sources */,
+				84EF275425E0ADCF00061513 /* Frameworks */,
+				84EF275525E0ADCF00061513 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84EF275D25E0ADCF00061513 /* PBXTargetDependency */,
+			);
+			name = "TendrTests (iOS)";
+			productName = "TendrTests (iOS)";
+			productReference = 84EF275725E0ADCF00061513 /* TendrTests (iOS).xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -248,6 +318,10 @@
 					};
 					8421F0FC25E022ED00B12D0B = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					84EF275625E0ADCF00061513 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 8421F0F425E022ED00B12D0B;
 					};
 				};
 			};
@@ -266,6 +340,7 @@
 			targets = (
 				8421F0F425E022ED00B12D0B /* Tendr (iOS) */,
 				8421F0FC25E022ED00B12D0B /* Tendr (macOS) */,
+				84EF275625E0ADCF00061513 /* TendrTests (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -286,6 +361,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84EF275525E0ADCF00061513 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -293,16 +375,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EF270D25E09B6B00061513 /* ApiRequest.swift in Sources */,
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
 				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
 				846574E625E0432000BA7A3D /* LandingPage.swift in Sources */,
+				84EF271D25E0A98100061513 /* EmptyRequest.swift in Sources */,
 				84EF26BF25E068BF00061513 /* MemeResponse.swift in Sources */,
 				8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */,
 				84EF26B925E067FB00061513 /* HTTPMethod.swift in Sources */,
 				8421F11D25E02E4100B12D0B /* AppStorageConstants.swift in Sources */,
 				84EF26D525E06E4800061513 /* URLRequest+HTTPMethod.swift in Sources */,
 				8421F15025E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
+				84EF270725E0747400061513 /* Endpoint.swift in Sources */,
 				84EF26EC25E073D300061513 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,21 +396,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */,
 				84EF26F225E073DA00061513 /* URLRequest+HTTPMethod.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
 				8421F12725E0322700B12D0B /* AppStorageConstants.swift in Sources */,
+				84EF271E25E0A98100061513 /* EmptyRequest.swift in Sources */,
 				84EF26FE25E073EC00061513 /* RootView.swift in Sources */,
 				84EF26F525E073DC00061513 /* CGFloat+Measurements.swift in Sources */,
 				84EF26EF25E073D700061513 /* HTTPMethod.swift in Sources */,
 				84EF26DD25E06E9D00061513 /* SettingsView.swift in Sources */,
 				84EF270125E073EF00061513 /* LargeButtonStyle.swift in Sources */,
 				84EF26F825E073DE00061513 /* TendrApp.swift in Sources */,
+				84EF270825E0747400061513 /* Endpoint.swift in Sources */,
 				84EF26FB25E073E600061513 /* MemeResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84EF275325E0ADCF00061513 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84EF276F25E0AE5000061513 /* ApiRequestTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84EF275D25E0ADCF00061513 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8421F0F425E022ED00B12D0B /* Tendr (iOS) */;
+			targetProxy = 84EF275C25E0ADCF00061513 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8421F10725E022ED00B12D0B /* Debug */ = {
@@ -546,6 +650,49 @@
 			};
 			name = Release;
 		};
+		84EF275F25E0ADCF00061513 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PSCPX4RU9V;
+				INFOPLIST_FILE = "TendrTests (iOS)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codingcouch.TendrTests--iOS-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tendr.app/Tendr";
+			};
+			name = Debug;
+		};
+		84EF276025E0ADCF00061513 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PSCPX4RU9V;
+				INFOPLIST_FILE = "TendrTests (iOS)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codingcouch.TendrTests--iOS-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tendr.app/Tendr";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -572,6 +719,15 @@
 			buildConfigurations = (
 				8421F10D25E022ED00B12D0B /* Debug */,
 				8421F10E25E022ED00B12D0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84EF275E25E0ADCF00061513 /* Build configuration list for PBXNativeTarget "TendrTests (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84EF275F25E0ADCF00061513 /* Debug */,
+				84EF276025E0ADCF00061513 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
