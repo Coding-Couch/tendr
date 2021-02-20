@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		613E7EB825E0710500F20A53 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		613E7EBB25E0711700F20A53 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
 		613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6185798F25E04AE300D73755 /* AsyncImageLoader.swift */; };
 		613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EC325E0781700F20A53 /* Image+Initializer.swift */; };
@@ -36,13 +35,14 @@
 		8421F12425E0311200B12D0B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F11525E02BF400B12D0B /* AuthManager.swift */; };
 		8421F12725E0322700B12D0B /* AppStorageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */; };
 		8421F15025E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */; };
-		845C901925E19850009EF7AB /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C901825E19850009EF7AB /* RootNavigationView.swift */; };
+		845C901925E19850009EF7AB /* RootNavigationViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C901825E19850009EF7AB /* RootNavigationViewMac.swift */; };
 		845C901E25E19962009EF7AB /* RootNavigationViewIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C901D25E19962009EF7AB /* RootNavigationViewIOS.swift */; };
 		845C908825E1A47D009EF7AB /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EB325E06B2E00F20A53 /* TabBarView.swift */; };
 		845C909B25E1A4E8009EF7AB /* AppSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C908F25E1A4AA009EF7AB /* AppSection.swift */; };
 		845C909F25E1A4E8009EF7AB /* AppSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C908F25E1A4AA009EF7AB /* AppSection.swift */; };
-		845C90BE25E1A721009EF7AB /* Color+MacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C90BD25E1A721009EF7AB /* Color+MacOS.swift */; };
 		845C90BF25E1A721009EF7AB /* Color+MacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C90BD25E1A721009EF7AB /* Color+MacOS.swift */; };
+		845C90C725E1A9F9009EF7AB /* SideBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C90C625E1A9F9009EF7AB /* SideBarNavigationView.swift */; };
+		845C90E125E1B7F5009EF7AB /* PreferencesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C90E025E1B7F5009EF7AB /* PreferencesPage.swift */; };
 		846574E625E0432000BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
 		846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
 		846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
@@ -56,7 +56,6 @@
 		84EC267D25E0E68000B045A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84EC267C25E0E68000B045A0 /* Assets.xcassets */; };
 		84EF26B925E067FB00061513 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26B825E067FB00061513 /* HTTPMethod.swift */; };
 		84EF26BF25E068BF00061513 /* MemeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26BE25E068BF00061513 /* MemeResponse.swift */; };
-		84EF26DD25E06E9D00061513 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		84EF26EC25E073D300061513 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		84EF26EF25E073D700061513 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26B825E067FB00061513 /* HTTPMethod.swift */; };
 		84EF26F525E073DC00061513 /* CGFloat+Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */; };
@@ -107,10 +106,12 @@
 		8421F11525E02BF400B12D0B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		8421F11C25E02E4100B12D0B /* AppStorageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageConstants.swift; sourceTree = "<group>"; };
 		8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Measurements.swift"; sourceTree = "<group>"; };
-		845C901825E19850009EF7AB /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
+		845C901825E19850009EF7AB /* RootNavigationViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewMac.swift; sourceTree = "<group>"; };
 		845C901D25E19962009EF7AB /* RootNavigationViewIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewIOS.swift; sourceTree = "<group>"; };
 		845C908F25E1A4AA009EF7AB /* AppSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSection.swift; sourceTree = "<group>"; };
 		845C90BD25E1A721009EF7AB /* Color+MacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+MacOS.swift"; sourceTree = "<group>"; };
+		845C90C625E1A9F9009EF7AB /* SideBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarNavigationView.swift; sourceTree = "<group>"; };
+		845C90E025E1B7F5009EF7AB /* PreferencesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPage.swift; sourceTree = "<group>"; };
 		846574E525E0432000BA7A3D /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
 		84986DB725E16C3A00A882A5 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		616A1C1025E031580062BB89 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				616A1C1125E031630062BB89 /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -229,7 +229,6 @@
 				84EC25E725E0CA7A00B045A0 /* Tendr.entitlements */,
 				8421F0F825E022ED00B12D0B /* Info.plist */,
 				84EC267725E0E66000B045A0 /* Assets.xcassets */,
-				845C901D25E19962009EF7AB /* RootNavigationViewIOS.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -237,6 +236,7 @@
 		8421F0FE25E022ED00B12D0B /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				845C90D125E1B651009EF7AB /* Command */,
 				845C90BC25E1A70D009EF7AB /* Extension */,
 				845C90AF25E1A637009EF7AB /* View */,
 				8421F10025E022ED00B12D0B /* macOS.entitlements */,
@@ -298,6 +298,8 @@
 		845C90A325E1A568009EF7AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				616A1C1125E031630062BB89 /* SettingsView.swift */,
+				845C901D25E19962009EF7AB /* RootNavigationViewIOS.swift */,
 				613E7EB325E06B2E00F20A53 /* TabBarView.swift */,
 			);
 			path = View;
@@ -314,7 +316,9 @@
 		845C90AF25E1A637009EF7AB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				845C901825E19850009EF7AB /* RootNavigationView.swift */,
+				845C901825E19850009EF7AB /* RootNavigationViewMac.swift */,
+				845C90C625E1A9F9009EF7AB /* SideBarNavigationView.swift */,
+				845C90E025E1B7F5009EF7AB /* PreferencesPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +329,13 @@
 				845C90BD25E1A721009EF7AB /* Color+MacOS.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		845C90D125E1B651009EF7AB /* Command */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Command;
 			sourceTree = "<group>";
 		};
 		846574E925E0440A00BA7A3D /* Button Style */ = {
@@ -536,7 +547,6 @@
 				84EF26BF25E068BF00061513 /* MemeResponse.swift in Sources */,
 				8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */,
 				613E7EEE25E0BA4F00F20A53 /* Color+iOS.swift in Sources */,
-				845C90BE25E1A721009EF7AB /* Color+MacOS.swift in Sources */,
 				616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */,
 				613E7ED525E09A5D00F20A53 /* MemeProvider.swift in Sources */,
 				8421F11D25E02E4100B12D0B /* AppStorageConstants.swift in Sources */,
@@ -565,13 +575,12 @@
 				613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
 				613E7EDB25E09CFE00F20A53 /* MemeCardView.swift in Sources */,
-				613E7EB825E0710500F20A53 /* SettingsView.swift in Sources */,
 				613E7EE025E09EFA00F20A53 /* MemeButtonsView.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
 				613E7ED625E09A5D00F20A53 /* MemeProvider.swift in Sources */,
 				84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */,
 				845C90BF25E1A721009EF7AB /* Color+MacOS.swift in Sources */,
-				845C901925E19850009EF7AB /* RootNavigationView.swift in Sources */,
+				845C901925E19850009EF7AB /* RootNavigationViewMac.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
 				84986DB925E16C3A00A882A5 /* CreditsView.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
@@ -581,11 +590,12 @@
 				84EF26F525E073DC00061513 /* CGFloat+Measurements.swift in Sources */,
 				84EF26EF25E073D700061513 /* HTTPMethod.swift in Sources */,
 				845C909F25E1A4E8009EF7AB /* AppSection.swift in Sources */,
-				84EF26DD25E06E9D00061513 /* SettingsView.swift in Sources */,
 				84EF270125E073EF00061513 /* LargeButtonStyle.swift in Sources */,
+				845C90E125E1B7F5009EF7AB /* PreferencesPage.swift in Sources */,
 				84EF26F825E073DE00061513 /* TendrApp.swift in Sources */,
 				84EF270825E0747400061513 /* Endpoint.swift in Sources */,
 				84EF26FB25E073E600061513 /* MemeResponse.swift in Sources */,
+				845C90C725E1A9F9009EF7AB /* SideBarNavigationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,34 +11,23 @@ struct RootNavigationViewMac: View {
 	@EnvironmentObject var authManager: AuthManager
 	
 	var body: some View {
-		NavigationView {
+		NavigationView {			
 			if !authManager.isAuthenticated {
 				LandingPage()
 					.transition(.slide)
-			} else {
-				Text("Hello World")
-					.transition(.slide)
+					.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 			}
 			
 			if !authManager.isAuthenticated {
 				CreditsView()
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
 			} else {
-				EmptyView()
-			}
-		}
-		.toolbar {
-			ToolbarItem(placement: .navigation) {
-				Button(action: toggleSidebar) {
-					Image(systemName: "sidebar.left")
-				}
+				SideBarNavigationView()
+					.transition(.slide)
+					.frame(minWidth: 300, maxWidth: .infinity)
 			}
 		}
 	}
-	
-	private func toggleSidebar() {
-		NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-	}
-    
 }
 
 struct RootNavigationViewMac_Previews: PreviewProvider {
