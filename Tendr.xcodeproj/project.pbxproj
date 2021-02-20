@@ -33,6 +33,7 @@
 		846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
 		846574EC25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
 		846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
+		84EF26DD25E06E9D00061513 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -330,6 +331,7 @@
 				8421F15125E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
 				8421F10225E022ED00B12D0B /* TendrApp.swift in Sources */,
 				8421F12725E0322700B12D0B /* AppStorageConstants.swift in Sources */,
+				84EF26DD25E06E9D00061513 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

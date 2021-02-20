@@ -10,22 +10,23 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage(AppStorageConstants.nsfwEnabled) var nsfwEnabled = false
     
-    private var releaseVersion: String { return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    private var releaseVersion: String {
+		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
     
     var body: some View {
         Form {
-            Section(header: Text("User")) {
+            Section(header: Text("User Preferences", comment: "User Preferences settings Section Label")) {
                 Toggle(isOn: $nsfwEnabled) {
-                    Text("NSFW")
+					Text("Show NSFW Memes", comment: "Show NSFW Settings Label")
                 }
             }
             
-            Section(header: Text("About")) {
+            Section(header: Text("About", comment: "About this app settings Section Label")) {
                 HStack {
                     Text("Version")
                     Spacer()
-                    Text("2.2.1")
+                    Text(releaseVersion)
                 }
             }
         }
