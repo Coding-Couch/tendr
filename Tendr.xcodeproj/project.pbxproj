@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		611A41B325E1B8B00053C010 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A41B225E1B8B00053C010 /* View.swift */; };
+		611A41B425E1B8B00053C010 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A41B225E1B8B00053C010 /* View.swift */; };
 		613E7EB425E06B2E00F20A53 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EB325E06B2E00F20A53 /* TabBarView.swift */; };
 		613E7EB525E06B2E00F20A53 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EB325E06B2E00F20A53 /* TabBarView.swift */; };
 		613E7EB825E0710500F20A53 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
@@ -80,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		611A41B225E1B8B00053C010 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		613E7EB325E06B2E00F20A53 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		613E7EC325E0781700F20A53 /* Image+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Initializer.swift"; sourceTree = "<group>"; };
 		613E7ECE25E096C200F20A53 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -279,6 +282,7 @@
 				613E7EC325E0781700F20A53 /* Image+Initializer.swift */,
 				613E7EED25E0BA4F00F20A53 /* Color.swift */,
 				84EF26D425E06E4800061513 /* URLRequest+HTTPMethod.swift */,
+				611A41B225E1B8B00053C010 /* View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -498,6 +502,7 @@
 				8421F15025E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
 				613E7EE925E0B03F00F20A53 /* MemeAction.swift in Sources */,
 				84EF26B925E067FB00061513 /* HTTPMethod.swift in Sources */,
+				611A41B325E1B8B00053C010 /* View.swift in Sources */,
 				8421F11D25E02E4100B12D0B /* AppStorageConstants.swift in Sources */,
 				84EF26D525E06E4800061513 /* URLRequest+HTTPMethod.swift in Sources */,
 				8421F15025E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
@@ -517,17 +522,13 @@
 				613E7EEA25E0B03F00F20A53 /* MemeAction.swift in Sources */,
 				613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
-				8421F10425E022ED00B12D0B /* RootView.swift in Sources */,
 				613E7EDB25E09CFE00F20A53 /* MemeCardView.swift in Sources */,
 				613E7EB525E06B2E00F20A53 /* TabBarView.swift in Sources */,
 				613E7EB825E0710500F20A53 /* SettingsView.swift in Sources */,
-				846574EC25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
 				613E7EE025E09EFA00F20A53 /* MemeButtonsView.swift in Sources */,
 				613E7EEF25E0BA4F00F20A53 /* Color.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
-				8421F15125E03B4D00B12D0B /* CGFloat+Measurements.swift in Sources */,
 				613E7ED625E09A5D00F20A53 /* MemeProvider.swift in Sources */,
-				8421F10225E022ED00B12D0B /* TendrApp.swift in Sources */,
 				84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */,
 				84EF26F225E073DA00061513 /* URLRequest+HTTPMethod.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
@@ -537,6 +538,7 @@
 				84EF26FE25E073EC00061513 /* RootView.swift in Sources */,
 				84EF26F525E073DC00061513 /* CGFloat+Measurements.swift in Sources */,
 				84EF26EF25E073D700061513 /* HTTPMethod.swift in Sources */,
+				611A41B425E1B8B00053C010 /* View.swift in Sources */,
 				84EF26DD25E06E9D00061513 /* SettingsView.swift in Sources */,
 				84EF270125E073EF00061513 /* LargeButtonStyle.swift in Sources */,
 				84EF26F825E073DE00061513 /* TendrApp.swift in Sources */,

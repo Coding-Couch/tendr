@@ -20,6 +20,7 @@ struct RootView: View {
 					.transition(.slide)
 			}
 		}
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
