@@ -20,7 +20,8 @@ class MemeProvider: ObservableObject {
     private func loadMore(count: Int = 1) {
         cancellable?.cancel()
         
-        let urlRequest = try? ApiRequest<EmptyRequest>(endpoint: Endpoint.memes(sorted: nil), requestBody: nil).createURLRequest()
+		#warning("VINCE YOU WILL HAVE TO HANDLE THE PAGING LOGIC. UPDATE OFFSET VALUE")
+		let urlRequest = try? ApiRequest<EmptyRequest>(endpoint: Endpoint.memes(limit: 5, offset: 0), requestBody: nil).createURLRequest()
         
         guard let request = urlRequest else { return }
         
