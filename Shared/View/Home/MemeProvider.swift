@@ -5,10 +5,12 @@
 //  Created by Vince on 2021-02-19.
 //
 
-import Foundation
+import SwiftUI
+import Combine
 
 class MemeProvider: ObservableObject {
     @Published var memes: [MemeResponse]
+    private var cancellable: AnyCancellable?
     
     init() {
         memes = []
@@ -16,24 +18,45 @@ class MemeProvider: ObservableObject {
     }
     
     private func loadMore(count: Int = 1) {
+        cancellable?.cancel()
         
+        let urlRequest = try? ApiRequest<EmptyRequest>(endpoint: Endpoint.memes(sorted: nil), requestBody: nil).createURLRequest()
+        
+        guard let request = urlRequest else { return }
+        
+        cancellable = URLSession.shared.dataTaskPublisher(for: request)
+            .map { $0.data }
+            .receive(on: DispatchQueue.main)
+            .decode(type: [MemeResponse].self, decoder: JSONDecoder())
+            .replaceError(with: [])
+            .eraseToAnyPublisher()
+            .sink(receiveCompletion: {  [weak self] completion in
+                guard let self = self else { return }
+                
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+            }, receiveValue: { [weak self] payload in
+                guard let self = self else { return }
+                
+                #warning("Find a better way to filter gifs out")
+                self.memes.append(contentsOf: payload.filter { !$0.url.absoluteString.contains(".gif") } )
+            })
     }
-    
     func action(_ action: MemeAction) {
         guard let meme = memes.first else { return }
         
         /// Send API request to skip
-        switch action {
-        case .like:
-            break
-        case .skip:
-            break
-        case .dislike:
-            break
-        }
+        
+        
+        
         
         /// removes the completed meme
-        memes.remove(at: 0)
+        memes.removeFirst()
         
         /// adds a meme to the array
         loadMore()

@@ -14,12 +14,13 @@ struct HomeView: View {
     var body: some View {
         VStack(alignment: .center, spacing: .largeMargin) {
             ZStack {
-                ForEach(memeProvider.memes, id: \.id) { meme in
+                ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
                     MemeCardView(url: meme.url)
                         .padding(.margin)
                 }
             }
             MemeButtonsView()
+                .environmentObject(memeProvider)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.secondarySystemBackground)

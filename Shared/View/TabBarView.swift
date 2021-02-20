@@ -64,7 +64,7 @@ struct TabBarView: View {
                     Tab.popular.tabView
                 }
                 .tag(Tab.popular)
-            Text("Tab Content 2")
+            HomeView()
                 .tabItem {
                     Tab.home.tabView
                 }
