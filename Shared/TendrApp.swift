@@ -23,6 +23,13 @@ struct TendrApp: App {
         WindowGroup {
             RootView()
 				.environmentObject(authManager)
+			
         }
+		
+		#if os(macOS)
+		Settings {
+			PreferencesPage()
+		}
+		#endif
     }
 }
