@@ -16,11 +16,10 @@ struct RootView: View {
 				LandingPage()
 					.transition(.slide)
 			} else {
-				Text("Hello World")
+				TabBarView()
 					.transition(.slide)
 			}
 		}
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {

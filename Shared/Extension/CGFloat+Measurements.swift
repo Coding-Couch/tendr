@@ -10,6 +10,7 @@ import CoreGraphics
 
 extension CGFloat {
 	// Margins
+    static let largeMargin: CGFloat = 32
 	static let margin: CGFloat = 16
 	static let smallMargin: CGFloat = 8
 	
