@@ -7,17 +7,14 @@
 
 import SwiftUI
 
-struct AsyncImage<Placeholder: View>: View {
+struct AsyncImage: View {
     @StateObject private var loader: ImageLoader
-    private let placeholder: Placeholder?
     private var onError: (() -> Void)? = nil
     
     init(
         url: URL,
-        onError: (() -> Void)? = nil,
-        @ViewBuilder placeholder: () -> Placeholder? = {nil}
+        onError: (() -> Void)? = nil
     ) {
-        self.placeholder = placeholder()
         self.onError = onError
         _loader = StateObject(
             wrappedValue: ImageLoader(url: url)
@@ -27,16 +24,14 @@ struct AsyncImage<Placeholder: View>: View {
     var body: some View {
         VStack {
             switch loader.status {
-            case .initial:
-                placeholder
-            case .loading:
+            case .initial, .loading:
                 ProgressView()
                     .progressViewStyle(
                         CircularProgressViewStyle()
                     )
             case .loaded:
                 if let image = loader.image {
-                    image
+                    image.resizable()
                 }
             case .error:
                 Text("erroe")
@@ -56,10 +51,6 @@ struct AsyncImage<Placeholder: View>: View {
         }
         )
     }
-    
-    private var content: some View {
-        placeholder
-    }
 }
 
 struct AsyncImage_Previews: PreviewProvider {
@@ -67,7 +58,6 @@ struct AsyncImage_Previews: PreviewProvider {
         AsyncImage(
             url: URL(
                 string:
-                    "https://i1.sndcdn.com/artworks-000248046424-aokz4t-t500x500.jpg")!,
-            placeholder: { Image(systemName: "photo") })
+                    "https://i1.sndcdn.com/artworks-000248046424-aokz4t-t500x500.jpg")!)
     }
 }
