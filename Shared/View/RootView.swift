@@ -11,14 +11,14 @@ struct RootView: View {
 	@EnvironmentObject var authManager: AuthManager
 	
     var body: some View {
-		if !authManager.isAuthenticated {
-			LandingPage()
-		} else {
-			NavigationView {
+		NavigationView {
+			if !authManager.isAuthenticated {
+				LandingPage()
+					.transition(.slide)
+			} else {
 				Text("Hello World")
+					.transition(.slide)
 			}
-//			.navigationBarTitle("Tendr")
-			.navigationTitle("Tendr")
 		}
     }
 }
