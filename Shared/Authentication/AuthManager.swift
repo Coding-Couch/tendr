@@ -11,16 +11,10 @@ import SwiftUI
 class AuthManager: ObservableObject {
 	private var defaults = UserDefaults.standard
 	
-	@Published var isAuthenticated: Bool
+	/// Publish the authentication state of the app.
+	@Published var isAuthenticated: Bool = false
 	
-	#warning("TODO - Remove this if we get sign-in with apple working")
-	var signupUUID: UUID? {
-		willSet {
-			defaults.set(newValue?.uuidString, forKey: AppStorageConstants.signupUUID)
-		}
-	}
-	
-	/// The auth token from Tendr API.
+	/// The persisted auth token from the Tendr Api
 	var authToken: String? {
 		willSet {
 			defaults.set(newValue, forKey: AppStorageConstants.apiAuthToken)
@@ -35,14 +29,7 @@ class AuthManager: ObservableObject {
 		}
 	}
 	
-	/// Authorization Code from sign-in with apple
-	var appleAuthCode: String? {
-		willSet {
-			defaults.set(newValue, forKey: AppStorageConstants.appleAuthCode)
-		}
-	}
-	
-	/// UserId from sign-in with apple
+	/// The persisted Sign in with apple user credential.
 	var appleUserId: String? {
 		willSet {
 			defaults.set(newValue, forKey: AppStorageConstants.appleUserId)
@@ -50,45 +37,37 @@ class AuthManager: ObservableObject {
 	}
 	
 	init() {
-		if let uuid = defaults.string(forKey: AppStorageConstants.signupUUID) {
-			signupUUID = UUID(uuidString: uuid)
-		}
-		
 		authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
-		appleAuthCode = defaults.string(forKey: AppStorageConstants.appleAuthCode)
 		appleUserId = defaults.string(forKey: AppStorageConstants.appleUserId)
 		
-		if authToken != nil {
-			isAuthenticated = true
-		} else {
-			isAuthenticated = false
+		
+		withAnimation {
+			if authToken != nil {
+				isAuthenticated = true
+			} else {
+				isAuthenticated = false
+			}
 		}
 	}
 	
-	func fetchAuthToken(with uuid: UUID) {
-		// Send UUID to our api to recieve authToken
+	/// Retrieve an auth token for Tendr Api by sending your apple user credential.
+	/// - Parameter appleUserId: user credential from `ASAuthorizationAppleIDCredential`
+	func fetchAuthToken(with appleUserId: String) {
+		// Send apple userID to Tendr Api
 	}
 	
-	func fetchAuthToken(with appleToken: String) {
-		// Send apple auth token to api
-	}
-	
+	/// Clear the users persisted session.
 	func logout() {
-		self.authToken = nil
+		defaults.removeObject(forKey: AppStorageConstants.apiAuthToken)
+		defaults.removeObject(forKey: AppStorageConstants.appleUserId)
 	}
 }
 
 class MockAuthManager: AuthManager {
-	override func fetchAuthToken(with uuid: UUID) {
-		withAnimation {
-			self.authToken = "12345"
-		}
-	}
-	
-	override func fetchAuthToken(with appleToken: String) {
+	override func fetchAuthToken(with appleUserId: String) {
 		// Send apple auth token to api
 		withAnimation {
-			self.authToken = "12345"
+			self.authToken = "1234567890"
 		}
 	}
 }

@@ -42,6 +42,8 @@
 		846574E625E0432000BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
 		846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
 		846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LandingPage.swift */; };
+		84986DB825E16C3A00A882A5 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84986DB725E16C3A00A882A5 /* CreditsView.swift */; };
+		84986DB925E16C3A00A882A5 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84986DB725E16C3A00A882A5 /* CreditsView.swift */; };
 		84EC262325E0D03D00B045A0 /* MemeResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */; };
 		84EC262C25E0D0AC00B045A0 /* MemeResponseArray.json in Resources */ = {isa = PBXBuildFile; fileRef = 84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */; };
 		84EC263425E0D0CD00B045A0 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC263325E0D0CD00B045A0 /* JsonLoader.swift */; };
@@ -105,6 +107,7 @@
 		8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Measurements.swift"; sourceTree = "<group>"; };
 		846574E525E0432000BA7A3D /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
+		84986DB725E16C3A00A882A5 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		84EC25E725E0CA7A00B045A0 /* Tendr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tendr.entitlements; sourceTree = "<group>"; };
 		84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeResponseTest.swift; sourceTree = "<group>"; };
 		84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MemeResponseArray.json; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 				8421F0EF25E022EA00B12D0B /* RootView.swift */,
 				846574E925E0440A00BA7A3D /* Button Style */,
 				613E7EB325E06B2E00F20A53 /* TabBarView.swift */,
+				84986DB725E16C3A00A882A5 /* CreditsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -484,6 +488,7 @@
 				84EF270D25E09B6B00061513 /* ApiRequest.swift in Sources */,
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
+				84986DB825E16C3A00A882A5 /* CreditsView.swift in Sources */,
 				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
 				846574E625E0432000BA7A3D /* LandingPage.swift in Sources */,
 				84EF271D25E0A98100061513 /* EmptyRequest.swift in Sources */,
@@ -531,6 +536,7 @@
 				84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */,
 				84EF26F225E073DA00061513 /* URLRequest+HTTPMethod.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
+				84986DB925E16C3A00A882A5 /* CreditsView.swift in Sources */,
 				8421F12425E0311200B12D0B /* AuthManager.swift in Sources */,
 				8421F12725E0322700B12D0B /* AppStorageConstants.swift in Sources */,
 				84EF271E25E0A98100061513 /* EmptyRequest.swift in Sources */,
