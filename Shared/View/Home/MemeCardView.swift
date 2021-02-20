@@ -9,8 +9,10 @@ import SwiftUI
 
 struct MemeCardView: View {
     var url: URL
+    @State private var translation: CGSize = .zero
     
     var body: some View {
+        GeometryReader { geometry in
         AsyncImage(url: url)
             .aspectRatio(contentMode: .fit)
             .cornerRadius(.cornerRadius)
@@ -23,10 +25,21 @@ struct MemeCardView: View {
                     .foregroundColor(.secondarySystemBackground)
                     .shadow(color: .secondary, radius: 8, x: 0, y: 14)
             )
-            
+            .animation(.interactiveSpring())
+            .offset(x: self.translation.width, y: self.translation.height)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    self.translation = value.translation
+                                }.onEnded { value in
+                                    self.translation = .zero
+                                }
+                        )
+            .rotationEffect(.degrees(Double(self.translation.width / geometry.size.width) * 25), anchor: .bottom)
             .onTapGesture {
                 #warning("Add full screen?")
             }
+        }
     }
 }
 

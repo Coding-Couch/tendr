@@ -10,7 +10,7 @@ import Foundation
 struct MemeResponse: Identifiable, Codable {
 	var id: String
 	var url: URL
-	var fileType: FileType
+	var fileType: FileType?
 	var upvotes: Int
 	var downvotes: Int
 }
