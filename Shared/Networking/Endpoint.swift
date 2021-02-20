@@ -1,6 +1,6 @@
 //
 //  Endpoint.swift
-//  Tendr
+//  Shared
 //
 //  Created by Brent Mifsud on 2021-02-19.
 //
