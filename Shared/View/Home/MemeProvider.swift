@@ -40,8 +40,3 @@ class MemeProvider: ObservableObject {
         
     }
 }
-
-struct MemeResponse: Identifiable {
-    var id = UUID()
-    var url: URL
-}
