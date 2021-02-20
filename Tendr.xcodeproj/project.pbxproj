@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		613E7EBB25E0711700F20A53 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
+		613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6185798F25E04AE300D73755 /* AsyncImageLoader.swift */; };
+		613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EC325E0781700F20A53 /* Image+Initializer.swift */; };
+		613E7EC525E0781700F20A53 /* Image+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EC325E0781700F20A53 /* Image+Initializer.swift */; };
 		616A1C1225E031630062BB89 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
 		6185799025E04AE300D73755 /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6185798F25E04AE300D73755 /* AsyncImageLoader.swift */; };
@@ -29,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		613E7EC325E0781700F20A53 /* Image+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Initializer.swift"; sourceTree = "<group>"; };
 		616A1C1125E031630062BB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		616A1C2825E0452A0062BB89 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		6185798F25E04AE300D73755 /* AsyncImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageLoader.swift; sourceTree = "<group>"; };
@@ -73,14 +78,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		616A1C2625E045100062BB89 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				616A1C2725E0451B0062BB89 /* Image */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		616A1C2725E0451B0062BB89 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,10 +100,6 @@
 		8421F0ED25E022EA00B12D0B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				616A1C2625E045100062BB89 /* Views */,
-				616A1C1025E031580062BB89 /* Settings */,
-				8421F11425E02BE400B12D0B /* Authentication */,
-				8421F11325E02BDA00B12D0B /* Networking */,
 				8421F0EE25E022EA00B12D0B /* TendrApp.swift */,
 				8421F0F025E022ED00B12D0B /* Assets.xcassets */,
 				8421F11425E02BE400B12D0B /* Authentication */,
@@ -171,6 +164,7 @@
 		8421F14425E03AB200B12D0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				616A1C2725E0451B0062BB89 /* Image */,
 				846574E525E0432000BA7A3D /* LandingPage.swift */,
 				8421F0EF25E022EA00B12D0B /* RootView.swift */,
 				846574E925E0440A00BA7A3D /* Button Style */,
@@ -190,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				8421F14F25E03B4D00B12D0B /* CGFloat+Measurements.swift */,
+				613E7EC325E0781700F20A53 /* Image+Initializer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -299,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */,
 				616A1C1225E031630062BB89 /* SettingsView.swift in Sources */,
 				8421F11625E02BF400B12D0B /* AuthManager.swift in Sources */,
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
@@ -316,6 +312,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				613E7EC525E0781700F20A53 /* Image+Initializer.swift in Sources */,
+				613E7EBB25E0711700F20A53 /* AsyncImage.swift in Sources */,
+				613E7EBE25E0712000F20A53 /* AsyncImageLoader.swift in Sources */,
 				846574F125E0565F00BA7A3D /* LandingPage.swift in Sources */,
 				8421F10425E022ED00B12D0B /* RootView.swift in Sources */,
 				846574EC25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,

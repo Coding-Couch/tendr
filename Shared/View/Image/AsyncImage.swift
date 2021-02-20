@@ -1,6 +1,6 @@
 //
 //  AsyncImage.swift
-//  Tendr (iOS)
+//  Tendr
 //
 //  Created by Vince on 2021-02-19.
 //
@@ -35,8 +35,8 @@ struct AsyncImage<Placeholder: View>: View {
                         CircularProgressViewStyle()
                     )
             case .loaded:
-                if let uiImage = loader.image {
-                    Image(uiImage: uiImage)
+                if let image = loader.image {
+                    image
                 }
             case .error:
                 Text("erroe")

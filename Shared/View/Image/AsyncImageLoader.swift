@@ -1,6 +1,6 @@
 //
 //  AsyncImageLoader.swift
-//  Tendr (iOS)
+//  Tendr
 //
 //  Created by Vince on 2021-02-19.
 //
@@ -9,8 +9,10 @@ import SwiftUI
 import Combine
 import Foundation
 
+//NSImage
+
 class ImageLoader: ObservableObject {
-    @Published var image: UIImage?
+    @Published var image: Image?
     @Published var status: Status
     private let url: URL
     private var cancellable: AnyCancellable?
@@ -39,7 +41,7 @@ class ImageLoader: ObservableObject {
         self.status = .loading
         
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
+            .map { Image(data: $0.data) }
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .handleEvents(
@@ -50,7 +52,6 @@ class ImageLoader: ObservableObject {
                     case .failure(let error):
                         self?.status = .error(error: error.localizedDescription)
                     }
-                    
                 },
                 receiveCancel: { [weak self] in
                     self?.status = .error(error: "Cancelled")

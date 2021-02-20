@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  Tendr (iOS)
+//  Tendr
 //
 //  Created by Vince on 2021-02-19.
 //
@@ -29,7 +29,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationBarTitle("Settings")
+        .navigationTitle("Settings")
     }
 }
 
