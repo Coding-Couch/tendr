@@ -17,7 +17,7 @@ struct TabBarView: View {
 					AppSection.history.tabView
 				}
 				.tag(AppSection.history)
-			MemeSwipeView()
+			HomeView()
 				.tabItem {
 					AppSection.home.tabView
 				}

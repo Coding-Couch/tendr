@@ -52,12 +52,6 @@ struct MemeCardView: View {
                 maxHeight: geometrySize.height/1.5
             )
             .foregroundColor(.secondarySystemBackground)
-            //                .background(
-            //                    RoundedRectangle(
-            //                        cornerRadius: .cornerRadius)
-            //                        .foregroundColor(.secondarySystemBackground)
-            //                        .shadow(color: .secondary, radius: 8, x: 0, y: 14)
-            //                )
             .animation(.interactiveSpring())
             .offset(x: self.translation.width, y: self.translation.height)
             .rotationEffect(

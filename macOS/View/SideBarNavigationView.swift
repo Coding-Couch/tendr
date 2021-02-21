@@ -17,7 +17,7 @@ struct SideBarNavigationView: View {
 			List {
 				NavigationLink(
 					destination:
-						MemeSwipeView()
+						HomeView()
 						.frame(minWidth: 400, idealWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity, alignment: .center),
 					isActive: Binding(
 						get: { activeSection == .home },
