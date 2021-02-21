@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  View+Hidden.swift
 //  Tendr
 //
 //  Created by Vince on 2021-02-20.

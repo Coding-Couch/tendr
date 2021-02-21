@@ -1,6 +1,6 @@
 //
 //  ApiRequest.swift
-//  Tendr
+//  Shared
 //
 //  Created by Brent Mifsud on 2021-02-19.
 //
@@ -34,6 +34,10 @@ struct ApiRequest<Request: Codable> {
 		
 		if let token = UserDefaults.standard.string(forKey: AppStorageConstants.apiAuthToken) {
 			headers["Authorization"] = token
+		}
+		
+		if let userId = UserDefaults.standard.string(forKey: AppStorageConstants.appleUserId) {
+			headers["X-User-UUID"] = userId
 		}
 		
 		self.init(endpoint: endpoint, headers: headers, requestBody: requestBody)
