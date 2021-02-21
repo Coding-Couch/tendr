@@ -12,9 +12,35 @@ struct MemeCardView: View {
     var swipe: (MemeAction) -> Void
     var geometrySize: CGSize
     @Binding var swipingAction: MemeAction?
-    @State private var translation: CGSize = .zero
+    @GestureState private var translation: CGSize = .zero
     
     private static var thresholdPercentage: CGFloat = 0.25
+    
+    private var dragGesture: some Gesture {
+        DragGesture()
+            .updating($translation, body: { currentState, gestureState, transaction in
+                gestureState = currentState.translation
+            })
+            .onChanged { value in
+                self.swipingAction = value.translation.swipeDirection.asMemeAction
+            }
+            .onEnded { value in
+                /// remove overlay
+                self.swipingAction = nil
+                
+                /// complete swipe
+                switch value.translation.swipeDirection {
+                case .up:
+                    self.swipe(.skip)
+                case .down:
+                    break
+                case .left:
+                    self.swipe(.dislike)
+                case .right:
+                    self.swipe(.like)
+                }
+            }
+    }
     
     var body: some View {
         AsyncImage(url: url)
@@ -23,7 +49,7 @@ struct MemeCardView: View {
             .padding(.margin)
             .frame(
                 maxWidth: geometrySize.width,
-                maxHeight: geometrySize.height/2
+                maxHeight: geometrySize.height/1.5
             )
             .foregroundColor(.secondarySystemBackground)
             //                .background(
@@ -39,27 +65,7 @@ struct MemeCardView: View {
                 anchor: .bottom
             )
             .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        self.translation = value.translation
-                        self.swipingAction = value.translation.swipeDirection.asMemeAction
-                    }
-                    .onEnded { value in
-                        /// remove overlay
-                        self.swipingAction = nil
-                        
-                        /// complete swipe
-                        switch value.translation.swipeDirection {
-                        case .up:
-                            self.swipe(.skip)
-                        case .down:
-                            self.translation = .zero
-                        case .left:
-                            self.swipe(.dislike)
-                        case .right:
-                            self.swipe(.like)
-                        }
-                    }
+                dragGesture
             )
             .onTapGesture {
                 #warning("Add full screen?")
