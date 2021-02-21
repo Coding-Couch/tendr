@@ -27,7 +27,7 @@ class MemeProvider: ObservableObject {
         
         cancellable = URLSession.shared.dataTaskPublisher(for: request)
             .map { $0.data }
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .decode(type: [MemeResponse].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .eraseToAnyPublisher()

@@ -10,15 +10,20 @@ import SwiftUI
 struct CreditsView: View {
     var body: some View {
 		VStack {
-			Text("Credits", comment: "Credits Title")
-				.font(.largeTitle)
-				.fontWeight(.black)
+			Image("tendies-image")
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(height: 150)
+				.clipShape(RoundedRectangle(cornerRadius: .cornerRadius))
+				.shadow(radius: 4)
 			
-			Spacer().frame(height: 34)
-			
-			Text("Created by Coding Couch for 2021 SwiftUIJam", comment: "Created by Label")
-				.font(.title2)
-				.fontWeight(.bold)
+			Text(
+				"Tendr was created by team Coding Couch for 2021 SwiftUIJam",
+				 comment: "Created by description"
+			)
+			.font(.title2)
+			.fontWeight(.bold)
+			.multilineTextAlignment(.center)
 			
 			Spacer().frame(height: .margin)
 			

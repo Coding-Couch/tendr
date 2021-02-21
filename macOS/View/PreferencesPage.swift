@@ -11,10 +11,6 @@ struct PreferencesPage: View {
 	
 	@AppStorage(AppStorageConstants.nsfwEnabled) private var nsfwEnabled = false
 	
-	private var releaseVersion: String {
-		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-	}
-	
     var body: some View {
 		List {
 			Section(header: Text("User Preferences", comment: "User Preferences settings Section Label")) {

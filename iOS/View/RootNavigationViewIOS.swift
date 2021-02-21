@@ -11,15 +11,14 @@ struct RootNavigationViewIOS: View {
 	@EnvironmentObject var authManager: AuthManager
 	
     var body: some View {
-		NavigationView {
-			if !authManager.isAuthenticated {
-				LandingPage()
-					.transition(.slide)
-			} else {
-				TabBarView()
-					.transition(.slide)
-			}
-		}
+		TabBarView()
+			.fullScreenCover(
+				isPresented: Binding(
+					get: { !authManager.isAuthenticated },
+					set: { _ in	}
+				),
+				content: { LoginPage() }
+			)
     }
 }
 

@@ -21,12 +21,12 @@ class ApiRequestTest: XCTestCase {
 	)
 	
 	func test_defaultRequest() throws {
-		let request = ApiRequest(endpoint: .memes(), requestBody: requestBody)
+		let request = ApiRequest(endpoint: .memes(limit: 5, offset: 0), requestBody: requestBody)
 		XCTAssertNoThrow(try request.createURLRequest())
 	}
 	
 	func test_apiRequest() throws {
-		let request = ApiRequest<EmptyRequest>(endpoint: .memes())
+		let request = ApiRequest<Tendr.Empty>(endpoint: .memes(limit: 5, offset: 0))
 		
 		let exp = expectation(description: "Wait for response")
 		
@@ -37,7 +37,7 @@ class ApiRequestTest: XCTestCase {
 				switch completion {
 				case .finished:
 					break
-				case .failure(let error):
+				case .failure:
 					XCTFail("Failed to decode response")
 					exp.fulfill()
 				}

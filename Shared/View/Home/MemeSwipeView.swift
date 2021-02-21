@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  MemeSwipeView.swift
 //  Tendr
 //
 //  Designed in DetailsPro
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct MemeSwipeView: View {
     @ObservedObject var memeProvider: MemeProvider = MemeProvider()
     @State var swipingAction: MemeAction?
     
@@ -113,15 +113,15 @@ struct HomeView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+		.padding()
         .background(Color.secondarySystemBackground)
         .overlay(actionOverlay().animation(.easeIn))
         .ignoresSafeArea()
-        
     }
 }
 
 struct MyDesign_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        MemeSwipeView()
     }
 }

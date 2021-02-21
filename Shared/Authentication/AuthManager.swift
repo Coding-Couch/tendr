@@ -7,68 +7,57 @@
 
 import Foundation
 import SwiftUI
+import Combine
+import os
 
 class AuthManager: ObservableObject {
 	private var defaults = UserDefaults.standard
+	private var logger: Logger = Logger(subsystem: bundleId, category: "Authentication Errors")
 	
-	/// Publish the authentication state of the app.
-	@Published var isAuthenticated: Bool = false
+	var isAuthenticated: Bool {
+		authToken != nil
+	}
 	
 	/// The persisted auth token from the Tendr Api
-	var authToken: String? {
+	@Published var authToken: String? {
 		willSet {
 			defaults.set(newValue, forKey: AppStorageConstants.apiAuthToken)
-		}
-		
-		didSet {
-			if authToken != nil {
-				isAuthenticated = true
-			} else {
-				isAuthenticated = false
-			}
 		}
 	}
 	
 	/// The persisted Sign in with apple user credential.
-	var appleUserId: String? {
+	@Published var appleUserId: String? {
 		willSet {
 			defaults.set(newValue, forKey: AppStorageConstants.appleUserId)
 		}
 	}
 	
 	init() {
-		authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
-		appleUserId = defaults.string(forKey: AppStorageConstants.appleUserId)
-		
-		
 		withAnimation {
-			if authToken != nil {
-				isAuthenticated = true
-			} else {
-				isAuthenticated = false
-			}
+			authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
+			appleUserId = defaults.string(forKey: AppStorageConstants.appleUserId)
 		}
 	}
 	
-	/// Retrieve an auth token for Tendr Api by sending your apple user credential.
-	/// - Parameter appleUserId: user credential from `ASAuthorizationAppleIDCredential`
-	func fetchAuthToken(with appleUserId: String) {
-		print("Not Implemented")
+	/// Submit an Auth Request using a network client.
+	/// - Parameter client: `NetworkClient` to use for the request.
+	func fetchAuthToken(with client: NetworkClient<AuthRequest, Empty>) {
+		client.load()
 	}
 	
 	/// Clear the users persisted session.
 	func logout() {
-		defaults.removeObject(forKey: AppStorageConstants.apiAuthToken)
-		defaults.removeObject(forKey: AppStorageConstants.appleUserId)
-		self.isAuthenticated = false
+		withAnimation {
+			authToken = nil
+			appleUserId = nil
+		}
 	}
 }
 
 class MockAuthManager: AuthManager {
-	override func fetchAuthToken(with appleUserId: String) {
-		// Send apple auth token to api
+	override func fetchAuthToken(with client: NetworkClient<AuthRequest, Empty>) {
 		withAnimation {
-			self.authToken = "1234567890"
+			self.authToken = self.appleUserId
 		}
 	}
 }

@@ -20,26 +20,38 @@ enum Endpoint {
 	/// - Parameters:
 	///   - limit: The number of memes to return
 	///   - offset: The meme to start fetching from. e.g. offset 5 would return the 6th meme.
-	case history(limit: Int?, offset: Int?)
+	case history(type: HistoryType?, limit: Int?, offset: Int?)
 	
 	/// Api Endpoint to get like/dislike history. With Paging.
+	case auth
+	
+	/// Api Endpoint to like a meme.
 	/// - Parameters:
-	///   - userId: The user credential from apple signin
-	case signin(userId: String)
+	///	  - id: The Meme's Id
+	case like(id: String)
+	
+	/// Api Endpoint to dislike a meme.
+	/// - Parameters:
+	///	  - id: The Meme's Id
+	case dislike(id: String)
 	
 	var path: String {
 		switch self {
 		case .memes:
 			return Self.baseUrl + "memes"
 		case .history:
-			return Self.baseUrl + "memes/history"
-		case .signin:
+			return Self.baseUrl + "/user/memes"
+		case .auth:
 			return Self.baseUrl + "signin"
+		case .like(let id):
+			return Self.baseUrl + "memes/\(id)/up"
+		case .dislike(let id):
+			return Self.baseUrl + "memes/\(id)/down"
 		}
 	}
 	
-	var queryParms: [URLQueryItem] {
-		var parms = [URLQueryItem]()
+	var queryParms: [URLQueryItem]? {
+		var parms: [URLQueryItem] = []
 		
 		switch self {
 		case .memes(let limit, let offset):
@@ -50,7 +62,7 @@ enum Endpoint {
 			if let offset = offset {
 				parms.append(URLQueryItem(name: "offset", value: "\(offset)"))
 			}
-		case .history(let limit, let offset):
+		case .history(let type, let limit, let offset):
 			if let limit = limit {
 				parms.append(URLQueryItem(name: "limit", value: "\(limit)"))
 			}
@@ -59,11 +71,16 @@ enum Endpoint {
 				parms.append(URLQueryItem(name: "offset", value: "\(offset)"))
 			}
 			
-		case .signin:
-			return parms
+			if let type = type {
+				parms.append(URLQueryItem(name: "type", value: type.rawValue))
+			}
+		case .auth,
+			 .like,
+			 .dislike:
+			break
 		}
 		
-		return parms
+		return parms.isEmpty ? nil : parms
 	}
 	
 	var httpMethod: HTTPMethod {
@@ -72,13 +89,29 @@ enum Endpoint {
 			return .get
 		case .history:
 			return .get
-		case .signin:
+		case .auth:
+			return .post
+		case .like,
+			 .dislike:
 			return .post
 		}
 	}
 }
 
-enum MemeSortType: String {
-	case new
-	case top
+enum HistoryType: String, CustomStringConvertible, Identifiable, CaseIterable {
+	var id: String {
+		self.rawValue
+	}
+	
+	case like
+	case dislike
+	
+	var description: String {
+		switch self {
+		case .like:
+			return NSLocalizedString("Liked Memes", comment: "History Page likes segment")
+		case .dislike:
+			return NSLocalizedString("Disliked Memes", comment: "History Page dislikes segment")
+		}
+	}
 }

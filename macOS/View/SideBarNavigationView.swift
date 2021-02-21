@@ -16,7 +16,9 @@ struct SideBarNavigationView: View {
 		VStack {
 			List {
 				NavigationLink(
-					destination: HomeView(),
+					destination:
+						MemeSwipeView()
+						.frame(minWidth: 400, idealWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity, alignment: .center),
 					isActive: Binding(
 						get: { activeSection == .home },
 						set: { if $0 == true { activeSection = .home }}
@@ -29,7 +31,7 @@ struct SideBarNavigationView: View {
 				}
 				
 				NavigationLink(
-					destination: Text("History Page Not Implemented..."),
+					destination: HistoryView(),
 					isActive: Binding(
 						get: { activeSection == .history },
 						set: { if $0 == true { activeSection = .history }}
@@ -41,19 +43,8 @@ struct SideBarNavigationView: View {
 					}
 				}
 			}
-			
-			Spacer()
-			
-			Button {
-				authManager.logout()
-			} label: {
-				Text("Logout", comment: "Mac Sidebar Logout Button")
-			}
-			.buttonStyle(LargeButtonStyle(color: Color(.systemGray)))
-			.frame(width: 150)
-			.frame(maxWidth: .infinity, maxHeight: 30, alignment: .leading)
-			.padding()
 		}
+		.frame(minWidth: 150, idealWidth: 150, maxWidth: 200, minHeight: 600, idealHeight: 800, maxHeight: .infinity)
 	}
 }
 

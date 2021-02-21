@@ -20,7 +20,7 @@ public extension Color {
 	static let secondarySystemBackground = Color(NSColor.controlBackgroundColor)
 	static let tertiarySystemBackground = Color(NSColor.textBackgroundColor)
 	
-	static let gray = Color(NSColor.systemGray)
+	static let grayLight = Color(NSColor.systemGray)
 
 	// There are more..
 }
