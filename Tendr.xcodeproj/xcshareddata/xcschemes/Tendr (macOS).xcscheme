@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8421F0F425E022ED00B12D0B"
+               BlueprintIdentifier = "8421F0FC25E022ED00B12D0B"
                BuildableName = "Tendr.app"
-               BlueprintName = "Tendr (iOS)"
+               BlueprintName = "Tendr (macOS)"
                ReferencedContainer = "container:Tendr.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,20 +28,10 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84EF275625E0ADCF00061513"
-               BuildableName = "TendrTests (iOS).xctest"
-               BlueprintName = "TendrTests (iOS)"
-               ReferencedContainer = "container:Tendr.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -54,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8421F0F425E022ED00B12D0B"
+            BlueprintIdentifier = "8421F0FC25E022ED00B12D0B"
             BuildableName = "Tendr.app"
-            BlueprintName = "Tendr (iOS)"
+            BlueprintName = "Tendr (macOS)"
             ReferencedContainer = "container:Tendr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8421F0F425E022ED00B12D0B"
+            BlueprintIdentifier = "8421F0FC25E022ED00B12D0B"
             BuildableName = "Tendr.app"
-            BlueprintName = "Tendr (iOS)"
+            BlueprintName = "Tendr (macOS)"
             ReferencedContainer = "container:Tendr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

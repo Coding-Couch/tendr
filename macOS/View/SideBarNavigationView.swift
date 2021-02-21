@@ -16,7 +16,7 @@ struct SideBarNavigationView: View {
 		VStack {
 			List {
 				NavigationLink(
-					destination: HomeView(),
+					destination: MemeSwipeView(),
 					isActive: Binding(
 						get: { activeSection == .home },
 						set: { if $0 == true { activeSection = .home }}

@@ -10,6 +10,8 @@ import SwiftUI
 struct RootNavigationViewMac: View {
 	@EnvironmentObject var authManager: AuthManager
 	
+	
+	
 	var body: some View {
 		NavigationView {
 			if authManager.isAuthenticated {
@@ -17,12 +19,12 @@ struct RootNavigationViewMac: View {
 					.transition(.slide)
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
 			} else {
-				LandingPage()
+				LoginPage()
 					.transition(.slide)
 					.frame(maxWidth: 400, maxHeight: .infinity, alignment: .center)
 			}
 			
-			if !authManager.isAuthenticated {
+			if authManager.isAuthenticated {
 				CreditsView()
 					.frame(maxWidth: 800, maxHeight: .infinity, alignment: .center)
 			}

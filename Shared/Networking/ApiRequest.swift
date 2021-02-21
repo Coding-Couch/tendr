@@ -9,10 +9,19 @@ import Foundation
 
 
 /// Simple Struct for generating URLSession Requests for the Tendr Api.
-struct ApiRequest<Request: Codable> {
+struct ApiRequest<Request: Codable>: CustomStringConvertible {
 	var endpoint: Endpoint
 	var headers: [String: String] = [:]
 	var requestBody: Request?
+	
+	var description: String {
+		return """
+		ApiRequest
+		Endpoint: \(endpoint.self)
+		Headers: \(headers)
+		Request Body: \(String(describing: requestBody))
+		"""
+	}
 	
 	/// Convenience struct for creating `URLRequest`
 	/// - Parameters:
@@ -30,10 +39,10 @@ struct ApiRequest<Request: Codable> {
 	///   - endpoint: The Api `Endpoint` to use.
 	///   - requestBody: The HTTP Request Body
 	init(endpoint: Endpoint, requestBody: Request? = nil) {
-		var headers = [String: String]()
+		var headers = ["Content-Type": "application/json"]
 		
 		if let token = UserDefaults.standard.string(forKey: AppStorageConstants.apiAuthToken) {
-			headers["Authorization"] = token
+			headers["Authorization"] = "Bearer \(token)"
 		}
 		
 		if let userId = UserDefaults.standard.string(forKey: AppStorageConstants.appleUserId) {

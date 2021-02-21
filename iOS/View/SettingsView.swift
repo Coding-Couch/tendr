@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage(AppStorageConstants.nsfwEnabled) var nsfwEnabled = false
-    
-    private var releaseVersion: String {
-		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-    }
+    @AppStorage(AppStorageConstants.nsfwEnabled) private var nsfwEnabled = false
+	@EnvironmentObject private var authManager: AuthManager
     
     var body: some View {
         Form {
             Section(header: Text("User Preferences", comment: "User Preferences settings Section Label")) {
                 Toggle(isOn: $nsfwEnabled) {
-					Text("Show NSFW Memes", comment: "Show NSFW Settings Label")
+					Text("Show NSFW Memes (beta)", comment: "Show NSFW Settings Label")
                 }
             }
             
@@ -28,6 +25,15 @@ struct SettingsView: View {
                     Spacer()
                     Text(releaseVersion)
                 }
+				
+				Button {
+					authManager.logout()
+				} label: {
+					HStack {
+						Image(systemName: "power")
+						Text("Logout", comment: "Settings View Logout Text")
+					}
+				}
             }
         }
         .navigationTitle(Text("Settings", comment: "Settings Page Title"))
@@ -37,5 +43,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+			.environmentObject(MockAuthManager())
     }
 }
