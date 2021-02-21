@@ -111,7 +111,7 @@ struct MemeDetails: View {
 			
 			HStack{
 				Label(
-					title: { Text("Reddit Upvote Count: ") },
+					title: { Text("Reddit Downvote Count: ") },
 					icon: {
 						Image(systemName: "arrow.down")
 							.foregroundColor(.accentColor)
@@ -119,7 +119,7 @@ struct MemeDetails: View {
 					}
 				)
 				
-				Text("\(meme.upvotes)")
+				Text("\(meme.downvotes)")
 			}
 		}
 		.padding()
