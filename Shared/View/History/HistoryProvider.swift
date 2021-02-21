@@ -41,7 +41,5 @@ class HistoryProvider: ObservableObject {
         
         networkClient.request = request
         networkClient.load()
-        
-        
     }
 }

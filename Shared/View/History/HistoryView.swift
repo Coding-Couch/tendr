@@ -18,7 +18,7 @@ struct HistoryView: View {
 		historyType == .like ? likes.count : dislikes.count
 	}
 	
-	@ObservedObject var historyProvider: NetworkClient<Empty, [MemeResponse]> = NetworkClient(
+	@ObservedObject var networkClient: NetworkClient<Empty, [MemeResponse]> = NetworkClient(
 		request: ApiRequest(endpoint: .history(type: .like, limit: 5, offset: 0))
 	)
 	
@@ -39,50 +39,51 @@ struct HistoryView: View {
 	
 	private var historyPage: some View {
 		VStack {
+            NavigationLink(
+                destination: Text("Meme Destination"),
+                isActive: $memePresented,
+                label: { EmptyView() }
+            )
+            
 			Picker(selection: $historyType, label: EmptyView()) {
 				ForEach(HistoryType.allCases) {
-					Text("\(String(describing: $0))").tag($0)
+					Text("\(String(describing: $0))")
+                        .tag($0)
 				}
 			}
+            .onChange(of: historyType) { type in
+                reset()
+            }
 			.padding()
 			.pickerStyle(SegmentedPickerStyle())
 			
 			ScrollView(.vertical, showsIndicators: true) {
 				LazyVStack {
-					ForEach(historyType == .like ? likes.indices : dislikes.indices, id: \.self) { index in
-						let meme = historyType == .like ? likes[index] : dislikes[index]
-						
-						NavigationLink(
-							destination: Text("Meme Destination"),
-							isActive: $memePresented,
-							label: {
-								HistoryRowView(meme: meme, memePresented: $memePresented)
-									.onTapGesture {
-										memePresented = true
-									}
-							}
-						)
+					ForEach(historyType == .like ? likes : dislikes, id: \.id) { meme in
+                        HistoryRowView(meme: meme, memePresented: $memePresented)
+                            .onTapGesture {
+                                memePresented = true
+                        }
 						.onAppear {
-							if index == currentOffset - 3 {
+                            if meme == (historyType == .like ? likes : dislikes).last {
 								loadMoreMemes()
 							}
 						}
-						
-						if isLoading {
-							ProgressView()
-								.progressViewStyle(CircularProgressViewStyle())
-						}
 					}
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                    }
 				}
 				.frame(maxHeight: .infinity, alignment: .top)
 			}
 		}
 		.onAppear {
-			historyProvider.load()
+            reset()
 		}
-		.onReceive(historyProvider.$response.dropFirst()) { memes in
+		.onReceive(networkClient.$response.dropFirst()) { memes in
 			guard let memes = memes else { return }
-			
+            
 			if historyType == .like {
 				likes.append(contentsOf: memes)
 			} else {
@@ -92,11 +93,18 @@ struct HistoryView: View {
 			isLoading = false
 		}
 	}
+    
+    private func reset() {
+        networkClient.request = ApiRequest(endpoint: .history(type: historyType, limit: 5, offset: 0))
+        likes = []
+        dislikes = []
+        networkClient.load()
+    }
 	
 	private func loadMoreMemes() {
 		isLoading = true
-		historyProvider.request = ApiRequest(endpoint: .history(type: historyType, limit: 20, offset: currentOffset))
-		historyProvider.load()
+		networkClient.request = ApiRequest(endpoint: .history(type: historyType, limit: 20, offset: currentOffset))
+		networkClient.load()
 	}
 }
 
@@ -113,7 +121,7 @@ struct HistoryView_Previews: PreviewProvider {
 				)
 			],
 			dislikes: [],
-			historyProvider: NetworkClient()
+			networkClient: NetworkClient()
 		)
 	}
 }

@@ -15,7 +15,7 @@ import SwiftUI
 ///		- cache holds up to 100mb of images before images start being cleared
 ///		- cache is wiped on system memory warning
 public struct AsyncImage<Placeholder: View>: View {
-	@StateObject private var imageloader: ImageLoader
+	@ObservedObject private var imageloader: ImageLoader
 	private let placeholder: Placeholder?
 
 	/// Return an `AsyncImage`.
@@ -23,7 +23,7 @@ public struct AsyncImage<Placeholder: View>: View {
 	///   - url: url in which the image will be loaded from.
 	///   - placeholder: placeholder view that will display on failure to load image.
 	public init(url: URL, @ViewBuilder placeholder: () -> Placeholder? = {nil}) {
-		_imageloader = StateObject(wrappedValue: ImageLoader(url: url))
+		_imageloader = ObservedObject(wrappedValue: ImageLoader(url: url))
 		self.placeholder = placeholder()
 	}
 
