@@ -16,7 +16,7 @@ struct RootNavigationViewIOS: View {
 				LandingPage()
 					.transition(.slide)
 			} else {
-				Text("Hello World")
+				TabBarView()
 					.transition(.slide)
 			}
 		}

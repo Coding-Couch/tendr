@@ -53,13 +53,14 @@ class AuthManager: ObservableObject {
 	/// Retrieve an auth token for Tendr Api by sending your apple user credential.
 	/// - Parameter appleUserId: user credential from `ASAuthorizationAppleIDCredential`
 	func fetchAuthToken(with appleUserId: String) {
-		// Send apple userID to Tendr Api
+		print("Not Implemented")
 	}
 	
 	/// Clear the users persisted session.
 	func logout() {
 		defaults.removeObject(forKey: AppStorageConstants.apiAuthToken)
 		defaults.removeObject(forKey: AppStorageConstants.appleUserId)
+		self.isAuthenticated = false
 	}
 }
 

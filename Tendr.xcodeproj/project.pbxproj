@@ -236,7 +236,6 @@
 		8421F0FE25E022ED00B12D0B /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				845C90D125E1B651009EF7AB /* Command */,
 				845C90BC25E1A70D009EF7AB /* Extension */,
 				845C90AF25E1A637009EF7AB /* View */,
 				8421F10025E022ED00B12D0B /* macOS.entitlements */,
@@ -329,13 +328,6 @@
 				845C90BD25E1A721009EF7AB /* Color+MacOS.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		845C90D125E1B651009EF7AB /* Command */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Command;
 			sourceTree = "<group>";
 		};
 		846574E925E0440A00BA7A3D /* Button Style */ = {

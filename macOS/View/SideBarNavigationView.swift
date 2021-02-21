@@ -8,56 +8,58 @@
 import SwiftUI
 
 struct SideBarNavigationView: View {
-	@State var selectedView: AppSection = .home
+	@EnvironmentObject var authManager: AuthManager
 	
-    var body: some View {
-		NavigationView {
+	@State private var activeSection: AppSection = .home
+	
+	var body: some View {
+		VStack {
 			List {
 				NavigationLink(
-					"Tab Content 1",
-					destination: Text("Tab Content 1"),
-					isActive: Binding(
-						get: { selectedView == .history },
-						set: {
-							if $0 == true {
-								selectedView = .history
-							}
-						}
-					)
-				)
-				
-				NavigationLink(
-					"Tab Content 2",
-					destination: Text("Tab Content 2"),
-					isActive: Binding(
-						get: { selectedView == .popular },
-						set: {
-							if $0 == true {
-								selectedView = .popular
-							}
-						}
-					)
-				)
-				
-				NavigationLink(
-					"Tab Content 1",
 					destination: HomeView(),
 					isActive: Binding(
-						get: { selectedView == .home },
-						set: {
-							if $0 == true {
-								selectedView = .home
-							}
-						}
+						get: { activeSection == .home },
+						set: { if $0 == true { activeSection = .home }}
 					)
-				)
+				) {
+					HStack {
+						AppSection.home.icon
+						Text(String(describing: AppSection.home))
+					}
+				}
+				
+				NavigationLink(
+					destination: Text("History Page Not Implemented..."),
+					isActive: Binding(
+						get: { activeSection == .history },
+						set: { if $0 == true { activeSection = .history }}
+					)
+				) {
+					HStack {
+						AppSection.history.icon
+						Text(String(describing: AppSection.history))
+					}
+				}
 			}
+			
+			Spacer()
+			
+			Button {
+				authManager.logout()
+			} label: {
+				Text("Logout", comment: "Mac Sidebar Logout Button")
+			}
+			.buttonStyle(LargeButtonStyle(color: Color(.systemGray)))
+			.frame(width: 150)
+			.frame(maxWidth: .infinity, maxHeight: 30, alignment: .leading)
+			.padding()
 		}
-    }
+	}
 }
 
 struct SideBarNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        SideBarNavigationView()
-    }
+	static var previews: some View {
+		SideBarNavigationView()
+			.environmentObject(MockAuthManager())
+	}
 }

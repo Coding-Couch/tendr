@@ -23,6 +23,7 @@ struct RoundButtonStyle: ButtonStyle {
                     .foregroundColor(.white)
             )
             .opacity(configuration.isPressed ? 0.6 : 1)
+			.shadow(radius: .smallRadius)
     }
 }
 
@@ -31,7 +32,7 @@ struct RoundButtonStyle_Previews: PreviewProvider {
         Button {
             // action
         } label: {
-            Text("Hello World!")
+			Image(systemName: "square.and.arrow.up")
         }
         .buttonStyle(RoundButtonStyle(color: .red))
     }

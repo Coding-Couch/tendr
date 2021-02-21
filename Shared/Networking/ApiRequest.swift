@@ -37,7 +37,7 @@ struct ApiRequest<Request: Codable> {
 		}
 		
 		if let userId = UserDefaults.standard.string(forKey: AppStorageConstants.appleUserId) {
-			headers["X-User-Uuid"] = userId
+			headers["X-User-UUID"] = userId
 		}
 		
 		self.init(endpoint: endpoint, headers: headers, requestBody: requestBody)

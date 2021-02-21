@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RootView: View {	
+struct RootView: View {
     var body: some View {
 		#if os(macOS)
 		RootNavigationViewMac()
