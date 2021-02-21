@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  MemeSwipeView.swift
 //  Tendr
 //
 //  Designed in DetailsPro
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct MemeSwipeView: View {
     @ObservedObject var memeProvider: MemeProvider = MemeProvider()
     @State var swipingAction: MemeAction?
     
@@ -44,7 +44,7 @@ struct HomeView: View {
             VStack(alignment: .center) {
                 LinearGradient(
                     gradient: Gradient(
-                        colors: [Color.gray, Color.clear]
+						colors: [Color.grayLight, Color.clear]
                     ),
                     startPoint: .top, endPoint: .bottom
                 )
@@ -85,16 +85,16 @@ struct HomeView: View {
             }
             .frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
         }
-		.frame(minWidth: 400, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+		.padding()
         .background(Color.secondarySystemBackground)
         .overlay(actionOverlay())
         .ignoresSafeArea()
-        
     }
 }
 
 struct MyDesign_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        MemeSwipeView()
     }
 }

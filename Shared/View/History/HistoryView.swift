@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HistoryView: View {
-	@State var historyType: HistoryType = .likes
-    @ObservedObject var historyProvider: HistoryProvider = HistoryProvider(historyType: .likes)
+	@State var historyType: HistoryType = .like
+    @ObservedObject var historyProvider: HistoryProvider = HistoryProvider(historyType: .like)
     
 	
     var body: some View {
@@ -30,7 +30,7 @@ struct HistoryView: View {
 		VStack {
 			Picker(selection: $historyType, label: EmptyView()) {
 				ForEach(HistoryType.allCases) {
-					Text("\($0.name)").tag($0)
+					Text("\(String(describing: $0))").tag($0)
 				}
 			}
 			.pickerStyle(SegmentedPickerStyle())

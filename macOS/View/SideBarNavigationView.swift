@@ -16,7 +16,9 @@ struct SideBarNavigationView: View {
 		VStack {
 			List {
 				NavigationLink(
-					destination: HomeView(),
+					destination:
+						MemeSwipeView()
+						.frame(minWidth: 400, idealWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity, alignment: .center),
 					isActive: Binding(
 						get: { activeSection == .home },
 						set: { if $0 == true { activeSection = .home }}

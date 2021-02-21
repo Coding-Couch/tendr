@@ -22,13 +22,13 @@ class MemeProvider: ObservableObject {
         cancellable?.cancel()
         
 		#warning("VINCE YOU WILL HAVE TO HANDLE THE PAGING LOGIC. UPDATE OFFSET VALUE")
-		let urlRequest = try? ApiRequest<EmptyRequest>(endpoint: Endpoint.memes(limit: 5, offset: 0), requestBody: nil).createURLRequest()
+		let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: 5, offset: 0), requestBody: nil).createURLRequest()
         
         guard let request = urlRequest else { return }
         
         cancellable = URLSession.shared.dataTaskPublisher(for: request)
             .map { $0.data }
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .decode(type: [MemeResponse].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .eraseToAnyPublisher()

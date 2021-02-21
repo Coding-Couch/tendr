@@ -12,9 +12,9 @@ struct RootNavigationViewMac: View {
 	
 	var body: some View {
 		if !authManager.isAuthenticated {
-			LandingPage()
+			LoginPage()
 				.transition(.slide)
-				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+				.frame(minWidth: 400, maxWidth: 400, minHeight: 450, maxHeight: 450)
 		} else {
 			NavigationView {
 				SideBarNavigationView()
