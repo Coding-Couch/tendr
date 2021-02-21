@@ -11,23 +11,23 @@ struct TabBarView: View {
     @State private var selectedTab: AppSection = .home
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HistoryView()
-                .tabItem {
+		TabView(selection: $selectedTab) {
+			HistoryView()
+				.tabItem {
 					AppSection.history.tabView
-                }
-                .tag(AppSection.history)
-            MemeSwipeView()
-                .tabItem {
+				}
+				.tag(AppSection.history)
+			MemeSwipeView()
+				.tabItem {
 					AppSection.home.tabView
-                }
-                .tag(AppSection.home)
-            SettingsView()
-                .tabItem {
+				}
+				.tag(AppSection.home)
+			SettingsView()
+				.tabItem {
 					AppSection.settings.tabView
-                }
-                .tag(AppSection.settings)
-        }
+				}
+				.tag(AppSection.settings)
+		}
     }
 }
 
