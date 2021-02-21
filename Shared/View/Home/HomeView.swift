@@ -103,7 +103,7 @@ struct HomeView: View {
                         }
                     }
                 }
-                .frame(height: reader.size.height/1.5)
+                .frame(maxHeight: .infinity)
                 MemeButtonsView()
                     .environmentObject(memeProvider)
                     .padding(.top, .largeMargin)
@@ -116,7 +116,7 @@ struct HomeView: View {
 		.padding()
         .background(Color.secondarySystemBackground)
         .overlay(actionOverlay().animation(.easeIn))
-        .ignoresSafeArea()
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

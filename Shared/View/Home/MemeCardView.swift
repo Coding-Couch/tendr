@@ -49,7 +49,7 @@ struct MemeCardView: View {
             .padding(.margin)
             .frame(
                 maxWidth: geometrySize.width,
-                maxHeight: geometrySize.height/1.5
+                maxHeight: geometrySize.height/1.7
             )
             .foregroundColor(.secondarySystemBackground)
             .animation(.interactiveSpring())
