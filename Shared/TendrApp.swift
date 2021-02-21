@@ -23,8 +23,19 @@ struct TendrApp: App {
         WindowGroup {
             RootView()
 				.environmentObject(authManager)
-			
         }
+		.commands {
+			CommandGroup(after: CommandGroupPlacement.appVisibility) {
+				Divider()
+				
+				Button {
+					authManager.logout()
+				} label: {
+					Text("Logout")
+				}
+				.keyboardShortcut(KeyEquivalent("l"), modifiers: [.command, .control])
+			}
+		}
 		
 		#if os(macOS)
 		Settings {

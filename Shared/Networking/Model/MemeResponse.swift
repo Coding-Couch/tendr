@@ -12,6 +12,13 @@ struct MemeResponse: Identifiable, Codable {
 	var url: URL
 	var upvotes: Int
 	var downvotes: Int
+    
+    init(id: String, url: URL, upvotes: Int, downvotes: Int) {
+        self.id = id
+        self.url = url
+        self.upvotes = upvotes
+        self.downvotes = downvotes
+    }
 }
 
 extension MemeResponse: Equatable {}

@@ -11,26 +11,21 @@ struct RootNavigationViewMac: View {
 	@EnvironmentObject var authManager: AuthManager
 	
 	var body: some View {
-		NavigationView {
-			if authManager.isAuthenticated {
+		if !authManager.isAuthenticated {
+			LandingPage()
+				.transition(.slide)
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+		} else {
+			NavigationView {
 				SideBarNavigationView()
 					.transition(.slide)
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
-			} else {
-				LandingPage()
-					.transition(.slide)
-					.frame(maxWidth: 400, maxHeight: .infinity, alignment: .center)
 			}
-			
-			if !authManager.isAuthenticated {
-				CreditsView()
-					.frame(maxWidth: 800, maxHeight: .infinity, alignment: .center)
-			}
-		}
-		.toolbar {
-			ToolbarItem(placement: .navigation) {
-				Button(action: toggleSideBar) {
-					Image(systemName: "sidebar.left")
+			.toolbar {
+				ToolbarItem(placement: .navigation) {
+					Button(action: toggleSideBar) {
+						Image(systemName: "sidebar.left")
+					}
 				}
 			}
 		}

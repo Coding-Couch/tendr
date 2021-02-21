@@ -11,7 +11,7 @@ import AuthenticationServices
 struct LandingPage: View {
 	@EnvironmentObject var authManager: AuthManager
 	@Environment(\.colorScheme) var colorScheme
-	@State var buttonsDisabled: Bool = false
+	@State private var isLoading = false
 	
     var body: some View {
 			VStack {
@@ -29,49 +29,44 @@ struct LandingPage: View {
 				
 				Spacer().frame(height: 32)
 				
-				buttonStack
+				SignInWithAppleButton(
+					onRequest: { request in
+						isLoading = true
+						request.requestedScopes = []
+					},
+					onCompletion: { result in
+						switch result {
+						case .success (let authenticationResults):
+							print("Authorization successful!: \(authenticationResults)")
+							
+							guard let credentials =
+									authenticationResults.credential as? ASAuthorizationAppleIDCredential else {
+								return
+							}
+							
+							authManager.appleUserId = credentials.user
+							authManager.fetchAuthToken(with: credentials.user)
+						case .failure(let error):
+							print("Authorization failed: " + error.localizedDescription)
+						}
+						
+						isLoading = false
+					}
+				)
+				.signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
+				.frame(height: 38)
+				.frame(maxWidth: .infinity)
+				.disabled(isLoading)
 				
 				Spacer().frame(height: 32)
 				
 				ProgressView()
 					.progressViewStyle(CircularProgressViewStyle())
-					.opacity(buttonsDisabled ? 1 : 0)
+					.opacity(isLoading ? 1 : 0)
 			}
+			.frame(minWidth: 300, maxWidth: 400, minHeight: 400, maxHeight: .infinity, alignment: .center)
 			.padding()
     }
-	
-	@ViewBuilder private var buttonStack: some View {
-		VStack(alignment: .center) {
-			SignInWithAppleButton(
-				onRequest: { request in
-					buttonsDisabled = true
-					request.requestedScopes = []
-				},
-				onCompletion: { result in
-					switch result {
-					case .success (let authenticationResults):
-						print("Authorization successful!: \(authenticationResults)")
-						
-						guard let credentials =
-								authenticationResults.credential as? ASAuthorizationAppleIDCredential else {
-							return
-						}
-						
-						authManager.appleUserId = credentials.user
-						authManager.fetchAuthToken(with: credentials.user)
-					case .failure(let error):
-						print("Authorization failed: " + error.localizedDescription)
-					}
-					
-					buttonsDisabled = false
-				}
-			)
-			.signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
-			.frame(height: 38)
-			.frame(maxWidth: .infinity)
-			.disabled(buttonsDisabled)
-		}
-	}
 }
 
 struct LandingPage_Previews: PreviewProvider {

@@ -85,7 +85,7 @@ struct HomeView: View {
             }
             .frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+		.frame(minWidth: 400, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
         .background(Color.secondarySystemBackground)
         .overlay(actionOverlay())
         .ignoresSafeArea()

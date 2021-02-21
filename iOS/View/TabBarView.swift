@@ -12,7 +12,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("History")
+            HistoryView()
                 .tabItem {
 					AppSection.history.tabView
                 }
