@@ -1,6 +1,6 @@
 //
 //  LandingPage.swift
-//  Tendr (iOS)
+//  Shared
 //
 //  Created by Brent Mifsud on 2021-02-19.
 //
@@ -57,6 +57,8 @@ struct LandingPage: View {
 							return
 						}
 						
+						authManager.appleUserId = credentials.user
+						authManager.fetchAuthToken(with: credentials.user)
 					case .failure(let error):
 						print("Authorization failed: " + error.localizedDescription)
 					}
@@ -65,31 +67,9 @@ struct LandingPage: View {
 				}
 			)
 			.signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
-			.frame(width: 343, height: 48)
+			.frame(height: 38)
+			.frame(maxWidth: .infinity)
 			.disabled(buttonsDisabled)
-			
-			Button {
-				let uuid = UUID()
-				authManager.fetchAuthToken(with: uuid)
-			} label: {
-				Text("Sign Up")
-			}
-			.buttonStyle(LargeButtonStyle(color: .blue))
-			.frame(width: 343, height: 48)
-			.disabled(buttonsDisabled)
-			
-			
-			
-			HStack {
-				Text("Already have an account?")
-				
-				Button {
-					
-				} label: {
-					Text("Log In")
-				}
-				.disabled(buttonsDisabled)
-			}
 		}
 	}
 }

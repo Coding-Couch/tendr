@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  Tendr
+//  Shared
 //
 //  Created by Vince on 2021-02-19.
 //

@@ -8,18 +8,12 @@
 import SwiftUI
 
 struct RootView: View {
-	@EnvironmentObject var authManager: AuthManager
-	
     var body: some View {
-		NavigationView {
-			if !authManager.isAuthenticated {
-				LandingPage()
-					.transition(.slide)
-			} else {
-				TabBarView()
-					.transition(.slide)
-			}
-		}
+		#if os(macOS)
+		RootNavigationViewMac()
+		#elseif os(iOS)
+		RootNavigationViewIOS()
+		#endif
     }
 }
 
