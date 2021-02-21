@@ -16,12 +16,13 @@ struct HistoryView: View {
 		#if os(iOS)
 		NavigationView {
 			historyPage
-				.navigationBarTitle(Text("Meme History"))
+				.navigationBarTitle(Text("My Memes"))
 		}
 		.navigationViewStyle(StackNavigationViewStyle())
 		#elseif os(macOS)
 		NavigationView {
 			historyPage
+				.navigationTitle("My Memes")
 		}
 		#endif
     }

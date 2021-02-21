@@ -57,7 +57,7 @@ class AuthManager: ObservableObject {
 class MockAuthManager: AuthManager {
 	override func fetchAuthToken(with client: NetworkClient<AuthRequest, Empty>) {
 		withAnimation {
-			self.authToken = "1234567890"
+			self.authToken = self.appleUserId
 		}
 	}
 }
