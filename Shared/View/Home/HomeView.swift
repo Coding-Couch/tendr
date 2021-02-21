@@ -1,5 +1,5 @@
 //
-//  MemeSwipeView.swift
+//  HomeView.swift
 //  Tendr
 //
 //  Designed in DetailsPro
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct MemeSwipeView: View {
+struct HomeView: View {
     @ObservedObject var memeProvider: MemeProvider = MemeProvider()
     @State var swipingAction: MemeAction?
     
@@ -59,42 +59,45 @@ struct MemeSwipeView: View {
     }
     
     var body: some View {
-        GeometryReader { reader in
-            VStack(alignment: .center, spacing: .largeMargin) {
-                Spacer()
-                
-                ZStack(alignment: .top) {
-                    ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
-                        MemeCardView(
-                            url: meme.url,
-                            swipe: { memeProvider.action($0)
-                            },
-                            geometrySize: reader.size,
-                            swipingAction: $swipingAction
-                        )
-                        .padding(.margin)
-                        .shadow(radius: 5)
-                        .opacity(memeProvider.memes.first != meme ? 0 : 1)
-                    }
-                }
-                Spacer()
-                MemeButtonsView()
-                    .environmentObject(memeProvider)
-                    .padding(.top, .largeMargin)
-                Spacer()
-            }
-            .frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding()
-        .background(Color.secondarySystemBackground)
-        .overlay(actionOverlay())
-        .ignoresSafeArea()
+		NavigationView {
+			GeometryReader { reader in
+				VStack(alignment: .center, spacing: .largeMargin) {
+					Spacer()
+					
+					ZStack(alignment: .top) {
+						ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
+							MemeCardView(
+								meme: meme,
+								swipe: { memeProvider.action($0)
+								},
+								geometrySize: reader.size,
+								swipingAction: $swipingAction
+							)
+							.padding(.margin)
+							.shadow(radius: 5)
+							.opacity(memeProvider.memes.first != meme ? 0 : 1)
+						}
+					}
+					Spacer()
+					MemeButtonsView()
+						.environmentObject(memeProvider)
+						.padding(.top, .largeMargin)
+					Spacer()
+				}
+				.frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
+			}
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.padding()
+			.background(Color.secondarySystemBackground)
+			.overlay(actionOverlay())
+			.ignoresSafeArea()
+		}
+		.navigationViewStyle(DefaultNavigationViewStyle())
     }
 }
 
 struct MyDesign_Previews: PreviewProvider {
     static var previews: some View {
-        MemeSwipeView()
+        HomeView()
     }
 }
