@@ -43,7 +43,7 @@ struct MemeCardView: View {
     }
     
     var body: some View {
-        AsyncImage(url: url)
+		AsyncImage(url: url) { EmptyView() }
             .aspectRatio(contentMode: .fit)
             .cornerRadius(.cornerRadius)
             .padding(.margin)
