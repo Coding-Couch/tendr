@@ -65,7 +65,7 @@ struct LoginPage: View {
 			}
 			.onReceive(client.$urlResponse.compactMap({$0})) { urlResponse in
 				if urlResponse.isSuccess {
-					authManager.authToken = "appleSignUpSuccess"
+					authManager.authToken = authManager.appleUserId ?? ""
 				} else if let error = client.error {
 					failureReason = error.localizedDescription
 				}
@@ -76,6 +76,9 @@ struct LoginPage: View {
 		#if DEBUG
 		
 		Button {
+			let uuid = UUID()
+			authManager.appleUserId = uuid.uuidString
+			client.request = ApiRequest(endpoint: .auth, requestBody: AuthRequest(uuid: uuid.uuidString))
 			authManager.fetchAuthToken(with: client)
 		} label: {
 			Text("Skip Signup Process")
@@ -134,7 +137,7 @@ struct LoginPage: View {
 	}
 }
 
-struct LandingPage_Previews: PreviewProvider {
+struct LoginPage_Previews: PreviewProvider {
     static var previews: some View {
         LoginPage()
 			.environmentObject(MockAuthManager())
