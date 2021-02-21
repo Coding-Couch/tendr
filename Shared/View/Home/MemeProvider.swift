@@ -21,8 +21,7 @@ class MemeProvider: ObservableObject {
     private func loadMore(count: Int = 1) {
         cancellable?.cancel()
         
-		#warning("VINCE YOU WILL HAVE TO HANDLE THE PAGING LOGIC. UPDATE OFFSET VALUE")
-		let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: 5, offset: 0), requestBody: nil).createURLRequest()
+        let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: count, offset: offset), requestBody: nil).createURLRequest()
         
         guard let request = urlRequest else { return }
         
@@ -32,9 +31,7 @@ class MemeProvider: ObservableObject {
             .decode(type: [MemeResponse].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .eraseToAnyPublisher()
-            .sink(receiveCompletion: {  [weak self] completion in
-                guard let self = self else { return }
-                
+            .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
                     break
@@ -45,20 +42,51 @@ class MemeProvider: ObservableObject {
             }, receiveValue: { [weak self] payload in
                 guard let self = self else { return }
                 
-                self.memes.append(contentsOf: payload.filter { !$0.url.absoluteString.contains(".gif") })
+                self.offset += payload.count
+                self.memes.append(contentsOf: payload)
             })
     }
+    
     func action(_ action: MemeAction) {
         guard let meme = memes.first else { return }
         
-        /// Send API request to skip
-        print("ACTION - \(action)")
+        var endpoint: Endpoint?
         
-        /// removes the completed meme
-        memes.removeFirst()
+        switch action {
+        case .like:
+            endpoint = .like(id: meme.id)
+        case .dislike:
+            endpoint = .dislike(id: meme.id)
+        case .skip:
+			memes.removeFirst()
+			loadMore()
+			return
+        }
         
-        /// adds a meme to the array
-        loadMore()
-        
+        /// Send API request for action
+        if let endpoint = endpoint {
+            let urlRequest = try? ApiRequest<Empty>(endpoint: endpoint).createURLRequest()
+            if let urlRequest = urlRequest {
+				cancellable?.cancel()
+                cancellable = URLSession.shared.dataTaskPublisher(for: urlRequest)
+                    .receive(on: RunLoop.main)
+					.sink { (completion) in
+						switch completion {
+						case .failure:
+							break
+						case .finished:
+							break
+						}
+					} receiveValue: { [weak self] (data, urlResponse) in
+						guard let httpResponse = urlResponse as? HTTPURLResponse, httpResponse.isSuccess else {
+							return
+						}
+						
+						self?.memes.removeFirst()
+						
+						self?.loadMore()
+					}
+            }
+        }
     }
 }
