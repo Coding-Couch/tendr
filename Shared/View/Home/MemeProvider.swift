@@ -21,7 +21,7 @@ class MemeProvider: ObservableObject {
     private func loadMore(count: Int = 1) {
         cancellable?.cancel()
         
-		let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: count, offset: offset), requestBody: nil).createURLRequest()
+        let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: count, offset: offset), requestBody: nil).createURLRequest()
         
         guard let request = urlRequest else { return }
         
@@ -61,30 +61,36 @@ class MemeProvider: ObservableObject {
             break
         }
         
+        print("ACTION")
+        
         /// Send API request for action
         if let endpoint = endpoint {
+            print("ACTION - step 1")
             let urlRequest = try? ApiRequest<Empty>(endpoint: endpoint).createURLRequest()
-            
+            print("ACTION - step 2")
             if let urlRequest = urlRequest {
-            
+                print("ACTION - step 3")
                 URLSession.shared.dataTaskPublisher(for: urlRequest)
-                    .map(\.data)
-                    .decode(type: MemeResponse.self, decoder: JSONDecoder())
-                            .receive(on: RunLoop.main)
-                            .sink(receiveCompletion: { [weak self] completion in
-                                guard let self = self else { return }
-                                
-                                switch completion {
-                                case .finished:
-                                    /// Remove the top meme
-                                    self.memes.removeFirst()
-                                    
-                                    /// adds a meme to the array
-                                    self.loadMore()
-                                case .failure(let error):
-                                    #warning("Handle error")
-                                }
-                            }, receiveValue: { _ in })
+                    .receive(on: RunLoop.main)
+                    .handleEvents(receiveOutput: { [weak self] _, urlResponse in
+                        print("ACTION - step 4")
+                        guard let self = self else { return }
+
+                        print("ACTION - step 4")
+
+                        guard let httpResponse = urlResponse as? HTTPURLResponse, httpResponse.isSuccess else {
+                            return
+                        }
+
+                        print("ACTION - step 4")
+                        
+                        /// Remove the top meme
+                        self.memes.removeFirst()
+
+                        /// adds a meme to the array
+                        self.loadMore()
+                    }
+                )
             }
         }
     }
