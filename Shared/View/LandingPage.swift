@@ -67,7 +67,8 @@ struct LandingPage: View {
 				}
 			)
 			.signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
-			.frame(width: 343, height: 48)
+			.frame(height: 38)
+			.frame(maxWidth: .infinity)
 			.disabled(buttonsDisabled)
 		}
 	}

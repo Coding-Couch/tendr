@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State var selectedTab: AppSection = .home
+    @State private var selectedTab: AppSection = .home
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("Tab Content 1")
+            Text("History")
                 .tabItem {
 					AppSection.history.tabView
                 }
                 .tag(AppSection.history)
-            Text("Tab Content 2")
-                .tabItem {
-					AppSection.popular.tabView
-                }
-                .tag(AppSection.popular)
             HomeView()
                 .tabItem {
 					AppSection.home.tabView

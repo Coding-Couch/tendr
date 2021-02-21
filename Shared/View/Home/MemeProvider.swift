@@ -10,6 +10,7 @@ import Combine
 
 class MemeProvider: ObservableObject {
     @Published var memes: [MemeResponse]
+    private var offset: Int = 0
     private var cancellable: AnyCancellable?
     
     init() {
@@ -44,17 +45,14 @@ class MemeProvider: ObservableObject {
             }, receiveValue: { [weak self] payload in
                 guard let self = self else { return }
                 
-                #warning("Find a better way to filter gifs out")
-                self.memes.append(contentsOf: payload.filter { !$0.url.absoluteString.contains(".gif") } )
+                self.memes.append(contentsOf: payload.filter { !$0.url.absoluteString.contains(".gif") })
             })
     }
     func action(_ action: MemeAction) {
         guard let meme = memes.first else { return }
         
         /// Send API request to skip
-        
-        
-        
+        print("ACTION - \(action)")
         
         /// removes the completed meme
         memes.removeFirst()

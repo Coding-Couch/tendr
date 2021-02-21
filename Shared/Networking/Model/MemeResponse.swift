@@ -13,3 +13,5 @@ struct MemeResponse: Identifiable, Codable {
 	var upvotes: Int
 	var downvotes: Int
 }
+
+extension MemeResponse: Equatable {}
