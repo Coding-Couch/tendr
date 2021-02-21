@@ -25,14 +25,21 @@ struct CreditsView: View {
 			.fontWeight(.bold)
 			.multilineTextAlignment(.center)
 			
-			Spacer().frame(height: .margin)
+			Spacer().frame(height: .margin * 2)
 			
-			VStack {
+			VStack(alignment: .leading) {
+				Text("Team Members")
+					.font(.title3)
+					.bold()
+				
+				Spacer().frame(height: .smallMargin)
+				
 				Text("Brent Mifsud - Team Lead, iOS Developer")
 				Text("Vince Romani - iOS Developer")
 				Text("Ahmed Al-Hulaibi - Back End, Golang Developer")
 				Text("Sahand Nayebaziz - Floating Designer")
 			}
+			.multilineTextAlignment(.leading)
 			
 			Spacer()
 		}
