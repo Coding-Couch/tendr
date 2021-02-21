@@ -40,7 +40,7 @@ enum Endpoint {
 		case .memes:
 			return Self.baseUrl + "memes"
 		case .history:
-			return Self.baseUrl + "/user/memes"
+			return Self.baseUrl + "user/memes"
 		case .auth:
 			return Self.baseUrl + "signin"
 		case .like(let id):
