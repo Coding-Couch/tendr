@@ -13,58 +13,43 @@ struct HomeView: View {
     @State var swipingAction: MemeAction?
     
     @ViewBuilder func actionOverlay() -> some View {
-        let overlayThickness: CGFloat = 50
         switch swipingAction {
         case .like:
             HStack {
                 Spacer()
                 LinearGradient(
                     gradient: Gradient(
-                        colors: [Color.green.opacity(0), Color.green]
-                    ),
-                    startPoint: .leading, endPoint: .trailing
+                        colors: [Color.clear, Color.green]),
+                    startPoint: .leading,
+                    endPoint: .trailing
                 )
-                .frame(width: overlayThickness)
-                .overlay(
-                    swipingAction?.icon
-                        .foregroundColor(.white)
-                        .font(.title)
-                )
+                .frame(width: 100)
+                .overlay(swipingAction?.icon)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
         case .dislike:
             HStack {
                 LinearGradient(
                     gradient: Gradient(
-                        colors: [Color.red, Color.red.opacity(0)]
+                        colors: [Color.red, Color.clear]
                     ),
                     startPoint: .leading, endPoint: .trailing
                 )
-                .frame(width: overlayThickness)
-                .overlay(
-                    swipingAction?.icon
-                        .foregroundColor(.white)
-                        .font(.title)
-                )
+                .frame(width: 100)
+                .overlay(swipingAction?.icon)
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
         case .skip:
             VStack(alignment: .center) {
                 LinearGradient(
                     gradient: Gradient(
-                        colors: [Color.gray, Color.gray.opacity(0)]
+						colors: [Color.grayLight, Color.clear]
                     ),
                     startPoint: .top, endPoint: .bottom
                 )
-                .frame(height: overlayThickness * 2 )
-                .overlay(
-                    swipingAction?.icon
-                        .foregroundColor(.white)
-                        .font(.title)
-                )
+                .frame(height: 100)
+                .overlay(swipingAction?.icon)
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -74,49 +59,40 @@ struct HomeView: View {
     }
     
     var body: some View {
-        GeometryReader { reader in
-            VStack(alignment: .center, spacing: .largeMargin) {
-                Spacer()
-                
-                ZStack(alignment: .top) {
-                    ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
-                        if memeProvider.memes.first == meme {
-                            MemeCardView(
-                                url: meme.url,
-                                swipe: { memeProvider.action($0)
-                                },
-                                geometrySize: reader.size,
-                                swipingAction: $swipingAction
-                            )
-                            .padding(.margin)
-                            .shadow(radius: 5)
-                        } else {
-                            MemeCardView(
-                                url: meme.url,
-                                swipe: { memeProvider.action($0)
-                                },
-                                geometrySize: reader.size,
-                                swipingAction: $swipingAction
-                            )
-                            .padding(.margin)
-                            .opacity(0)
-                        }
-                    }
-                }
-                .frame(height: reader.size.height/1.5)
-                MemeButtonsView()
-                    .environmentObject(memeProvider)
-                    .padding(.top, .largeMargin)
-                Spacer()
-            }
-            .frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
-            
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding()
-        .background(Color.secondarySystemBackground)
-        .overlay(actionOverlay().animation(.easeIn))
-        .ignoresSafeArea()
+		NavigationView {
+			GeometryReader { reader in
+				VStack(alignment: .center, spacing: .largeMargin) {
+					Spacer()
+					
+					ZStack(alignment: .top) {
+						ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
+							MemeCardView(
+								meme: meme,
+								swipe: { memeProvider.action($0)
+								},
+								geometrySize: reader.size,
+								swipingAction: $swipingAction
+							)
+							.padding(.margin)
+							.shadow(radius: 5)
+							.opacity(memeProvider.memes.first != meme ? 0 : 1)
+						}
+					}
+					Spacer()
+					MemeButtonsView()
+						.environmentObject(memeProvider)
+						.padding(.top, .largeMargin)
+					Spacer()
+				}
+				.frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
+			}
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.padding()
+			.background(Color.secondarySystemBackground)
+			.overlay(actionOverlay())
+			.ignoresSafeArea()
+		}
+		.navigationViewStyle(DefaultNavigationViewStyle())
     }
 }
 

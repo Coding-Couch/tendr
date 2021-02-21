@@ -15,7 +15,7 @@ struct HistoryRowView: View {
 	
 	var body: some View {
 		#if os(iOS) || os(watchOS) || os(tvOS)
-		memeRow
+        memeRow
 			.shareSheet(isPresented: $showShareSheet, sharedItems: [meme.url])
 		#elseif os(macOS)
 		memeRow
@@ -34,17 +34,13 @@ struct HistoryRowView: View {
 			.clipShape(RoundedRectangle(cornerRadius: .smallRadius))
 			
 			VStack(alignment: .leading, spacing: .margin) {
-				HStack {
-					Text("URL:")
-						.foregroundColor(.label)
 					
-					Text("\(meme.url)")
-						.lineLimit(1)
-						.foregroundColor(.accentColor)
-						.onTapGesture {
-							openMemeInBrowser()
-						}
-				}
+                Text("\(meme.url)")
+                    .lineLimit(1)
+                    .foregroundColor(.accentColor)
+                    .onTapGesture {
+                        openMemeInBrowser()
+                    }
 				
 				HStack {
 					Label(
@@ -73,7 +69,7 @@ struct HistoryRowView: View {
 			.padding(.vertical)
 		}
 		.padding(.smallMargin)
-		.frame(minWidth: 250, maxHeight: 80)
+        .frame(minWidth: 250, maxWidth: .infinity, maxHeight: 80, alignment: .leading)
 		.background(Color.secondarySystemBackground)
 		.clipShape(RoundedRectangle(cornerRadius: .smallRadius))
 		.contextMenu(
