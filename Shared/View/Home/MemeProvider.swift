@@ -21,7 +21,7 @@ class MemeProvider: ObservableObject {
     private func loadMore(count: Int = 1) {
         cancellable?.cancel()
         
-		let urlRequest = try? ApiRequest<EmptyRequest>(endpoint: Endpoint.memes(limit: count, offset: offset), requestBody: nil).createURLRequest()
+		let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: count, offset: offset), requestBody: nil).createURLRequest()
         
         guard let request = urlRequest else { return }
         
@@ -46,17 +46,46 @@ class MemeProvider: ObservableObject {
                 self.memes.append(contentsOf: payload)
             })
     }
+    
     func action(_ action: MemeAction) {
         guard let meme = memes.first else { return }
         
+        var endpoint: Endpoint?
+        
+        switch action {
+        case .like:
+            endpoint = .like(id: meme.id)
+        case .dislike:
+            endpoint = .dislike(id: meme.id)
+        case .skip:
+            break
+        }
+        
         /// Send API request for action
-//        let urlRequest = try? ApiRequest(endpoint: Endpoint.)
-        
-        /// removes the completed meme
-        memes.removeFirst()
-        
-        /// adds a meme to the array
-        loadMore()
-        
+        if let endpoint = endpoint {
+            let urlRequest = try? ApiRequest<Empty>(endpoint: endpoint).createURLRequest()
+            
+            if let urlRequest = urlRequest {
+            
+                URLSession.shared.dataTaskPublisher(for: urlRequest)
+                    .map(\.data)
+                    .decode(type: MemeResponse.self, decoder: JSONDecoder())
+                            .receive(on: RunLoop.main)
+                            .sink(receiveCompletion: { [weak self] completion in
+                                guard let self = self else { return }
+                                
+                                switch completion {
+                                case .finished:
+                                    /// Remove the top meme
+                                    self.memes.removeFirst()
+                                    
+                                    /// adds a meme to the array
+                                    self.loadMore()
+                                case .failure(let error):
+                                    #warning("Handle error")
+                                }
+                            }, receiveValue: { _ in })
+            }
+        }
     }
 }
