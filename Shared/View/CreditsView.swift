@@ -9,6 +9,16 @@ import SwiftUI
 
 struct CreditsView: View {
     var body: some View {
+		#if os(iOS) || os(watchOS) || os(tvOS)
+		creditsView
+			.navigationBarTitle("About Us", displayMode: .inline)
+		#elseif os(macOS)
+		creditsView
+			.navigationTitle(Text("About Us", comment: "About Us Page Title"))
+		#endif
+	}
+	
+	@ViewBuilder private var creditsView: some View {
 		VStack {
 			Image("tendies-image")
 				.resizable()
@@ -43,7 +53,7 @@ struct CreditsView: View {
 			
 			Spacer()
 		}
-    }
+	}
 }
 
 struct CreditsView_Previews: PreviewProvider {

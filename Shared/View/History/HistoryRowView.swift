@@ -23,7 +23,11 @@ struct HistoryRowView: View {
 		.hidden()
 		
 		#if os(iOS) || os(watchOS) || os(tvOS)
-		memeRow.shareSheet(isPresented: $showShareSheet, sharedItems: [meme.url])
+		memeRow
+			.shareSheet(
+				isPresented: $showShareSheet,
+				sharedItems: [meme.url.absoluteString]
+			)
 		#elseif os(macOS)
 		memeRow
 		#endif
@@ -74,8 +78,9 @@ struct HistoryRowView: View {
 		}
 		.padding(.smallMargin)
 		.frame(minWidth: 250, maxWidth: .infinity, maxHeight: 80, alignment: .leading)
-		.background(Color.secondarySystemBackground)
+		.background(Color.gray)
 		.clipShape(RoundedRectangle(cornerRadius: .smallRadius))
+		.contentShape(RoundedRectangle(cornerRadius: .smallRadius))
 		.contextMenu(
 			menuItems: {
 				#if os(iOS) || os(watchOS) || os(tvOS)
@@ -84,6 +89,8 @@ struct HistoryRowView: View {
 				} label: {
 					Label("Share", systemImage: "square.and.arrow.up")
 				}
+				#elseif os(macOS)
+				ShareMenu(sharedItems: [meme.url.absoluteURL], showText: true)
 				#endif
 				
 				

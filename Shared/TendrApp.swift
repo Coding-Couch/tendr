@@ -57,7 +57,8 @@ struct TendrApp: App {
 		
 		#if os(macOS)
 		Settings {
-			PreferencesPage()
+			SettingsView()
+				.environmentObject(authManager)
 		}
 		#endif
     }

@@ -29,12 +29,8 @@ struct MemeDetails: View {
 			.frame(minWidth: 360, idealWidth: 560, maxWidth: .infinity)
 			.navigationTitle(Text("Meme Details"))
 			.toolbar {
-				HStack {
-					Button {
-						showShareSheet = true
-					} label: {
-						Image(systemName: "square.and.arrow.up")
-					}
+				ToolbarItem {
+					ShareMenu(sharedItems: [meme.url.absoluteString])
 				}
 			}
 		#endif
@@ -58,18 +54,27 @@ struct MemeDetails: View {
 					menuItems: {
 						#if os(iOS) || os(watchOS) || os(tvOS)
 						Button {
-							shareMeme()
+							showShareSheet = true
 						} label: {
 							Label("Share", systemImage: "square.and.arrow.up")
 						}
+						
+						Button {
+							let pasteboard = UIPasteboard.general
+							pasteboard.string = meme.url.absoluteString
+						} label: {
+							Image(systemName: "doc.on.doc")
+							Text("Copy")
+						}
+						#elseif os(macOS)
+						ShareMenu(sharedItems: [meme.url.absoluteString], showText: true)
 						#endif
-
 
 						Button {
 							openMemeInBrowser()
 						} label: {
-							Label("Open in Browser", systemImage: "safari")
-
+							Image(systemName: "safari")
+							Text("Open in Browser")
 						}
 					}
 				)
@@ -112,7 +117,6 @@ struct MemeDetails: View {
 					icon: {
 						Image(systemName: "arrow.up")
 							.foregroundColor(.orange)
-						
 					}
 				)
 				
@@ -125,7 +129,6 @@ struct MemeDetails: View {
 					icon: {
 						Image(systemName: "arrow.down")
 							.foregroundColor(.accentColor)
-						
 					}
 				)
 				
