@@ -7,54 +7,60 @@
 
 import Combine
 import SwiftUI
+import Kingfisher
 
-/// Display's the specified image from a url.
-/// If the image fails to load, the specified placeholder view is displayed instead
-///	 - Note:
-///		- images are cached on load to save data
-///		- cache holds up to 100mb of images before images start being cleared
-///		- cache is wiped on system memory warning
 public struct AsyncImage<Placeholder: View>: View {
-	@ObservedObject private var imageloader: ImageLoader
 	private let placeholder: Placeholder?
+	private let url: URL?
+	@State private var progress: Float = 0
+	@State private var totalProgress: Float = 100
+	@State private var isLoaded: Bool = false
 
 	/// Return an `AsyncImage`.
 	/// - Parameters:
 	///   - url: url in which the image will be loaded from.
 	///   - placeholder: placeholder view that will display on failure to load image.
-	public init(url: URL, @ViewBuilder placeholder: () -> Placeholder? = {nil}) {
-		_imageloader = ObservedObject(wrappedValue: ImageLoader(url: url))
+	public init(url: URL?, @ViewBuilder placeholder: () -> Placeholder? = {nil}) {
+		self.url = url
 		self.placeholder = placeholder()
 	}
 
 	public var body: some View {
-		ZStack {
-			if let image = imageloader.image {
-				#if os(iOS) || os(watchOS) || os(tvOS)
-				Image(uiImage: image)
-					.resizable()
-				#elseif os(macOS)
-				Image(nsImage: image)
-					.resizable()
-				#endif
-			} else {
-				placeholder
+		KFImage(url, isLoaded: $isLoaded)
+			.placeholder{placeholder}
+			.resizable()
+			.onProgress { (recievedSize, totalSize) in
+				withAnimation {
+					progress = Float(recievedSize)
+					totalProgress = Float(totalSize)
+				}
 			}
-			
-			if imageloader.loading {
-				ProgressView()
-					.progressViewStyle(CircularProgressViewStyle())
+			.onFailure { _ in
+				withAnimation {
+					isLoaded = true
+				}
 			}
-		}
-		.onReceive(imageloader.$url) { _ in
-			imageloader.load()
-		}
-		.onDisappear {
-			imageloader.cancel()
+			.overlay(
+				progressView,
+				alignment: .bottom
+			)
+	}
+	
+	@ViewBuilder private var progressView: some View {
+		if !isLoaded {
+			ZStack(alignment: .bottom) {
+				Color.black.opacity(0.6)
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
+					.blur(radius: 1.5)
+				
+				ProgressView(value: progress, total: totalProgress)
+			}
+			.transition(.opacity)
 		}
 	}
 }
 
+#if DEBUG
 struct AsyncImage_Previews: PreviewProvider {
 	private static var placeholder: some View {
 		Image(systemName: "photo")
@@ -66,7 +72,8 @@ struct AsyncImage_Previews: PreviewProvider {
 
 	static var previews: some View {
 		Group {
-			AsyncImage(url: URL(string: "https://i.ytimg.com/vi/j2X8tqgsHCU/maxresdefault.jpg")!) {
+			// Test a very large image.
+			AsyncImage(url: URL(string: "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73580/world.topo.bathy.200401.3x21600x21600.A2.jpg")!) {
 				placeholder
 			}
 			.previewDisplayName("Shows Downloaded Image")
@@ -81,3 +88,4 @@ struct AsyncImage_Previews: PreviewProvider {
 		}
 	}
 }
+#endif

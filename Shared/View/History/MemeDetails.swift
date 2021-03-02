@@ -26,8 +26,17 @@ struct MemeDetails: View {
 			)
 		#elseif os(macOS)
 		mainView
+			.frame(minWidth: 360, idealWidth: 560, maxWidth: .infinity)
 			.navigationTitle(Text("Meme Details"))
-		#elseif os(watchOS) || os(tvOS)
+			.toolbar {
+				HStack {
+					Button {
+						showShareSheet = true
+					} label: {
+						Image(systemName: "square.and.arrow.up")
+					}
+				}
+			}
 		#endif
 	}
 	
@@ -66,13 +75,12 @@ struct MemeDetails: View {
 				)
 				.contentShape(RoundedRectangle(cornerRadius: .smallRadius))
 				
-				RoundedRectangle(cornerRadius: .cornerRadius)
-					.fill(Color.systemBackground)
+				detailsView
+					.background(Color.systemBackground)
+					.clipShape(RoundedRectangle(cornerRadius: .cornerRadius))
 					.shadow(radius: .smallRadius)
-					.overlay(
-						detailsView,
-						alignment: .top
-					)
+				
+				Spacer()
 			}
 			.padding()
 		}
@@ -125,7 +133,6 @@ struct MemeDetails: View {
 			}
 		}
 		.padding()
-		.frame(maxWidth: .infinity, alignment: .leading)
 	}
 	
 	private func shareMeme() {
@@ -145,13 +152,15 @@ struct MemeDetails: View {
 
 struct MemeDetails_Previews: PreviewProvider {
 	static var previews: some View {
-		MemeDetails(
-			meme: MemeResponse(
-				id: "1234",
-				url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
-				upvotes: 1337,
-				downvotes: 337
+		NavigationView {
+			MemeDetails(
+				meme: MemeResponse(
+					id: "1234",
+					url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
+					upvotes: 1337,
+					downvotes: 337
+				)
 			)
-		)
+		}
 	}
 }

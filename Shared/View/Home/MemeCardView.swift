@@ -23,55 +23,60 @@ struct MemeCardView: View {
 			isActive: $showMeme,
 			label: {
 				EmptyView()
-			})
-		
-		AsyncImage(url: meme.url) { EmptyView() }
-			.aspectRatio(contentMode: .fit)
-			.cornerRadius(.cornerRadius)
-			.padding(.margin)
-			.frame(
-				maxWidth: geometrySize.width,
-				maxHeight: geometrySize.height/2
-			)
-			.foregroundColor(.secondarySystemBackground)
-			//                .background(
-			//                    RoundedRectangle(
-			//                        cornerRadius: .cornerRadius)
-			//                        .foregroundColor(.secondarySystemBackground)
-			//                        .shadow(color: .secondary, radius: 8, x: 0, y: 14)
-			//                )
-			.animation(.interactiveSpring())
-			.offset(x: self.translation.width, y: self.translation.height)
-			.rotationEffect(
-				.degrees(Double(self.translation.width / geometrySize.width) * 25),
-				anchor: .bottom
-			)
-			.gesture(
-				DragGesture()
-					.onChanged { value in
-						self.translation = value.translation
-						self.swipingAction = value.translation.swipeDirection.asMemeAction
-					}
-					.onEnded { value in
-						/// remove overlay
-						self.swipingAction = nil
-						
-						/// complete swipe
-						switch value.translation.swipeDirection {
-						case .up:
-							self.swipe(.skip)
-						case .down:
-							self.translation = .zero
-						case .left:
-							self.swipe(.dislike)
-						case .right:
-							self.swipe(.like)
-						}
-					}
-			)
-			.onTapGesture {
-				showMeme = true
 			}
+		)
+		.frame(width: 0, height: 0)
+		.hidden()
+		
+		AsyncImage(url: meme.url) {
+			Image("meme-not-found")
+		}
+		.aspectRatio(contentMode: .fit)
+		.cornerRadius(.cornerRadius)
+		.padding(.margin)
+		.frame(
+			maxWidth: geometrySize.width,
+			maxHeight: geometrySize.height/2
+		)
+		.foregroundColor(.secondarySystemBackground)
+		//                .background(
+		//                    RoundedRectangle(
+		//                        cornerRadius: .cornerRadius)
+		//                        .foregroundColor(.secondarySystemBackground)
+		//                        .shadow(color: .secondary, radius: 8, x: 0, y: 14)
+		//                )
+		.animation(.interactiveSpring())
+		.offset(x: self.translation.width, y: self.translation.height)
+		.rotationEffect(
+			.degrees(Double(self.translation.width / geometrySize.width) * 25),
+			anchor: .bottom
+		)
+		.gesture(
+			DragGesture()
+				.onChanged { value in
+					self.translation = value.translation
+					self.swipingAction = value.translation.swipeDirection.asMemeAction
+				}
+				.onEnded { value in
+					/// remove overlay
+					self.swipingAction = nil
+					
+					/// complete swipe
+					switch value.translation.swipeDirection {
+					case .up:
+						self.swipe(.skip)
+					case .down:
+						self.translation = .zero
+					case .left:
+						self.swipe(.dislike)
+					case .right:
+						self.swipe(.like)
+					}
+				}
+		)
+		.onTapGesture {
+			showMeme = true
+		}
 	}
 }
 
