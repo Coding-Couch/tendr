@@ -18,15 +18,17 @@ struct SettingsView: View {
 					Toggle(isOn: $nsfwEnabled) {
 						Text("Show NSFW Memes (beta)", comment: "Show NSFW Settings Label")
 					}
-                    
-                    Button {
-                        let pasteboard = UIPasteboard.general
-                        pasteboard.string = authManager.authToken
-                        print(pasteboard.string)
-                    } label: {
-                        Text(authManager.authToken ?? "No Token")
-                    }
-
+					
+					Button {
+						let pasteboard = UIPasteboard.general
+						pasteboard.string = authManager.authToken
+					} label: {
+						VStack(alignment: .leading) {
+							Text("Your Token:")
+								.foregroundColor(.label)
+							Text(authManager.authToken ?? "No Token")
+						}
+					}
 				}
 				
 				Section(header: Text("About", comment: "About this app settings Section Label")) {
@@ -56,7 +58,7 @@ struct SettingsView: View {
 			}
 			.navigationBarTitle(Text("Settings", comment: "Settings Page Title"))
 		}
-    }
+	}
 }
 
 struct SettingsView_Previews: PreviewProvider {
