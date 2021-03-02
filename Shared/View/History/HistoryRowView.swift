@@ -26,7 +26,7 @@ struct HistoryRowView: View {
 		memeRow
 			.shareSheet(
 				isPresented: $showShareSheet,
-				sharedItems: [meme.url.absoluteString]
+				sharedItems: [meme.url]
 			)
 		#elseif os(macOS)
 		memeRow
@@ -90,7 +90,7 @@ struct HistoryRowView: View {
 					Label("Share", systemImage: "square.and.arrow.up")
 				}
 				#elseif os(macOS)
-				ShareMenu(sharedItems: [meme.url.absoluteURL], showText: true)
+				ShareMenu(sharedItems: [meme.url], showText: true)
 				#endif
 				
 				

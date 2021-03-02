@@ -30,7 +30,7 @@ struct MemeDetails: View {
 			.navigationTitle(Text("Meme Details"))
 			.toolbar {
 				ToolbarItem {
-					ShareMenu(sharedItems: [meme.url.absoluteString])
+					ShareMenu(sharedItems: [meme.url])
 				}
 			}
 		#endif
@@ -61,13 +61,13 @@ struct MemeDetails: View {
 						
 						Button {
 							let pasteboard = UIPasteboard.general
-							pasteboard.string = meme.url.absoluteString
+							pasteboard.url = meme.url
 						} label: {
 							Image(systemName: "doc.on.doc")
 							Text("Copy")
 						}
 						#elseif os(macOS)
-						ShareMenu(sharedItems: [meme.url.absoluteString], showText: true)
+						ShareMenu(sharedItems: [meme.url], showText: true)
 						#endif
 
 						Button {
