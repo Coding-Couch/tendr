@@ -6,17 +6,25 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HistoryRowView: View {
 	var meme: MemeResponse
 	
 	@State private var showShareSheet: Bool = false
-	@Binding var memePresented: Bool
+	@State private var showMemeDetails: Bool = false
 	
 	var body: some View {
+		NavigationLink(
+			destination: MemeDetails(meme: meme),
+			isActive: $showMemeDetails,
+			label: { EmptyView() }
+		)
+		.frame(width: 0, height: 0)
+		.hidden()
+		
 		#if os(iOS) || os(watchOS) || os(tvOS)
-        memeRow
-			.shareSheet(isPresented: $showShareSheet, sharedItems: [meme.url])
+		memeRow.shareSheet(isPresented: $showShareSheet, sharedItems: [meme.url])
 		#elseif os(macOS)
 		memeRow
 		#endif
@@ -34,13 +42,10 @@ struct HistoryRowView: View {
 			.clipShape(RoundedRectangle(cornerRadius: .smallRadius))
 			
 			VStack(alignment: .leading, spacing: .margin) {
-					
-                Text("\(meme.url)")
-                    .lineLimit(1)
-                    .foregroundColor(.accentColor)
-                    .onTapGesture {
-                        openMemeInBrowser()
-                    }
+				
+				Text("\(meme.url)")
+					.lineLimit(1)
+					.foregroundColor(.accentColor)
 				
 				HStack {
 					Label(
@@ -69,7 +74,7 @@ struct HistoryRowView: View {
 			.padding(.vertical)
 		}
 		.padding(.smallMargin)
-        .frame(minWidth: 250, maxWidth: .infinity, maxHeight: 80, alignment: .leading)
+		.frame(minWidth: 250, maxWidth: .infinity, maxHeight: 80, alignment: .leading)
 		.background(Color.secondarySystemBackground)
 		.clipShape(RoundedRectangle(cornerRadius: .smallRadius))
 		.contextMenu(
@@ -91,7 +96,7 @@ struct HistoryRowView: View {
 				}
 				
 				Button {
-					memePresented = true
+					showMemeDetails = true
 				} label: {
 					Label("Open", systemImage: "arrow.up.right.square")
 				}
@@ -125,8 +130,7 @@ struct HistoryRowView_Previews: PreviewProvider {
 					url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
 					upvotes: 1337,
 					downvotes: 337
-				),
-				memePresented: .constant(false)
+				)
 			)
 		}
 	}

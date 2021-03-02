@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The available endpoints for Tendr Api.
 enum Endpoint {	
 	static let baseUrl = "http://34.95.9.213/api/1/"
 	

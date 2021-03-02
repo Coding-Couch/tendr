@@ -15,6 +15,7 @@ class NetworkClient<Request: Codable, Response: Codable>: ObservableObject {
 	@Published private(set) var response: Response?
 	@Published private(set) var urlResponse: HTTPURLResponse?
 	@Published private(set) var error: Error?
+	@Published private(set) var isLoading: Bool = false
 	
 	private var cancellable: AnyCancellable?
 	
@@ -24,8 +25,10 @@ class NetworkClient<Request: Codable, Response: Codable>: ObservableObject {
 		self.request = request
 	}
 	
+	// MARK: - Functions
+	
+	/// Perform the currently provided request (if there is one).
 	func load() {
-		
 		guard let request = request else {
 			logger.error("load() method called before populating network client request.")
 			return
@@ -63,6 +66,19 @@ class NetworkClient<Request: Codable, Response: Codable>: ObservableObject {
 			.assign(to: \.response, on: self)
 	}
 	
+	/// Reset the network client.
+	func clear() {
+		self.cancellable?.cancel()
+		self.cancellable = nil
+		self.response = nil
+		self.error = nil
+		self.urlResponse = nil
+		self.request = nil
+	}
+	
+	// MARK: - Error
+	
+	/// `NetworkClient` Errors
 	struct NetworkError: LocalizedError {
 		var errorDescription: String?
 		var failureReason: String?

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Request body for authentication with Tendr Api.
 struct AuthRequest: Codable {
 	var uuid: String
 }

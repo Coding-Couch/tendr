@@ -13,8 +13,9 @@ struct MemeDetails: View {
 	@State private var showShareSheet: Bool = false
 	
 	var body: some View {
-		#if os(iOS) || os(watchOS) || os(tvOS)
+		#if os(iOS)
 		mainView
+			.shareSheet(isPresented: $showShareSheet, sharedItems: [meme.url])
 			.navigationBarTitle(Text("Meme Details"), displayMode: .inline)
 			.navigationBarItems(
 				trailing: Button {
@@ -26,6 +27,7 @@ struct MemeDetails: View {
 		#elseif os(macOS)
 		mainView
 			.navigationTitle(Text("Meme Details"))
+		#elseif os(watchOS) || os(tvOS)
 		#endif
 	}
 	

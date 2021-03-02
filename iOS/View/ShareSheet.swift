@@ -28,6 +28,7 @@ public struct ShareSheetViewModifier: ViewModifier {
 	public func body(content: Content) -> some View {
 		content.sheet(isPresented: $isPresented) {
 			ShareSheetView(sharedItems: sharedItems, activities: activities)
+				.edgesIgnoringSafeArea(.bottom)
 		}
 	}
 }

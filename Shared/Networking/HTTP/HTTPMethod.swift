@@ -5,6 +5,7 @@
 //  Created by Brent Mifsud on 2021-02-19.
 //
 
+/// Standard HTTP Methods
 enum HTTPMethod: String, Codable {
 	case options = "OPTIONS"
 	case get = "GET"
