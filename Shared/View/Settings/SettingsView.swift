@@ -19,6 +19,7 @@ struct SettingsView: View {
 					.navigationBarTitle(Text("Settings", comment: "Settings Page Title"))
 			}
 		}
+		.navigationViewStyle(StackNavigationViewStyle())
 		#elseif os(macOS)
 		List {
 			mainView

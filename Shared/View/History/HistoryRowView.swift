@@ -78,7 +78,7 @@ struct HistoryRowView: View {
 		}
 		.padding(.smallMargin)
 		.frame(minWidth: 250, maxWidth: .infinity, maxHeight: 80, alignment: .leading)
-		.background(Color.gray)
+		.background(Color.systemBackground	)
 		.clipShape(RoundedRectangle(cornerRadius: .smallRadius))
 		.contentShape(RoundedRectangle(cornerRadius: .smallRadius))
 		.contextMenu(

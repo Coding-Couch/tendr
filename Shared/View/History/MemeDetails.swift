@@ -26,7 +26,7 @@ struct MemeDetails: View {
 			)
 		#elseif os(macOS)
 		mainView
-			.frame(minWidth: 360, idealWidth: 560, maxWidth: .infinity)
+			.frame(minWidth: 360, idealWidth: 425, maxWidth: 500)
 			.navigationTitle(Text("Meme Details"))
 			.toolbar {
 				ToolbarItem {

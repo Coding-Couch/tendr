@@ -59,41 +59,53 @@ struct HomeView: View {
     }
     
     var body: some View {
+		#if os(iOS) || os(watchOS) || os(tvOS)
 		NavigationView {
-			GeometryReader { reader in
-				VStack(alignment: .center, spacing: .largeMargin) {
-					Spacer()
-					
-					ZStack(alignment: .top) {
-						ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
-							MemeCardView(
-								meme: meme,
-								swipe: { memeProvider.action($0)
-								},
-								geometrySize: reader.size,
-								swipingAction: $swipingAction
-							)
-							.padding(.margin)
-							.shadow(radius: 5)
-							.opacity(memeProvider.memes.first != meme ? 0 : 1)
-						}
-					}
-					Spacer()
-					MemeButtonsView()
-						.environmentObject(memeProvider)
-						.padding(.top, .largeMargin)
-					Spacer()
-				}
-				.frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
-			}
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.padding()
-			.background(Color.secondarySystemBackground)
-			.overlay(actionOverlay())
-			.ignoresSafeArea()
+			homeView
+				.edgesIgnoringSafeArea([.top, .horizontal])
+				.navigationBarHidden(true)
 		}
-		.navigationViewStyle(DefaultNavigationViewStyle())
-    }
+		.navigationViewStyle(StackNavigationViewStyle())
+		#elseif os(macOS)
+		NavigationView {
+			homeView
+				.frame(minWidth: 380, idealWidth: 800, maxWidth: .infinity)
+		}
+		#endif
+	}
+	
+	var homeView: some View {
+		GeometryReader { reader in
+			VStack(alignment: .center, spacing: .largeMargin) {
+				Spacer()
+				
+				ZStack(alignment: .top) {
+					ForEach(memeProvider.memes.reversed(), id: \.id) { meme in
+						MemeCardView(
+							meme: meme,
+							swipe: { memeProvider.action($0)
+							},
+							geometrySize: reader.size,
+							swipingAction: $swipingAction
+						)
+						.padding(.margin)
+						.shadow(radius: 5)
+						.opacity(memeProvider.memes.first != meme ? 0 : 1)
+					}
+				}
+				
+				Spacer()
+				
+				MemeButtonsView()
+					.environmentObject(memeProvider)
+			}
+			.frame(maxWidth: reader.size.width, maxHeight: reader.size.height)
+		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.padding()
+		.background(Color.secondarySystemBackground)
+		.overlay(actionOverlay())
+	}
 }
 
 struct MyDesign_Previews: PreviewProvider {

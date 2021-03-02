@@ -30,6 +30,8 @@ struct MemeCardView: View {
 		
 		AsyncImage(url: meme.url) {
 			Image("meme-not-found")
+				.resizable()
+				.aspectRatio(contentMode: .fit)
 		}
 		.aspectRatio(contentMode: .fit)
 		.cornerRadius(.cornerRadius)
@@ -39,12 +41,6 @@ struct MemeCardView: View {
 			maxHeight: geometrySize.height/2
 		)
 		.foregroundColor(.secondarySystemBackground)
-		//                .background(
-		//                    RoundedRectangle(
-		//                        cornerRadius: .cornerRadius)
-		//                        .foregroundColor(.secondarySystemBackground)
-		//                        .shadow(color: .secondary, radius: 8, x: 0, y: 14)
-		//                )
 		.animation(.interactiveSpring())
 		.offset(x: self.translation.width, y: self.translation.height)
 		.rotationEffect(
