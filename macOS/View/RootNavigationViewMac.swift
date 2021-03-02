@@ -20,13 +20,13 @@ struct RootNavigationViewMac: View {
 				SideBarNavigationView()
 					.transition(.slide)
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
-			}
-			.toolbar {
-				ToolbarItem(placement: .navigation) {
-					Button(action: toggleSideBar) {
-						Image(systemName: "sidebar.left")
+					.toolbar {
+						ToolbarItem(placement: .primaryAction) {
+							Button(action: toggleSideBar) {
+								Image(systemName: "sidebar.left")
+							}
+						}
 					}
-				}
 			}
 		}
 	}
@@ -37,8 +37,8 @@ struct RootNavigationViewMac: View {
 }
 
 struct RootNavigationViewMac_Previews: PreviewProvider {
-    static var previews: some View {
-        RootNavigationViewMac()
+	static var previews: some View {
+		RootNavigationViewMac()
 			.environmentObject(MockAuthManager() as AuthManager)
     }
 }
