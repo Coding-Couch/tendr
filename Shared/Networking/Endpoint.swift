@@ -9,7 +9,7 @@ import Foundation
 
 /// The available endpoints for Tendr Api.
 enum Endpoint {	
-	static let baseUrl = "http://34.95.9.213/api/1/"
+	static let baseUrl = "https://tendr.dev/api/1/"
 	
 	/// Api Endpoint to get memes. With Paging.
 	/// - Parameters:
