@@ -42,43 +42,39 @@ struct MemeDetails: View {
                 .edgesIgnoringSafeArea(.all)
 
             VStack(spacing: .margin) {
-                AsyncImage(url: meme.url) {
-                    Image("meme-not-found")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(.cornerRadius)
-                .shadow(radius: .smallRadius)
-                .contextMenu(
-                    menuItems: {
-                        #if os(iOS) || os(watchOS) || os(tvOS)
-                        Button {
-                            showShareSheet = true
-                        } label: {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                        }
+                MemeImage(url: meme.url)
+                    .scaledToFit()
+                    .cornerRadius(.cornerRadius)
+                    .shadow(radius: .smallRadius)
+                    .contextMenu(
+                        menuItems: {
+                            #if os(iOS) || os(watchOS) || os(tvOS)
+                            Button {
+                                showShareSheet = true
+                            } label: {
+                                Label("Share", systemImage: "square.and.arrow.up")
+                            }
 
-                        Button {
-                            let pasteboard = UIPasteboard.general
-                            pasteboard.url = meme.url
-                        } label: {
-                            Image(systemName: "doc.on.doc")
-                            Text("Copy")
-                        }
-                        #elseif os(macOS)
-                        ShareMenu(sharedItems: [meme.url], showText: true)
-                        #endif
+                            Button {
+                                let pasteboard = UIPasteboard.general
+                                pasteboard.url = meme.url
+                            } label: {
+                                Image(systemName: "doc.on.doc")
+                                Text("Copy")
+                            }
+                            #elseif os(macOS)
+                            ShareMenu(sharedItems: [meme.url], showText: true)
+                            #endif
 
-                        Button {
-                            openMemeInBrowser()
-                        } label: {
-                            Image(systemName: "safari")
-                            Text("Open in Browser")
+                            Button {
+                                openMemeInBrowser()
+                            } label: {
+                                Image(systemName: "safari")
+                                Text("Open in Browser")
+                            }
                         }
-                    }
-                )
-                .contentShape(RoundedRectangle(cornerRadius: .smallRadius))
+                    )
+                    .contentShape(RoundedRectangle(cornerRadius: .smallRadius))
 
                 detailsView
                     .background(Color.systemBackground)

@@ -28,51 +28,47 @@ struct MemeCardView: View {
         .frame(width: 0, height: 0)
         .hidden()
 
-        AsyncImage(url: meme.url) {
-            Image(Asset.Images.memeNotFound.name)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        }
-        .aspectRatio(contentMode: .fit)
-        .cornerRadius(.cornerRadius)
-        .padding(.margin)
-        .frame(
-            maxWidth: geometrySize.width,
-            maxHeight: geometrySize.height/2
-        )
-        .foregroundColor(.secondarySystemBackground)
-        .animation(.interactiveSpring())
-        .offset(x: self.translation.width, y: self.translation.height)
-        .rotationEffect(
-            .degrees(Double(self.translation.width / geometrySize.width) * 25),
-            anchor: .bottom
-        )
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    self.translation = value.translation
-                    self.swipingAction = value.translation.swipeDirection.asMemeAction
-                }
-                .onEnded { value in
-                    /// remove overlay
-                    self.swipingAction = nil
-
-                    /// complete swipe
-                    switch value.translation.swipeDirection {
-                    case .up:
-                        self.swipe(.skip)
-                    case .down:
-                        self.translation = .zero
-                    case .left:
-                        self.swipe(.dislike)
-                    case .right:
-                        self.swipe(.like)
+        MemeImage(url: meme.url)
+            .aspectRatio(contentMode: .fit)
+            .cornerRadius(.cornerRadius)
+            .padding(.margin)
+            .frame(
+                maxWidth: geometrySize.width,
+                maxHeight: geometrySize.height/2
+            )
+            .foregroundColor(.secondarySystemBackground)
+            .animation(.interactiveSpring(), value: translation)
+            .offset(x: self.translation.width, y: self.translation.height)
+            .rotationEffect(
+                .degrees(Double(self.translation.width / geometrySize.width) * 25),
+                anchor: .bottom
+            )
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        self.translation = value.translation
+                        self.swipingAction = value.translation.swipeDirection.asMemeAction
                     }
-                }
-        )
-        .onTapGesture {
-            showMeme = true
-        }
+                    .onEnded { value in
+                        /// remove overlay
+                        self.swipingAction = nil
+
+                        /// complete swipe
+                        switch value.translation.swipeDirection {
+                        case .up:
+                            self.swipe(.skip)
+                        case .down:
+                            self.translation = .zero
+                        case .left:
+                            self.swipe(.dislike)
+                        case .right:
+                            self.swipe(.like)
+                        }
+                    }
+            )
+            .onTapGesture {
+                showMeme = true
+            }
     }
 }
 

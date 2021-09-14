@@ -35,14 +35,10 @@ struct HistoryRowView: View {
 
     @ViewBuilder private var memeRow: some View {
         HStack {
-            AsyncImage(url: meme.url) {
-                Image(Asset.Images.memeNotFound.name)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            }
-            .aspectRatio(contentMode: .fill)
-            .frame(maxWidth: 60, maxHeight: 60)
-            .clipShape(RoundedRectangle(cornerRadius: .smallRadius))
+            MemeImage(url: meme.url)
+                .aspectRatio(contentMode: .fill)
+                .frame(maxWidth: 60, maxHeight: 60)
+                .clipShape(RoundedRectangle(cornerRadius: .smallRadius))
 
             VStack(alignment: .leading, spacing: .margin) {
 

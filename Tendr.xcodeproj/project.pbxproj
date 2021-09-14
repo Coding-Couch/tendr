@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		611A41C025E21AE00053C010 /* HistoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A41BF25E21AE00053C010 /* HistoryProvider.swift */; };
-		613E7EBB25E0711700F20A53 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
 		613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EC325E0781700F20A53 /* Image+Initializer.swift */; };
 		613E7EC525E0781700F20A53 /* Image+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EC325E0781700F20A53 /* Image+Initializer.swift */; };
 		613E7ECF25E096C200F20A53 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7ECE25E096C200F20A53 /* HomeView.swift */; };
@@ -24,7 +23,6 @@
 		613E7EE925E0B03F00F20A53 /* MemeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EE825E0B03F00F20A53 /* MemeAction.swift */; };
 		613E7EEA25E0B03F00F20A53 /* MemeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EE825E0B03F00F20A53 /* MemeAction.swift */; };
 		613E7EEE25E0BA4F00F20A53 /* Color+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EED25E0BA4F00F20A53 /* Color+iOS.swift */; };
-		616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
 		8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10325E022ED00B12D0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* RootView.swift */; };
 		8421F10525E022ED00B12D0B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Images.xcassets */; };
@@ -79,6 +77,8 @@
 		84B64AB026F199CA00A08E19 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 84B64AAF26F199CA00A08E19 /* Kingfisher */; };
 		84E0699226F02BB100BBCACC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E0699126F02BB100BBCACC /* Colors.xcassets */; };
 		84E0699326F02BB100BBCACC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E0699126F02BB100BBCACC /* Colors.xcassets */; };
+		84E0699626F06B5D00BBCACC /* MemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0699526F06B5D00BBCACC /* MemeImage.swift */; };
+		84E0699726F06B5D00BBCACC /* MemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0699526F06B5D00BBCACC /* MemeImage.swift */; };
 		84EC262325E0D03D00B045A0 /* MemeResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */; };
 		84EC262C25E0D0AC00B045A0 /* MemeResponseArray.json in Resources */ = {isa = PBXBuildFile; fileRef = 84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */; };
 		84EC263425E0D0CD00B045A0 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC263325E0D0CD00B045A0 /* JsonLoader.swift */; };
@@ -124,7 +124,6 @@
 		613E7EE825E0B03F00F20A53 /* MemeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeAction.swift; sourceTree = "<group>"; };
 		613E7EED25E0BA4F00F20A53 /* Color+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+iOS.swift"; sourceTree = "<group>"; };
 		616A1C1125E031630062BB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		616A1C2825E0452A0062BB89 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		8421F0EE25E022EA00B12D0B /* TendrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendrApp.swift; sourceTree = "<group>"; };
 		8421F0EF25E022EA00B12D0B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		8421F0F025E022ED00B12D0B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -164,6 +163,7 @@
 		84944A7125EDF001000B8BCB /* ShareToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareToolbarItem.swift; sourceTree = "<group>"; };
 		84986DB725E16C3A00A882A5 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		84E0699126F02BB100BBCACC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		84E0699526F06B5D00BBCACC /* MemeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeImage.swift; sourceTree = "<group>"; };
 		84EC25E725E0CA7A00B045A0 /* Tendr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tendr.entitlements; sourceTree = "<group>"; };
 		84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeResponseTest.swift; sourceTree = "<group>"; };
 		84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MemeResponseArray.json; sourceTree = "<group>"; };
@@ -185,7 +185,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B64AB026F199CA00A08E19 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,14 +227,6 @@
 				613E7EDE25E09EFA00F20A53 /* MemeButtonsView.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		616A1C2725E0451B0062BB89 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				616A1C2825E0452A0062BB89 /* AsyncImage.swift */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		8421F0E825E022EA00B12D0B = {
@@ -331,9 +322,9 @@
 		8421F14425E03AB200B12D0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84E0699426F06B3F00BBCACC /* Image */,
 				84944A8E25EE0C94000B8BCB /* Settings */,
 				613E7ED325E09A4B00F20A53 /* Home */,
-				616A1C2725E0451B0062BB89 /* Image */,
 				846574E525E0432000BA7A3D /* LoginPage.swift */,
 				8421F0EF25E022EA00B12D0B /* RootView.swift */,
 				846574E925E0440A00BA7A3D /* Button Style */,
@@ -471,6 +462,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		84E0699426F06B3F00BBCACC /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				84E0699526F06B5D00BBCACC /* MemeImage.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		84EC262125E0D02200B045A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,7 +543,6 @@
 			);
 			name = "Tendr (iOS)";
 			packageProductDependencies = (
-				84B64AAF26F199CA00A08E19 /* Kingfisher */,
 			);
 			productName = "Tendr (iOS)";
 			productReference = 8421F0F525E022ED00B12D0B /* Tendr.app */;
@@ -620,7 +618,6 @@
 			);
 			mainGroup = 8421F0E825E022EA00B12D0B;
 			packageReferences = (
-				84B64AAE26F199CA00A08E19 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 8421F0F625E022ED00B12D0B /* Products */;
 			projectDirPath = "";
@@ -763,6 +760,7 @@
 				845C915C25E238A3009EF7AB /* Constants.swift in Sources */,
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
 				84986DB825E16C3A00A882A5 /* CreditsView.swift in Sources */,
+				84E0699626F06B5D00BBCACC /* MemeImage.swift in Sources */,
 				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
 				847961FD26F038F900521185 /* Assets.swift in Sources */,
 				846574E625E0432000BA7A3D /* LoginPage.swift in Sources */,
@@ -774,7 +772,6 @@
 				845C916425E23BD9009EF7AB /* NetworkClient.swift in Sources */,
 				613E7EEE25E0BA4F00F20A53 /* Color+iOS.swift in Sources */,
 				845C914225E21540009EF7AB /* AuthRequest.swift in Sources */,
-				616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */,
 				613E7ED525E09A5D00F20A53 /* MemeProvider.swift in Sources */,
 				845C909B25E1A4E8009EF7AB /* AppSection.swift in Sources */,
 				613E7EDF25E09EFA00F20A53 /* MemeButtonsView.swift in Sources */,
@@ -800,7 +797,6 @@
 				613E7EC525E0781700F20A53 /* Image+Initializer.swift in Sources */,
 				845C910225E1E9A5009EF7AB /* View+Hidden.swift in Sources */,
 				613E7ED025E096C200F20A53 /* HomeView.swift in Sources */,
-				613E7EBB25E0711700F20A53 /* AsyncImage.swift in Sources */,
 				613E7EEA25E0B03F00F20A53 /* MemeAction.swift in Sources */,
 				845C919F25E263DD009EF7AB /* HistoryView.swift in Sources */,
 				845C920625E310C6009EF7AB /* MemeDetails.swift in Sources */,
@@ -811,6 +807,7 @@
 				845C91A325E265BA009EF7AB /* HistoryProvider.swift in Sources */,
 				613E7ED625E09A5D00F20A53 /* MemeProvider.swift in Sources */,
 				84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */,
+				84E0699726F06B5D00BBCACC /* MemeImage.swift in Sources */,
 				847961FE26F038F900521185 /* Assets.swift in Sources */,
 				845C916525E23BD9009EF7AB /* NetworkClient.swift in Sources */,
 				845C912B25E1EB0A009EF7AB /* AppStorageConstants.swift in Sources */,
@@ -1183,25 +1180,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		84B64AAE26F199CA00A08E19 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "7.0.0-beta.3";
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		84B64AAF26F199CA00A08E19 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 84B64AAE26F199CA00A08E19 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8421F0E925E022EA00B12D0B /* Project object */;
 }
