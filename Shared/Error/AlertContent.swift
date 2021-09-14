@@ -9,18 +9,12 @@ import Foundation
 import SwiftUI
 
 struct AlertContent: Identifiable {
-	private(set) var id: UUID = UUID()
-	var title: String
-	var message: String?
-	
-	var standardMessage: Text? {
-		guard let message = message else { return nil }
-		
-		return Text("""
-		Please send us a screenshot of this alert!
-		Time Occured: \(Date())
-		Error Details:
-		\(message)
-		""")
-	}
+    private(set) var id: UUID = UUID()
+    var title: String
+    var message: String?
+
+    var standardMessage: Text? {
+        guard let message = message else { return nil }
+        return Text(L10n.Alerts.Error.standard("\(Date())", "\(message)"))
+    }
 }

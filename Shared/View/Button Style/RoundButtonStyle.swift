@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct RoundButtonStyle: ButtonStyle {
-    
+
     var color: Color
     var diameter: CGFloat = 64
-    
+
     func makeBody(configuration: Configuration) -> some View {
         Circle()
             .frame(width: diameter, height: diameter)
@@ -23,7 +23,7 @@ struct RoundButtonStyle: ButtonStyle {
                     .foregroundColor(.white)
             )
             .opacity(configuration.isPressed ? 0.6 : 1)
-			.shadow(radius: .smallRadius)
+            .shadow(radius: .smallRadius)
     }
 }
 
@@ -32,7 +32,7 @@ struct RoundButtonStyle_Previews: PreviewProvider {
         Button {
             // action
         } label: {
-			Image(systemName: "square.and.arrow.up")
+            Image(systemName: "square.and.arrow.up")
         }
         .buttonStyle(RoundButtonStyle(color: .red))
     }

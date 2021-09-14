@@ -1,0 +1,15 @@
+strings:
+  inputs: 
+    - Shared/Localization/en.lproj
+  outputs:
+    templateName: structured-swift5
+    output: Shared/Generated/Strings.swift
+xcassets:
+  inputs: 
+    - Shared/Images.xcassets
+    - Shared/Colors.xcassets
+  outputs:
+    templateName: swift5
+    output: Shared/Generated/Assets.swift
+    params:
+      enumName: Asset

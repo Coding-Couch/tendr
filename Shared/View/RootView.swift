@@ -9,17 +9,17 @@ import SwiftUI
 
 struct RootView: View {
     var body: some View {
-		#if os(macOS)
-		RootNavigationViewMac()
-		#elseif os(iOS)
-		RootNavigationViewIOS()
-		#endif
+        #if os(macOS)
+        RootNavigationViewMac()
+        #elseif os(iOS)
+        RootNavigationViewIOS()
+        #endif
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         RootView()
-			.environmentObject(MockAuthManager() as AuthManager)
+            .environmentObject(MockAuthManager() as AuthManager)
     }
 }

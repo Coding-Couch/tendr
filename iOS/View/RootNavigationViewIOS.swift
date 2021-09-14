@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct RootNavigationViewIOS: View {
-	@EnvironmentObject var authManager: AuthManager
-	
+    @EnvironmentObject var authManager: AuthManager
+
     var body: some View {
-		TabBarView()
-			.fullScreenCover(
-				isPresented: Binding(
-					get: { !authManager.isAuthenticated },
-					set: { _ in	}
-				),
-				content: { LoginPage() }
-			)
+        TabBarView()
+            .fullScreenCover(
+                isPresented: Binding(
+                    get: { !authManager.isAuthenticated },
+                    set: { _ in	}
+                ),
+                content: { LoginPage() }
+            )
     }
 }
 
 struct RootNavigationViewIOS_Previews: PreviewProvider {
     static var previews: some View {
         RootNavigationViewIOS()
-			.environmentObject(MockAuthManager() as AuthManager)
+            .environmentObject(MockAuthManager() as AuthManager)
     }
 }

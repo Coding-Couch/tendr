@@ -9,10 +9,10 @@ import XCTest
 @testable import Tendr
 
 class MemeResponseTest: XCTestCase {
-	private let jsonLoader = JsonLoader()
-	
+    private let jsonLoader = JsonLoader()
+
     func testExample() throws {
-		let data = try jsonLoader.loadJson(fileName: "MemeResponseArray")
-		let memes = try JSONDecoder().decode([MemeResponse].self, from: data)
+        let data = try jsonLoader.loadJson(fileName: "MemeResponseArray")
+        XCTAssertNoThrow(try JSONDecoder().decode([MemeResponse].self, from: data))
     }
 }

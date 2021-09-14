@@ -27,7 +27,7 @@
 		616A1C2925E0452A0062BB89 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C2825E0452A0062BB89 /* AsyncImage.swift */; };
 		8421F10125E022ED00B12D0B /* TendrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EE25E022EA00B12D0B /* TendrApp.swift */; };
 		8421F10325E022ED00B12D0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F0EF25E022EA00B12D0B /* RootView.swift */; };
-		8421F10525E022ED00B12D0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Assets.xcassets */; };
+		8421F10525E022ED00B12D0B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Images.xcassets */; };
 		845C901925E19850009EF7AB /* RootNavigationViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C901825E19850009EF7AB /* RootNavigationViewMac.swift */; };
 		845C901E25E19962009EF7AB /* RootNavigationViewIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C901D25E19962009EF7AB /* RootNavigationViewIOS.swift */; };
 		845C908825E1A47D009EF7AB /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E7EB325E06B2E00F20A53 /* TabBarView.swift */; };
@@ -59,6 +59,12 @@
 		845C920625E310C6009EF7AB /* MemeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C920425E310C6009EF7AB /* MemeDetails.swift */; };
 		846574E625E0432000BA7A3D /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574E525E0432000BA7A3D /* LoginPage.swift */; };
 		846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */; };
+		847961EA26F02FAD00521185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847961ED26F02FAD00521185 /* Localizable.strings */; };
+		847961EB26F02FAD00521185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847961ED26F02FAD00521185 /* Localizable.strings */; };
+		847961F826F034D200521185 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847961F426F034D200521185 /* Strings.swift */; };
+		847961F926F034D200521185 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847961F426F034D200521185 /* Strings.swift */; };
+		847961FD26F038F900521185 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847961FC26F038F900521185 /* Assets.swift */; };
+		847961FE26F038F900521185 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847961FC26F038F900521185 /* Assets.swift */; };
 		84944A2A25ED9FFE000B8BCB /* MemeHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944A2925ED9FFE000B8BCB /* MemeHistoryList.swift */; };
 		84944A2B25ED9FFE000B8BCB /* MemeHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944A2925ED9FFE000B8BCB /* MemeHistoryList.swift */; };
 		84944A3125EDA296000B8BCB /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944A3025EDA296000B8BCB /* AlertContent.swift */; };
@@ -72,10 +78,12 @@
 		84944A8F25EE0CA2000B8BCB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616A1C1125E031630062BB89 /* SettingsView.swift */; };
 		84986DB825E16C3A00A882A5 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84986DB725E16C3A00A882A5 /* CreditsView.swift */; };
 		84986DB925E16C3A00A882A5 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84986DB725E16C3A00A882A5 /* CreditsView.swift */; };
+		84E0699226F02BB100BBCACC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E0699126F02BB100BBCACC /* Colors.xcassets */; };
+		84E0699326F02BB100BBCACC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E0699126F02BB100BBCACC /* Colors.xcassets */; };
 		84EC262325E0D03D00B045A0 /* MemeResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */; };
 		84EC262C25E0D0AC00B045A0 /* MemeResponseArray.json in Resources */ = {isa = PBXBuildFile; fileRef = 84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */; };
 		84EC263425E0D0CD00B045A0 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC263325E0D0CD00B045A0 /* JsonLoader.swift */; };
-		84EC266D25E0E1D000B045A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Assets.xcassets */; };
+		84EC266D25E0E1D000B045A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8421F0F025E022ED00B12D0B /* Images.xcassets */; };
 		84EC267825E0E66300B045A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84EC267725E0E66000B045A0 /* Assets.xcassets */; };
 		84EC267D25E0E68000B045A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84EC267C25E0E68000B045A0 /* Assets.xcassets */; };
 		84EF26B925E067FB00061513 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF26B825E067FB00061513 /* HTTPMethod.swift */; };
@@ -120,7 +128,7 @@
 		616A1C2825E0452A0062BB89 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		8421F0EE25E022EA00B12D0B /* TendrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendrApp.swift; sourceTree = "<group>"; };
 		8421F0EF25E022EA00B12D0B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		8421F0F025E022ED00B12D0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8421F0F025E022ED00B12D0B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8421F0F525E022ED00B12D0B /* Tendr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tendr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8421F0F825E022ED00B12D0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8421F0FD25E022ED00B12D0B /* Tendr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tendr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,10 +154,17 @@
 		845C920425E310C6009EF7AB /* MemeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDetails.swift; sourceTree = "<group>"; };
 		846574E525E0432000BA7A3D /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		846574EA25E0442800BA7A3D /* LargeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
+		847961EC26F02FAD00521185 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		847961F426F034D200521185 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		847961FC26F038F900521185 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		847961FF26F0424400521185 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		8479620026F0424400521185 /* Mintfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mintfile; sourceTree = "<group>"; };
+		8479620126F0474300521185 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84944A2925ED9FFE000B8BCB /* MemeHistoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeHistoryList.swift; sourceTree = "<group>"; };
 		84944A3025EDA296000B8BCB /* AlertContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContent.swift; sourceTree = "<group>"; };
 		84944A7125EDF001000B8BCB /* ShareToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareToolbarItem.swift; sourceTree = "<group>"; };
 		84986DB725E16C3A00A882A5 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		84E0699126F02BB100BBCACC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84EC25E725E0CA7A00B045A0 /* Tendr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tendr.entitlements; sourceTree = "<group>"; };
 		84EC262225E0D03D00B045A0 /* MemeResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeResponseTest.swift; sourceTree = "<group>"; };
 		84EC262B25E0D0AB00B045A0 /* MemeResponseArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MemeResponseArray.json; sourceTree = "<group>"; };
@@ -228,6 +243,9 @@
 		8421F0E825E022EA00B12D0B = {
 			isa = PBXGroup;
 			children = (
+				8479620126F0474300521185 /* .swiftlint.yml */,
+				8479620026F0424400521185 /* Mintfile */,
+				847961FF26F0424400521185 /* swiftgen.yml */,
 				8421F0ED25E022EA00B12D0B /* Shared */,
 				8421F0F725E022ED00B12D0B /* iOS */,
 				8421F0FE25E022ED00B12D0B /* macOS */,
@@ -242,11 +260,14 @@
 			children = (
 				845C908F25E1A4AA009EF7AB /* AppSection.swift */,
 				8421F0EE25E022EA00B12D0B /* TendrApp.swift */,
-				8421F0F025E022ED00B12D0B /* Assets.xcassets */,
+				84E0699126F02BB100BBCACC /* Colors.xcassets */,
+				8421F0F025E022ED00B12D0B /* Images.xcassets */,
 				8421F11425E02BE400B12D0B /* Authentication */,
 				8421F14525E03ACC00B12D0B /* Constants */,
 				84944A2F25EDA26F000B8BCB /* Error */,
 				8421F14C25E03B2F00B12D0B /* Extension */,
+				847961D526F02DF300521185 /* Generated */,
+				847961EF26F0303200521185 /* Localization */,
 				8421F11325E02BDA00B12D0B /* Networking */,
 				8421F14425E03AB200B12D0B /* View */,
 			);
@@ -412,6 +433,23 @@
 			path = "Button Style";
 			sourceTree = "<group>";
 		};
+		847961D526F02DF300521185 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				847961FC26F038F900521185 /* Assets.swift */,
+				847961F426F034D200521185 /* Strings.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		847961EF26F0303200521185 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				847961ED26F02FAD00521185 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		84944A2F25EDA26F000B8BCB /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,9 +534,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8421F10925E022ED00B12D0B /* Build configuration list for PBXNativeTarget "Tendr (iOS)" */;
 			buildPhases = (
+				84E0697E26F0250800BBCACC /* Run SwiftGen */,
 				8421F0F125E022ED00B12D0B /* Sources */,
 				8421F0F225E022ED00B12D0B /* Frameworks */,
 				8421F0F325E022ED00B12D0B /* Resources */,
+				84E0697D26F0248A00BBCACC /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -516,9 +556,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8421F10C25E022ED00B12D0B /* Build configuration list for PBXNativeTarget "Tendr (macOS)" */;
 			buildPhases = (
+				847961F226F033CF00521185 /* Run SwiftGen */,
 				8421F0F925E022ED00B12D0B /* Sources */,
 				8421F0FA25E022ED00B12D0B /* Frameworks */,
 				8421F0FB25E022ED00B12D0B /* Resources */,
+				847961F126F033BD00521185 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -557,7 +599,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					8421F0F425E022ED00B12D0B = {
 						CreatedOnToolsVersion = 12.4;
@@ -600,7 +642,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EC267825E0E66300B045A0 /* Assets.xcassets in Resources */,
-				8421F10525E022ED00B12D0B /* Assets.xcassets in Resources */,
+				847961EA26F02FAD00521185 /* Localizable.strings in Resources */,
+				84E0699226F02BB100BBCACC /* Colors.xcassets in Resources */,
+				8421F10525E022ED00B12D0B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +653,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EC267D25E0E68000B045A0 /* Assets.xcassets in Resources */,
-				84EC266D25E0E1D000B045A0 /* Assets.xcassets in Resources */,
+				847961EB26F02FAD00521185 /* Localizable.strings in Resources */,
+				84E0699326F02BB100BBCACC /* Colors.xcassets in Resources */,
+				84EC266D25E0E1D000B045A0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +669,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		847961F126F033BD00521185 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which mint >/dev/null; then\n    mint run swiftlint --fix\nelse\n    echo \"warning: Please install mint using homebrew or from https://github.com/yonaskolb/Mint to run SwiftLint\"\nfi\n";
+		};
+		847961F226F033CF00521185 /* Run SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftGen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which mint >/dev/null; then\n    mint run swiftgen\nelse\n    echo \"warning: Please install mint using homebrew or from https://github.com/yonaskolb/Mint to run SwiftGen\"\nfi\n";
+		};
+		84E0697D26F0248A00BBCACC /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which mint >/dev/null; then\n    mint run swiftlint --fix\nelse\n    echo \"warning: Please install mint using homebrew or from https://github.com/yonaskolb/Mint to run SwiftLint\"\nfi\n";
+		};
+		84E0697E26F0250800BBCACC /* Run SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftGen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which mint >/dev/null; then\n    mint run swiftgen\nelse\n    echo \"warning: Please install mint using homebrew or from https://github.com/yonaskolb/Mint to run SwiftGen\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8421F0F125E022ED00B12D0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -630,6 +751,7 @@
 			files = (
 				84944A8225EE0B99000B8BCB /* AuthManager.swift in Sources */,
 				613E7EE425E09F9100F20A53 /* RoundButtonStyle.swift in Sources */,
+				847961F826F034D200521185 /* Strings.swift in Sources */,
 				611A41C025E21AE00053C010 /* HistoryProvider.swift in Sources */,
 				845C912A25E1EB0A009EF7AB /* AppStorageConstants.swift in Sources */,
 				613E7EC425E0781700F20A53 /* Image+Initializer.swift in Sources */,
@@ -645,6 +767,7 @@
 				8421F10325E022ED00B12D0B /* RootView.swift in Sources */,
 				84986DB825E16C3A00A882A5 /* CreditsView.swift in Sources */,
 				846574EB25E0442800BA7A3D /* LargeButtonStyle.swift in Sources */,
+				847961FD26F038F900521185 /* Assets.swift in Sources */,
 				846574E625E0432000BA7A3D /* LoginPage.swift in Sources */,
 				845C919B25E263DA009EF7AB /* HistoryView.swift in Sources */,
 				845C917325E243B5009EF7AB /* HTTPStatusCode.swift in Sources */,
@@ -675,6 +798,7 @@
 			files = (
 				84944A8A25EE0BC4000B8BCB /* LoginPage.swift in Sources */,
 				84944A8625EE0BB1000B8BCB /* AuthManager.swift in Sources */,
+				847961F926F034D200521185 /* Strings.swift in Sources */,
 				613E7EE525E09F9100F20A53 /* RoundButtonStyle.swift in Sources */,
 				613E7EC525E0781700F20A53 /* Image+Initializer.swift in Sources */,
 				845C910225E1E9A5009EF7AB /* View+Hidden.swift in Sources */,
@@ -690,6 +814,7 @@
 				845C91A325E265BA009EF7AB /* HistoryProvider.swift in Sources */,
 				613E7ED625E09A5D00F20A53 /* MemeProvider.swift in Sources */,
 				84EF270E25E09B6B00061513 /* ApiRequest.swift in Sources */,
+				847961FE26F038F900521185 /* Assets.swift in Sources */,
 				845C916525E23BD9009EF7AB /* NetworkClient.swift in Sources */,
 				845C912B25E1EB0A009EF7AB /* AppStorageConstants.swift in Sources */,
 				845C90BF25E1A721009EF7AB /* Color+MacOS.swift in Sources */,
@@ -734,11 +859,23 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		847961ED26F02FAD00521185 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				847961EC26F02FAD00521185 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		8421F10725E022ED00B12D0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -802,6 +939,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -915,6 +1053,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -942,6 +1081,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;

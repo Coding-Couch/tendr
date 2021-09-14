@@ -11,7 +11,7 @@ enum MemeAction: CaseIterable {
     case dislike
     case skip
     case like
-    
+
     var icon: Image {
         switch self {
         case .dislike:
@@ -22,13 +22,13 @@ enum MemeAction: CaseIterable {
             return Image(systemName: "heart")
         }
     }
-    
+
     var color: Color {
         switch self {
         case .dislike:
             return .red
         case .skip:
-			return .grayLight
+            return .grayLight
         case .like:
             return .green
         }

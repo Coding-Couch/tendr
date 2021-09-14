@@ -9,4 +9,3 @@ import Foundation
 
 let bundleId = "com.codingcouch.tendr.mac"
 let releaseVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-

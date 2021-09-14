@@ -9,25 +9,25 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab: AppSection = .home
-    
+
     var body: some View {
-		TabView(selection: $selectedTab) {
-			HistoryView()
-				.tabItem {
-					AppSection.history.tabView
-				}
-				.tag(AppSection.history)
-			HomeView()
-				.tabItem {
-					AppSection.home.tabView
-				}
-				.tag(AppSection.home)
-			SettingsView()
-				.tabItem {
-					AppSection.settings.tabView
-				}
-				.tag(AppSection.settings)
-		}
+        TabView(selection: $selectedTab) {
+            HistoryView()
+                .tabItem {
+                    AppSection.history.tabView
+                }
+                .tag(AppSection.history)
+            HomeView()
+                .tabItem {
+                    AppSection.home.tabView
+                }
+                .tag(AppSection.home)
+            SettingsView()
+                .tabItem {
+                    AppSection.settings.tabView
+                }
+                .tag(AppSection.settings)
+        }
     }
 }
 
