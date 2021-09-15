@@ -1,5 +1,9 @@
 "App.Name" = "Tendr";
 "LandingPage.Button.Skip" = "Skip Signup";
+"LandingPage.Error.Apple.Title" = "Sign in with apple failed";
+"LandingPage.Error.Apple.Message" = "Code: %@\nDescription: %@";
+"LandingPage.Error.Tendr.Title" = "Failed to authenticate with Tendr";
+"LandingPage.Error.Tendr.Message" = "Reason: %@";
 "TabBar.Tab.History" = "History";
 "TabBar.Tab.Home" = "Home";
 "TabBar.Tab.Settings" = "Settings";
@@ -11,6 +15,12 @@
 "History.Error.Generic.Title" = "Something Went Wrong";
 "History.Error.Tendr.Title" = "Tendr Api Returned an Error";
 "History.Error.Tendr.Message" = "HTTP Status Code: %@";
+"Home.Error.Tendr.Title" = "Unable to %@ meme";
+"Home.Error.Tendr.Message" = "Tendr returns an error:\n%@";
+"Home.Error.Generic.Title" = "Something Went Wrong";
+"Home.Meme.Action.Like" = "Like";
+"Home.Meme.Action.Dislike" = "Dislike";
+"Home.Meme.Action.Skip" = "Skip";
 "Settings.NavBar.Title" = "Settings";
 "Settings.Section.UserPreferences" = "User Preferences";
 "Settings.Section.About" = "About";
@@ -26,7 +36,7 @@
 "Credits.Author.Vince" = "Vince Romani - iOS Developer";
 "Credits.Author.Ahmed" = "Ahmed Al-Hulaibi - Back End, Golang Developer";
 "Credits.Author.Sahand" = "Sahand Nayebaziz - Floating Designer";
-"Alerts.Error.Standard" = "Please send us a screenshot of this alert!\nTime Occured: %@\nError Details: %@";
+"Alerts.Error.Standard" = "Please send us a screenshot of this alert!\nTime Occured: %@\nError Details:\n%@";
 "ContextMenu.Action.Share" = "Share";
 "ContextMenu.Action.Browser" = "Open in Browser";
 "ContextMenu.Action.Open" = "Open";

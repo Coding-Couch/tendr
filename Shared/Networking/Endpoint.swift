@@ -45,9 +45,9 @@ enum Endpoint {
         case .auth:
             return Self.baseUrl + "signin"
         case .like(let id):
-            return Self.baseUrl + "memes/\(id)/up"
+            return Self.baseUrl + "memes/\(id)/upvote"
         case .dislike(let id):
-            return Self.baseUrl + "memes/\(id)/down"
+            return Self.baseUrl + "memes/\(id)/downvote"
         }
     }
 

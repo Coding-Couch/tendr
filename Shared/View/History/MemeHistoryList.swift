@@ -11,18 +11,11 @@ struct MemeHistoryList: View {
     // MARK: - Public Properties
 
     var historyType: HistoryType
-    @StateObject var memeProvider = NetworkClient<Empty, MemeResponse>()
+    @StateObject var memeProvider = MemeProvider()
 
     // MARK: - Private Properties
 
-    @State private var memes: [MemeDTO] = []
-    @State private var currentOffset: Int = 0
-    @State private var totalCount: Int = 0
     @State private var alertContent: AlertContent?
-
-    private var endOfList: Bool {
-        currentOffset == totalCount
-    }
 
     private let limit: Int = 20
 
@@ -35,106 +28,109 @@ struct MemeHistoryList: View {
                     dismissButton: .cancel()
                 )
             }
-            .onAppear {
-                guard memeProvider.request == nil else { return }
-                memeProvider.request = ApiRequest(
-                    endpoint: .history(type: historyType, limit: limit, offset: currentOffset)
-                )
-                memeProvider.load()
-            }
-            .onReceive(memeProvider.$response) { response in
-                guard let response = response else { return }
-
-                totalCount = response.totalCount
-                currentOffset = response.currentOffset
-
-                withAnimation {
-                    memes.append(contentsOf: response.memes)
-                }
-            }
-            .onReceive(memeProvider.$urlResponse) { urlResponse in
-                guard let urlResponse = urlResponse,
-                      !urlResponse.isSuccess else {
-                    return
-                }
-
-                alertContent = AlertContent(
-                    title: L10n.History.Error.Tendr.title,
-                    message: L10n.History.Error.Tendr.message(urlResponse.statusCode)
-                )
-            }
-            .onReceive(memeProvider.$error) { error in
-                guard let error = error else { return }
-
-                alertContent = AlertContent(
-                    title: L10n.History.Error.Generic.title,
-                    message: "\(String(describing: error))"
-                )
-            }
     }
 
     // MARK: - Subviews
 
+    private var initialLoadIndicator: some View {
+        HStack(spacing: .margin) {
+            Text(L10n.History.State.initialLoad)
+                .font(.caption)
+                .fontWeight(.bold)
+
+            ProgressView()
+                .progressViewStyle(.circular)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .padding(.horizontal)
+    }
+
+    private var pagingLoadIndicator: some View {
+        HStack(spacing: .margin) {
+            Text(L10n.History.State.paging)
+                .font(.caption)
+                .fontWeight(.bold)
+
+            ProgressView()
+                .progressViewStyle(.circular)
+        }
+        .listRowSeparator(.hidden)
+        .frame(height: 44)
+        .padding(.horizontal)
+    }
+
     @ViewBuilder private var memeList: some View {
-        if currentOffset == 0 {
-            HStack(spacing: .margin) {
-                Text(L10n.History.State.initialLoad)
-                    .font(.caption)
-                    .fontWeight(.bold)
-
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
+        List {
+            if memeProvider.memes.isEmpty {
+                initialLoadIndicator
+                    .listRowSeparator(.hidden)
             }
-            .frame(height: 44)
-            .padding(.horizontal)
-        } else if !memes.isEmpty {
-            List {
-                ForEach(memes, id: \.id) { meme in
-                    NavigationLink(destination: MemeDetails(meme: meme)) {
-                        HistoryRowView(meme: meme)
-                            .buttonStyle(PlainButtonStyle())
-                            .onAppear {
-                                guard !memes.isEmpty else { return }
 
-                                if let index = memes.firstIndex(of: meme),
-                                   index == memes.endIndex - 1 {
-                                    loadNextPage()
-                                }
-                            }
+            ForEach(memeProvider.memes, id: \.id) { meme in
+                HistoryRowView(meme: meme)
+                    .buttonStyle(.plain)
+                    .onAppear {
+                        let memes = memeProvider.memes
+
+                        guard !memes.isEmpty else { return }
+
+                        if let index = memes.firstIndex(of: meme),
+                           index == memes.endIndex - 1 {
+                            loadNextPage()
+                        }
                     }
-                }
-
-                if memeProvider.isLoading {
-                    HStack(spacing: .margin) {
-                        Text(L10n.History.State.paging)
-                            .font(.caption)
-                            .fontWeight(.bold)
-
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                    }
-                    .frame(height: 44)
-                    .padding(.horizontal)
-                }
             }
+
+            if memeProvider.isPaging {
+                HStack(spacing: .margin) {
+                    Text(L10n.History.State.paging)
+                        .font(.caption)
+                        .fontWeight(.bold)
+
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+                .frame(height: 44)
+                .padding(.horizontal)
+            }
+        }
+        .onAppear {
+            if memeProvider.initialLoad {
+                loadNextPage()
+            }
+        }
+        .listStyle(.insetGrouped)
+        .refreshable {
+            memeProvider.clearMemes()
+            loadNextPage()
         }
     }
 
     // MARK: - Helper Functions
 
     private func loadNextPage() {
-        guard !memes.isEmpty else { return }
-        guard !endOfList else { return }
-        memeProvider.request = ApiRequest(endpoint: .history(type: historyType, limit: limit, offset: currentOffset))
-        memeProvider.load()
+        Task {
+            do {
+                try await memeProvider.loadMore()
+            } catch let error as MemeProvider.MemeProviderError {
+                alertContent = AlertContent(
+                    title: L10n.History.Error.Tendr.title,
+                    message: L10n.History.Error.Tendr.message(error.localizedDescription)
+                )
+            } catch {
+                alertContent = AlertContent(
+                    title: L10n.History.Error.Generic.title,
+                    message: "\(String(describing: error))"
+                )
+            }
+        }
     }
 }
 
 // MARK: - Previews
-#if DEBUG
+
 struct MemeHistoryList_Previews: PreviewProvider {
     static var previews: some View {
         MemeHistoryList(historyType: .like)
     }
 }
-#endif

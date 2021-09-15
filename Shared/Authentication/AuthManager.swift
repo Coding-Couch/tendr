@@ -10,13 +10,10 @@ import SwiftUI
 import Combine
 import os
 
-class AuthManager: ObservableObject {
-    private var defaults = UserDefaults.standard
-    private var logger: Logger = Logger(subsystem: bundleId, category: "Authentication Errors")
-
-    var isAuthenticated: Bool {
-        authToken != nil
-    }
+@MainActor class AuthManager: ObservableObject {
+    private var defaults: UserDefaults = UserDefaults.standard
+    private lazy var logger = Logger(subsystem: bundleId, category: "Authentication Errors")
+    private lazy var client = NetworkClient()
 
     /// The persisted auth token from the Tendr Api
     @Published var authToken: String? {
@@ -32,17 +29,31 @@ class AuthManager: ObservableObject {
         }
     }
 
+    @Published var isLoading: Bool = false
+
     init() {
-        withAnimation {
-            authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
-            appleUserId = defaults.string(forKey: AppStorageConstants.appleUserId)
-        }
+        authToken = defaults.string(forKey: AppStorageConstants.apiAuthToken)
+        appleUserId = defaults.string(forKey: AppStorageConstants.appleUserId)
     }
 
-    /// Submit an Auth Request using a network client.
-    /// - Parameter client: `NetworkClient` to use for the request.
-    func fetchAuthToken(with client: NetworkClient<AuthRequest, Empty>) {
-        client.load()
+    /// Fetch auth token from API
+    /// - Parameter credential: Apple User Token
+    func fetchAuthToken(with credential: String) async throws {
+        appleUserId = credential
+
+        isLoading = true
+
+        defer {
+            isLoading = false
+        }
+
+        _ = try await client
+            .submitRequest(
+                ApiRequest(endpoint: .auth, requestBody: AuthRequest(uuid: credential)),
+                responseType: Empty.self
+            )
+
+        authToken = credential
     }
 
     /// Clear the users persisted session.
@@ -55,9 +66,9 @@ class AuthManager: ObservableObject {
 }
 
 class MockAuthManager: AuthManager {
-    override func fetchAuthToken(with client: NetworkClient<AuthRequest, Empty>) {
+    override func fetchAuthToken(with credential: String) async throws {
         withAnimation {
-            self.authToken = self.appleUserId
+            self.authToken = credential
         }
     }
 }

@@ -33,4 +33,15 @@ enum MemeAction: CaseIterable {
             return .green
         }
     }
+
+    var name: String {
+        switch self {
+        case .like:
+            return L10n.Home.Meme.Action.like
+        case .dislike:
+            return L10n.Home.Meme.Action.dislike
+        case .skip:
+            return L10n.Home.Meme.Action.skip
+        }
+    }
 }

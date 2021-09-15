@@ -6,22 +6,31 @@
 //
 
 import SwiftUI
-import os
+import OSLog
 
 struct MemeImage: View {
+    // NSCache cannot store structs. This is simply a class wrapper for caching purposes.
+    private class MemeStorage {
+        let image: Image
+
+        init(image: Image) {
+            self.image = image
+        }
+    }
+
     private class MemeCache {
-        private lazy var cache = [URL: Image]()
+        private lazy var cache = NSCache<NSURL, MemeStorage>()
 
         func set(image: Image, for url: URL) {
-            cache[url] = image
+            cache.setObject(MemeStorage(image: image), forKey: url as NSURL)
         }
 
         func getImage(for url: URL) -> Image? {
-            cache[url]
+            cache.object(forKey: url as NSURL)?.image
         }
 
         func clearCache() {
-            cache = [:]
+            cache.removeAllObjects()
         }
     }
 

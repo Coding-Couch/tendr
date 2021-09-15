@@ -12,7 +12,7 @@ struct MemeCardView: View {
     var swipe: (MemeAction) -> Void
     var geometrySize: CGSize
     @Binding var swipingAction: MemeAction?
-    @State private var translation: CGSize = .zero
+    @GestureState private var translation: CGSize = .zero
     @State private var showMeme: Bool = false
 
     private static var thresholdPercentage: CGFloat = 0.25
@@ -25,8 +25,8 @@ struct MemeCardView: View {
                 EmptyView()
             }
         )
-        .frame(width: 0, height: 0)
-        .hidden()
+            .frame(width: 0, height: 0)
+            .hidden()
 
         MemeImage(url: meme.url)
             .aspectRatio(contentMode: .fit)
@@ -45,10 +45,10 @@ struct MemeCardView: View {
             )
             .gesture(
                 DragGesture()
-                    .onChanged { value in
-                        self.translation = value.translation
-                        self.swipingAction = value.translation.swipeDirection.asMemeAction
-                    }
+                    .updating($translation, body: { currentValue, state, _ in
+                        state = currentValue.translation
+                        swipingAction = currentValue.translation.swipeDirection.asMemeAction
+                    })
                     .onEnded { value in
                         /// remove overlay
                         self.swipingAction = nil
@@ -58,7 +58,7 @@ struct MemeCardView: View {
                         case .up:
                             self.swipe(.skip)
                         case .down:
-                            self.translation = .zero
+                            break
                         case .left:
                             self.swipe(.dislike)
                         case .right:
@@ -69,6 +69,19 @@ struct MemeCardView: View {
             .onTapGesture {
                 showMeme = true
             }
+    }
+
+    static var placeholder: some View {
+        RoundedRectangle(cornerRadius: .cornerRadius)
+            .fill(Color.secondarySystemBackground)
+            .overlay(
+                Image(systemName: "photo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 60, height: 60)
+                    .foregroundColor(.tertiarySystemBackground)
+            )
+            .frame(maxWidth: .infinity, maxHeight: 300)
     }
 }
 
@@ -122,7 +135,8 @@ struct MemeCardView_Previews: PreviewProvider {
                     upvotes: 1337,
                     downvotes: 337
                 ),
-                swipe: {_ in }, geometrySize: reader.size,
+                swipe: {_ in },
+                geometrySize: reader.size,
                 swipingAction: .constant(nil)
             )
         }
@@ -135,10 +149,13 @@ struct MemeCardView_Previews: PreviewProvider {
                     upvotes: 1337,
                     downvotes: 337
                 ),
-                swipe: {_ in }, geometrySize: reader.size,
+                swipe: {_ in },
+                geometrySize: reader.size,
                 swipingAction: .constant(nil)
             )
         }
         .colorScheme(.dark)
+
+        MemeCardView.placeholder
     }
 }

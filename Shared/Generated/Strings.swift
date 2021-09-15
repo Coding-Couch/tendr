@@ -13,7 +13,7 @@ internal enum L10n {
 
   internal enum Alerts {
     internal enum Error {
-      /// Please send us a screenshot of this alert!\nTime Occured: %@\nError Details: %@
+      /// Please send us a screenshot of this alert!\nTime Occured: %@\nError Details:\n%@
       internal static func standard(_ p1: Any, _ p2: Any) -> String {
         return L10n.tr("Localizable", "Alerts.Error.Standard", String(describing: p1), String(describing: p2))
       }
@@ -94,10 +94,57 @@ internal enum L10n {
     }
   }
 
+  internal enum Home {
+    internal enum Error {
+      internal enum Generic {
+        /// Something Went Wrong
+        internal static let title = L10n.tr("Localizable", "Home.Error.Generic.Title")
+      }
+      internal enum Tendr {
+        /// Tendr returns an error:\n%@
+        internal static func message(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "Home.Error.Tendr.Message", String(describing: p1))
+        }
+        /// Unable to %@ meme
+        internal static func title(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "Home.Error.Tendr.Title", String(describing: p1))
+        }
+      }
+    }
+    internal enum Meme {
+      internal enum Action {
+        /// Dislike
+        internal static let dislike = L10n.tr("Localizable", "Home.Meme.Action.Dislike")
+        /// Like
+        internal static let like = L10n.tr("Localizable", "Home.Meme.Action.Like")
+        /// Skip
+        internal static let skip = L10n.tr("Localizable", "Home.Meme.Action.Skip")
+      }
+    }
+  }
+
   internal enum LandingPage {
     internal enum Button {
       /// Skip Signup
       internal static let skip = L10n.tr("Localizable", "LandingPage.Button.Skip")
+    }
+    internal enum Error {
+      internal enum Apple {
+        /// Code: %@\nDescription: %@
+        internal static func message(_ p1: Any, _ p2: Any) -> String {
+          return L10n.tr("Localizable", "LandingPage.Error.Apple.Message", String(describing: p1), String(describing: p2))
+        }
+        /// Sign in with apple failed
+        internal static let title = L10n.tr("Localizable", "LandingPage.Error.Apple.Title")
+      }
+      internal enum Tendr {
+        /// Reason: %@
+        internal static func message(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "LandingPage.Error.Tendr.Message", String(describing: p1))
+        }
+        /// Failed to authenticate with Tendr
+        internal static let title = L10n.tr("Localizable", "LandingPage.Error.Tendr.Title")
+      }
     }
   }
 

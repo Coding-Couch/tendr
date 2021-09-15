@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct MemeButtonsView: View {
-    @EnvironmentObject var memeProvider: MemeProvider
+    var actionPerformed: (MemeAction) -> Void
 
     var body: some View {
         HStack(spacing: .largeMargin) {
             ForEach(MemeAction.allCases, id: \.self) { memeAction in
-                Button(action: { memeProvider.action(memeAction) }, label: {
+                Button {
+                    actionPerformed(memeAction)
+                } label: {
                     memeAction.icon
-                })
+                }
                 .buttonStyle(RoundButtonStyle(color: memeAction.color))
             }
         }
@@ -24,6 +26,8 @@ struct MemeButtonsView: View {
 
 struct MemeButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        MemeButtonsView()
+        MemeButtonsView { action in
+            print(action.name)
+        }
     }
 }

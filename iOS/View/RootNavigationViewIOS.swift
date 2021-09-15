@@ -9,14 +9,15 @@ import SwiftUI
 
 struct RootNavigationViewIOS: View {
     @EnvironmentObject var authManager: AuthManager
+    @State private var showLogin: Bool = false
 
     var body: some View {
         TabBarView()
+            .onReceive(authManager.$authToken, perform: { authToken in
+                showLogin = authToken == nil
+            })
             .fullScreenCover(
-                isPresented: Binding(
-                    get: { !authManager.isAuthenticated },
-                    set: { _ in	}
-                ),
+                isPresented: $showLogin,
                 content: { LoginPage() }
             )
     }

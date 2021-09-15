@@ -6,89 +6,141 @@
 //
 
 import SwiftUI
-import Combine
+import OSLog
 
-class MemeProvider: ObservableObject {
-    @Published var memes: [MemeDTO]
-    private(set) var memeFailureSubject = PassthroughSubject<Error, Never>()
-    private var offset: Int = 0
-    private var totalItems: Int = 0
-    private var cancellable: AnyCancellable?
+@MainActor class MemeProvider: ObservableObject {
+    // MARK: - Structures
 
-    init() {
-        memes = []
-        loadMore(count: 5)
-    }
+    enum MemeProviderError: Error, LocalizedError {
+        case httpStatus(code: Int)
+        case unknown(description: String)
 
-    private func loadMore(count: Int = 1) {
-        cancellable?.cancel()
-
-        let urlRequest = try? ApiRequest<Empty>(endpoint: Endpoint.memes(limit: count, offset: offset), requestBody: nil).createURLRequest()
-
-        guard let request = urlRequest else { return }
-
-        cancellable = URLSession.shared.dataTaskPublisher(for: request)
-            .map { $0.data }
-            .decode(type: MemeResponse.self, decoder: JSONDecoder())
-            .receive(on: RunLoop.main)
-            .eraseToAnyPublisher()
-            .sink { [memeFailureSubject] completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    memeFailureSubject.send(error)
-                    break
-                }
-            } receiveValue: { [weak self] payload in
-                guard let self = self else { return }
-
-                self.offset = payload.currentOffset
-                self.totalItems = payload.totalCount
-                self.memes.append(contentsOf: payload.memes)
+        var errorDescription: String? {
+            switch self {
+            case let .httpStatus(code):
+                return "Tendr Api returned a bad status code: \(code)"
+            case let .unknown(description):
+                return description
             }
+        }
     }
 
-    func action(_ action: MemeAction) {
-        guard let meme = memes.first else { return }
+    // MARK: - Public Properties
 
-        var endpoint: Endpoint?
+    @Published var memes: [MemeDTO] = []
+    @Published var isLoading: Bool = false
+
+    var initialLoad: Bool = true
+
+    var isPaging: Bool {
+        isLoading && !memes.isEmpty
+    }
+
+    // MARK: - Private Properties
+
+    fileprivate lazy var session = URLSession.shared
+    fileprivate lazy var decoder = JSONDecoder()
+    fileprivate lazy var logger = Logger(subsystem: bundleId, category: "Meme Provider")
+    fileprivate let offset: Int
+    private var currentOffset: Int = 0
+    private var totalCount: Int = 0
+
+    // MARK: - Lifecycle
+
+    init(offset: Int = 20) {
+        self.offset = offset
+    }
+
+    // MARK: - Functions
+
+    func loadMore(count: Int? = nil) async throws {
+        try await loadMore(count: count != nil ? count! : offset)
+    }
+
+    private func loadMore(count: Int = 20) async throws {
+        withAnimation {
+            isLoading = true
+        }
+
+        defer {
+            withAnimation {
+                isLoading = false
+            }
+            initialLoad = false
+        }
+
+        let urlRequest = try ApiRequest<Empty>(endpoint: .memes(limit: currentOffset, offset: offset))
+            .createURLRequest()
+
+        let (data, urlResponse) = try await session.data(for: urlRequest)
+
+        try handleUrlResponse(urlResponse: urlResponse)
+
+        let response = try decoder.decode(MemeResponse.self, from: data)
+
+        currentOffset = response.currentOffset
+        totalCount = response.totalCount
+        memes.append(contentsOf: response.memes)
+    }
+
+    func clearMemes() {
+        totalCount = 0
+        currentOffset = 0
+        initialLoad = true
+
+        withAnimation {
+            memes = []
+        }
+    }
+
+    fileprivate func handleUrlResponse(urlResponse: URLResponse) throws {
+        guard let httpResponse = urlResponse as? HTTPURLResponse else {
+            logger.critical("URLResponse could not be cast to HTTPURLResponse.\nDetails:\n\(urlResponse)")
+            throw MemeProviderError.unknown(description: "URLResponse could not be cast to HTTPURLResponse")
+        }
+
+        guard httpResponse.isSuccess else {
+            logger.error("Bad HTTP Response: \(httpResponse)")
+            throw MemeProviderError.httpStatus(code: httpResponse.statusCode)
+        }
+    }
+}
+
+@MainActor class SwipeMemeProvider: MemeProvider {
+    func action(_ action: MemeAction) async throws {
+        guard let meme = memes.first else { return }
 
         switch action {
         case .like:
-            endpoint = .like(id: meme.id)
+            try await voteForMeme(endpoint: .like(id: meme.id))
         case .dislike:
-            endpoint = .dislike(id: meme.id)
+            try await voteForMeme(endpoint: .dislike(id: meme.id))
         case .skip:
             memes.removeFirst()
-            loadMore()
-            return
         }
 
-        /// Send API request for action
-        if let endpoint = endpoint {
-            let urlRequest = try? ApiRequest<Empty>(endpoint: endpoint).createURLRequest()
-            if let urlRequest = urlRequest {
-                cancellable?.cancel()
-                cancellable = URLSession.shared.dataTaskPublisher(for: urlRequest)
-                    .receive(on: RunLoop.main)
-                    .sink { (completion) in
-                        switch completion {
-                        case .failure:
-                            break
-                        case .finished:
-                            break
-                        }
-                    } receiveValue: { [weak self] (_, urlResponse) in
-                        guard let httpResponse = urlResponse as? HTTPURLResponse, httpResponse.isSuccess else {
-                            return
-                        }
+        if memes.count < offset {
+            try await loadMore()
+        }
+    }
 
-                        self?.memes.removeFirst()
+    private func voteForMeme(endpoint: Endpoint) async throws {
+        let urlRequest = try ApiRequest<Empty>(endpoint: endpoint).createURLRequest()
 
-                        self?.loadMore()
-                    }
+        withAnimation {
+            isLoading = true
+        }
+
+        defer {
+            withAnimation {
+                isLoading = false
             }
         }
+
+        print(urlRequest)
+
+        let (data, urlResponse) = try await session.data(for: urlRequest)
+        try handleUrlResponse(urlResponse: urlResponse)
+        memes.removeFirst()
     }
 }

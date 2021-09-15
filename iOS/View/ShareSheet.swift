@@ -26,10 +26,10 @@ public struct ShareSheetViewModifier: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        content.sheet(isPresented: $isPresented) {
-            ShareSheetView(sharedItems: sharedItems, activities: activities)
-                .edgesIgnoringSafeArea(.bottom)
-        }
+        content.overlay(
+            ShareSheetView(isPresented: $isPresented, sharedItems: sharedItems, activities: activities)
+                .ignoresSafeArea()
+        )
     }
 }
 
@@ -56,34 +56,64 @@ public extension View {
 }
 
 /// SwiftUI Implementation of a share sheet. Will likely be deprecated very soon.
-public struct ShareSheetView: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+struct ShareSheetView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ShareSheetHost
+
+    class ShareSheetHost: UIViewController {
+        @Binding var isPresented: Bool
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            view.backgroundColor = .clear
+        }
+
+        var isPresentingShareSheet: Bool {
+            presentedViewController as? UIActivityViewController != nil
+        }
+
+        init(isPresented: Binding<Bool>) {
+            self._isPresented = isPresented
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        @available(*, unavailable)
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        func presentShareSheet(sharedItems: [Any], activities: [UIActivity]?) {
+            let controller = UIActivityViewController(
+                activityItems: sharedItems,
+                applicationActivities: activities
+            )
+
+            controller.completionWithItemsHandler = { _, _, _, _ in
+                self.isPresented = false
+            }
+
+            present(controller, animated: true)
+        }
+
+        func dismissShareSheet() {
+            self.presentedViewController?.dismiss(animated: true)
+        }
+    }
+
+    @Binding var isPresented: Bool
     var sharedItems: [Any]
     var activities: [UIActivity]?
 
-    /// Create a share sheet view
-    /// - Parameters:
-    ///   - sharedItems: items to share
-    ///   - activities: `UIActivity` items to include in the share sheet
-    public init(sharedItems: [Any], activities: [UIActivity]? = nil) {
-        self.sharedItems = sharedItems
-        self.activities = activities
+    func makeUIViewController(context _: Context) -> UIViewControllerType {
+        let viewController = ShareSheetHost(isPresented: $isPresented)
+        viewController.view.backgroundColor = .clear
+        return viewController
     }
 
-    public func makeUIViewController(context _: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(
-            activityItems: sharedItems,
-            applicationActivities: activities
-        )
-
-        controller.completionWithItemsHandler = { _, _, _, _ in
-            self.presentationMode.wrappedValue.dismiss()
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context _: Context) {
+        if isPresented && !uiViewController.isPresentingShareSheet {
+            uiViewController.presentShareSheet(sharedItems: sharedItems, activities: activities)
         }
-
-        return controller
     }
-
-    public func updateUIViewController(_: UIActivityViewController, context _: Context) {}
 }
 
 struct ShareSheet_Previews: PreviewProvider {

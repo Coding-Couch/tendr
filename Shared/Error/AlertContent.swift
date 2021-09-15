@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AlertContent: Identifiable {
-    private(set) var id: UUID = UUID()
+    let id: UUID = UUID()
     var title: String
     var message: String?
 

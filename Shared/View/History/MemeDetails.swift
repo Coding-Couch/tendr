@@ -39,7 +39,7 @@ struct MemeDetails: View {
     @ViewBuilder private var mainView: some View {
         ZStack(alignment: .top) {
             Color.secondarySystemBackground
-                .edgesIgnoringSafeArea(.all)
+                .ignoresSafeArea()
 
             VStack(spacing: .margin) {
                 MemeImage(url: meme.url)

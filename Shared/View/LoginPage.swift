@@ -10,15 +10,20 @@ import AuthenticationServices
 import Combine
 import os
 
+private typealias AppleCredential = ASAuthorizationAppleIDCredential
+
 struct LoginPage: View {
     private var logger = Logger(subsystem: bundleId, category: "LandingPage")
 
     @EnvironmentObject var authManager: AuthManager
     @Environment(\.colorScheme) var colorScheme
-    @State private var buttonsDisabled: Bool = false
-    @State private var presentAlert: Bool = false
+    @State private var alertContent: AlertContent?
     @State private var failureReason: String = ""
-    @StateObject private var client = NetworkClient<AuthRequest, Empty>()
+    @State private var signInWithAppleLoading: Bool = false
+
+    var isLoading: Bool {
+        authManager.isLoading || signInWithAppleLoading
+    }
 
     var body: some View {
         VStack {
@@ -35,30 +40,29 @@ struct LoginPage: View {
 
             Spacer().frame(height: 32)
 
+            signInWithAppleButton
             signInButton
 
             Spacer().frame(height: 32)
 
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
-                .opacity(buttonsDisabled ? 1 : 0)
+                .opacity(authManager.isLoading ? 1 : 0)
         }
         .padding()
-        .alert(isPresented: $presentAlert) {
-            let title = Text(
-                "Failed to Sign in.",
-                comment: "Sign in Alert Failure Title"
+        #if DEBUG
+        .alert(item: $alertContent) { alertContent in
+            Alert(
+                title: Text(alertContent.title),
+                message: Text(alertContent.message ?? ""),
+                dismissButton: .cancel()
             )
-
-            let message = Text(
-                "\(failureReason)",
-                comment: "Sign up with apple failure alert message"
-            )
-
-            #if DEBUG
-            return Alert(
-                title: title,
-                message: message,
+        }
+        #else
+        .alert(item: $alertContent) { alertContent in
+            Alert(
+                title: Text(alertContent.title),
+                message: Text(alertContent.message ?? ""),
                 primaryButton: .destructive(
                     Text(L10n.LandingPage.Button.skip),
                     action: {
@@ -67,85 +71,90 @@ struct LoginPage: View {
                 ),
                 secondaryButton: .cancel()
             )
-            #else
-            return Alert(
-                title: title,
-                message: message,
-                dismissButton: .cancel()
-            )
-            #endif
         }
-        .onReceive(client.$urlResponse.compactMap({$0})) { urlResponse in
-            if urlResponse.isSuccess {
-                authManager.authToken = authManager.appleUserId ?? ""
-            } else if let error = client.error {
-                failureReason = error.localizedDescription
-            }
-        }
+        #endif
     }
 
     @ViewBuilder private var signInButton: some View {
-        #if DEBUG
-
         Button {
-            let uuid = UUID()
-            authManager.appleUserId = uuid.uuidString
-            client.request = ApiRequest(endpoint: .auth, requestBody: AuthRequest(uuid: uuid.uuidString))
-            authManager.fetchAuthToken(with: client)
+            Task {
+                do {
+                    try await authManager.fetchAuthToken(with: UUID().uuidString)
+                } catch {
+                    alertContent = AlertContent(
+                        title: L10n.LandingPage.Error.Tendr.title,
+                        message: L10n.LandingPage.Error.Tendr.message(error.localizedDescription)
+                    )
+                }
+            }
         } label: {
             Text(L10n.LandingPage.Button.skip)
         }
         .buttonStyle(LargeButtonStyle(color: .accentColor))
         .frame(maxWidth: .infinity, minHeight: 30, idealHeight: 38, maxHeight: 48)
         .padding(.horizontal)
+    }
 
-        #else
-
-        SignInWithAppleButton(
-            onRequest: { _ in
-                buttonsDisabled = true
-            },
-            onCompletion: { result in
-                switch result {
-                case .success(let authenticationResults):
-                    guard let credentials =
-                            authenticationResults.credential as? ASAuthorizationAppleIDCredential else {
-                        return
-                    }
-
-                    authManager.appleUserId = credentials.user
-
-                    client.request = ApiRequest(endpoint: .auth, requestBody: AuthRequest(uuid: credentials.user))
-
-                    authManager.fetchAuthToken(with: client)
-                case .failure(let error):
-                    guard let error = error as? ASAuthorizationError else {
-                        return
-                    }
-
-                    switch error.code {
-                    case .canceled:
-                        return
-                    default:
-                        logger.error(
-                            """
-                            Sign in with Apple Failed.
-                            Code: \(error.errorCode)
-                            """
-                        )
-                        failureReason = "\(String(describing: error))"
-                    }
+    @ViewBuilder private var signInWithAppleButton: some View {
+        SignInWithAppleButton { request in
+            logger.info("Apple User: \(request.user ?? "nil")")
+            signInWithAppleLoading = true
+        } onCompletion: { result in
+            switch result {
+            case .success(let authenticationResults):
+                guard let credentials = authenticationResults.credential as? AppleCredential else {
+                    return
                 }
 
-                buttonsDisabled = false
+                Task {
+                    do {
+                        try await authManager.fetchAuthToken(with: credentials.user)
+                    } catch {
+                        alertContent = AlertContent(
+                            title: L10n.LandingPage.Error.Tendr.title,
+                            message: L10n.LandingPage.Error.Tendr.message(error.localizedDescription)
+                        )
+                    }
+
+                    signInWithAppleLoading = false
+                }
+            case .failure(let error):
+                guard let appleError = error as? ASAuthorizationError else {
+                    logger.error("An unknown error occured during Sign In With Apple: \(error.localizedDescription)")
+                    let nsError = error as NSError
+                    alertContent = AlertContent(
+                        title: L10n.LandingPage.Error.Apple.title,
+                        message: L10n.LandingPage.Error.Apple.message(nsError.code, nsError.localizedDescription)
+                    )
+                    return
+                }
+
+                switch appleError.code {
+                case .canceled:
+                    return
+                default:
+                    logger.error("""
+                        Sign in with Apple Failed.
+                        Code: \(appleError.errorCode)
+                        Description: \(appleError.localizedDescription)
+                        """)
+
+                    alertContent = AlertContent(
+                        title: L10n.LandingPage.Error.Apple.title,
+                        message: L10n.LandingPage.Error.Apple.message(
+                            appleError.code,
+                            appleError.localizedDescription
+                        )
+                    )
+                }
+
+                signInWithAppleLoading = false
             }
-        )
+        }
         .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
         .frame(height: 38)
         .frame(maxWidth: .infinity)
-        .disabled(buttonsDisabled)
-
-        #endif
+        .disabled(authManager.isLoading)
     }
 }
 

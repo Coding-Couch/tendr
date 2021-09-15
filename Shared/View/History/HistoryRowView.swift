@@ -17,20 +17,19 @@ struct HistoryRowView: View {
         NavigationLink(
             destination: MemeDetails(meme: meme),
             isActive: $showMemeDetails,
-            label: { EmptyView() }
-        )
-        .frame(width: 0, height: 0)
-        .hidden()
+            label: {
+                #if os(iOS) || os(watchOS) || os(tvOS)
+                memeRow
+                    .shareSheet(
+                        isPresented: $showShareSheet,
+                        sharedItems: [meme.url]
+                    )
+                #elseif os(macOS)
+                memeRow
+                #endif
+            }
+        ).listRowSeparator(.automatic)
 
-        #if os(iOS) || os(watchOS) || os(tvOS)
-        memeRow
-            .shareSheet(
-                isPresented: $showShareSheet,
-                sharedItems: [meme.url]
-            )
-        #elseif os(macOS)
-        memeRow
-        #endif
     }
 
     @ViewBuilder private var memeRow: some View {
@@ -74,7 +73,7 @@ struct HistoryRowView: View {
         }
         .padding(.smallMargin)
         .frame(minWidth: 250, maxWidth: .infinity, maxHeight: 80, alignment: .leading)
-        .background(Color.systemBackground	)
+        .background(Color.secondarySystemBackground)
         .clipShape(RoundedRectangle(cornerRadius: .smallRadius))
         .contentShape(RoundedRectangle(cornerRadius: .smallRadius))
         .contextMenu(
@@ -123,7 +122,16 @@ struct HistoryRowView: View {
 
 struct HistoryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        List {
+            HistoryRowView(
+                meme: MemeDTO(
+                    id: "1234",
+                    url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
+                    upvotes: 1337,
+                    downvotes: 337
+                )
+            )
+
             HistoryRowView(
                 meme: MemeDTO(
                     id: "1234",
@@ -133,5 +141,7 @@ struct HistoryRowView_Previews: PreviewProvider {
                 )
             )
         }
+        .listStyle(.inset)
+        .preferredColorScheme(.dark)
     }
 }
