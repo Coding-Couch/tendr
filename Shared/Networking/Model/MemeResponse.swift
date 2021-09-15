@@ -8,16 +8,15 @@
 import Foundation
 
 /// Response body for a meme from Tendr
-struct MemeResponse: Identifiable, Codable, Equatable {
-    var id: String
-    var url: URL
-    var upvotes: Int
-    var downvotes: Int
+struct MemeResponse: Codable, Hashable {
+    let currentOffset: Int
+    let totalCount: Int
+    let memes: [MemeDTO]
+}
 
-    init(id: String, url: URL, upvotes: Int, downvotes: Int) {
-        self.id = id
-        self.url = url
-        self.upvotes = upvotes
-        self.downvotes = downvotes
-    }
+struct MemeDTO: Identifiable, Codable, Hashable {
+    let id: String
+    let url: URL
+    let upvotes: Int
+    let downvotes: Int
 }

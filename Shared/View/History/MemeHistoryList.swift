@@ -11,14 +11,19 @@ struct MemeHistoryList: View {
     // MARK: - Public Properties
 
     var historyType: HistoryType
-    @StateObject var memeProvider = NetworkClient<Empty, [MemeResponse]>()
+    @StateObject var memeProvider = NetworkClient<Empty, MemeResponse>()
 
     // MARK: - Private Properties
 
-    @State private var memes: [MemeResponse] = []
+    @State private var memes: [MemeDTO] = []
     @State private var currentOffset: Int = 0
+    @State private var totalCount: Int = 0
     @State private var alertContent: AlertContent?
-    @State private var endOfList: Bool = false
+
+    private var endOfList: Bool {
+        currentOffset == totalCount
+    }
+
     private let limit: Int = 20
 
     var body: some View {
@@ -37,22 +42,15 @@ struct MemeHistoryList: View {
                 )
                 memeProvider.load()
             }
-            .onReceive(memeProvider.$response) { memes in
-                guard let memes = memes else { return }
-                guard !memes.isEmpty else {
-                    endOfList = true
-                    return
-                }
+            .onReceive(memeProvider.$response) { response in
+                guard let response = response else { return }
 
-                if memes.count < limit {
-                    endOfList = true
-                }
+                totalCount = response.totalCount
+                currentOffset = response.currentOffset
 
                 withAnimation {
-                    self.memes.append(contentsOf: memes)
+                    memes.append(contentsOf: response.memes)
                 }
-
-                self.currentOffset = memes.count
             }
             .onReceive(memeProvider.$urlResponse) { urlResponse in
                 guard let urlResponse = urlResponse,

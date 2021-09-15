@@ -13,6 +13,6 @@ class MemeResponseTest: XCTestCase {
 
     func testExample() throws {
         let data = try jsonLoader.loadJson(fileName: "MemeResponseArray")
-        XCTAssertNoThrow(try JSONDecoder().decode([MemeResponse].self, from: data))
+        XCTAssertNoThrow(try JSONDecoder().decode(MemeResponse.self, from: data))
     }
 }

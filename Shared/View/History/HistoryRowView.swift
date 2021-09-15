@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryRowView: View {
-    var meme: MemeResponse
+    var meme: MemeDTO
 
     @State private var showShareSheet: Bool = false
     @State private var showMemeDetails: Bool = false
@@ -129,7 +129,7 @@ struct HistoryRowView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             HistoryRowView(
-                meme: MemeResponse(
+                meme: MemeDTO(
                     id: "1234",
                     url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
                     upvotes: 1337,

@@ -9,8 +9,10 @@ import SwiftUI
 import Combine
 
 class MemeProvider: ObservableObject {
-    @Published var memes: [MemeResponse]
+    @Published var memes: [MemeDTO]
+    private(set) var memeFailureSubject = PassthroughSubject<Error, Never>()
     private var offset: Int = 0
+    private var totalItems: Int = 0
     private var cancellable: AnyCancellable?
 
     init() {
@@ -27,24 +29,24 @@ class MemeProvider: ObservableObject {
 
         cancellable = URLSession.shared.dataTaskPublisher(for: request)
             .map { $0.data }
+            .decode(type: MemeResponse.self, decoder: JSONDecoder())
             .receive(on: RunLoop.main)
-            .decode(type: [MemeResponse].self, decoder: JSONDecoder())
-            .replaceError(with: [])
             .eraseToAnyPublisher()
-            .sink(receiveCompletion: { completion in
+            .sink { [memeFailureSubject] completion in
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
-                    print(error)
+                    memeFailureSubject.send(error)
                     break
                 }
-            }, receiveValue: { [weak self] payload in
+            } receiveValue: { [weak self] payload in
                 guard let self = self else { return }
 
-                self.offset += payload.count
-                self.memes.append(contentsOf: payload)
-            })
+                self.offset = payload.currentOffset
+                self.totalItems = payload.totalCount
+                self.memes.append(contentsOf: payload.memes)
+            }
     }
 
     func action(_ action: MemeAction) {

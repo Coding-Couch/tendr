@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemeCardView: View {
-    var meme: MemeResponse
+    var meme: MemeDTO
     var swipe: (MemeAction) -> Void
     var geometrySize: CGSize
     @Binding var swipingAction: MemeAction?
@@ -120,7 +120,7 @@ struct MemeCardView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { reader in
             MemeCardView(
-                meme: MemeResponse(
+                meme: MemeDTO(
                     id: "1234",
                     url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
                     upvotes: 1337,
@@ -133,7 +133,7 @@ struct MemeCardView_Previews: PreviewProvider {
 
         GeometryReader { reader in
             MemeCardView(
-                meme: MemeResponse(
+                meme: MemeDTO(
                     id: "1234",
                     url: URL(string: "https://i.redd.it/00rr8gg4spi61.jpg")!,
                     upvotes: 1337,

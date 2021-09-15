@@ -104,8 +104,8 @@ enum HistoryType: String, CustomStringConvertible, Identifiable, CaseIterable {
         self.rawValue
     }
 
-    case like
-    case dislike
+    case like = "FILTER_STRATEGY_UPVOTE"
+    case dislike = "FILTER_STRATEGY_DOWNVOTE"
 
     var description: String {
         switch self {

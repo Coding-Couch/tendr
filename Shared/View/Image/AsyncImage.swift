@@ -14,7 +14,10 @@ public struct AsyncImage<Placeholder: View>: View {
     private let url: URL?
     @State private var progress: Float = 0
     @State private var totalProgress: Float = 100
-    @State private var isLoaded: Bool = false
+
+    var isLoading: Bool {
+        progress != 0 && progress != totalProgress
+    }
 
     /// Return an `AsyncImage`.
     /// - Parameters:
@@ -26,7 +29,7 @@ public struct AsyncImage<Placeholder: View>: View {
     }
 
     public var body: some View {
-        KFImage(url, isLoaded: $isLoaded)
+        KFImage(url)
             .placeholder {placeholder}
             .resizable()
             .onProgress { (recievedSize, totalSize) in
@@ -37,7 +40,7 @@ public struct AsyncImage<Placeholder: View>: View {
             }
             .onFailure { _ in
                 withAnimation {
-                    isLoaded = true
+                    progress = 0
                 }
             }
             .overlay(
@@ -47,7 +50,7 @@ public struct AsyncImage<Placeholder: View>: View {
     }
 
     @ViewBuilder private var progressView: some View {
-        if !isLoaded {
+        if isLoading {
             ZStack(alignment: .bottom) {
                 Color.black.opacity(0.6)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

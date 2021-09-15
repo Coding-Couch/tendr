@@ -13,7 +13,7 @@ import XCTest
 class ApiRequestTest: XCTestCase {
     var cancellable: AnyCancellable?
 
-    let requestBody = MemeResponse(
+    let requestBody = MemeDTO(
         id: "1234",
         url: URL(string: "https://i.redd.it/66kprroymei61.png")!,
         upvotes: 123,
@@ -32,7 +32,7 @@ class ApiRequestTest: XCTestCase {
 
         cancellable = URLSession.shared.dataTaskPublisher(for: try request.createURLRequest())
             .map(\.data)
-            .decode(type: [MemeResponse].self, decoder: JSONDecoder())
+            .decode(type: MemeResponse.self, decoder: JSONDecoder())
             .sink { completion in
                 switch completion {
                 case .finished:
